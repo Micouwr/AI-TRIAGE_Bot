@@ -1,0 +1,40 @@
+yaml
+
+config/scope.yaml
+
+system_name: AI-Triage-Bot
+owner: William Ryan Micou
+description: >
+  AI-powered support triage system designed to classify incoming tickets,
+  determine escalation paths, and apply governance controls in alignment
+  with ISO/IEC 42001:2023.
+
+intended_use:
+  - Classify Tier 1 support tickets
+  - Escalate complex or sensitive cases to human agents
+  - Log decisions for audit and compliance
+
+ticket_types:
+  - access_request
+  - password_reset
+  - software_issue
+  - hardware_issue
+  - billing_question
+  - compliance_flag
+  - unknown
+
+escalation_rules:
+  - if tickettype == complianceflag: escalateto: humanagent
+  - if confidencescore < 0.7: escalateto: human_agent
+  - if containspii: escalateto: human_agent
+  - else: routeto: automatedresponse
+
+fallback_protocol:
+  - if LLM fails to classify: routeto: supportqueue
+  - if escalation fails: notify: AI Governance Lead
+
+iso_alignment:
+  - clause_4.2: Context of the organization
+  - clause_6.1: Risk management
+  - clause_8.2: Operational controls
+`
