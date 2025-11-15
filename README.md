@@ -1,6 +1,7 @@
 AI Triage Bot
 
 📌 Overview
+
 AI Triage Bot is a governance‑grade ticket classification system designed for enterprise support environments. It classifies incoming tickets, detects sensitive information (PII), and enforces fallback logging for audit readiness. Built with modular Python components, it aligns with ISO/IEC 42001 principles of transparency, risk control, and accountability.
 
 ---
