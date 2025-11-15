@@ -35,10 +35,3 @@ python tools/view_fallbacks.py
 `
 
 ---
-
-5. Deployment & Monetization
-- SaaS integration with ticketing systems (Freshdesk, Zendesk, etc.)  
-- Licensing model for enterprise clients  
-- Extensible with LLM prompt engineering for advanced classification  
-
----
