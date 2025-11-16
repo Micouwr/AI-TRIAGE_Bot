@@ -53,6 +53,17 @@ For detailed compliance mapping and lifecycle evidence:
 
 ---
 
+## 📊 Governance Overview
+
+| Stage | Focus Area | Key Components | Governance Alignment |
+|-------|------------|----------------|----------------------|
+| Core Engine | Ticket classification and fallback handling | `bot_engine/router.py`, `fallback_log.json`, `tests/test_router.py` | Transparency (Clause 7), Auditability (Clause 8) |
+| Governance Scripts | Modular compliance controls | Monitoring (`scripts/monitoring/pipeline_health.py`), Validation (`scripts/validation/schema_validator.py`), Transparency (`scripts/transparency/data_lineage.py`), Performance (`scripts/performance/db_analyzer.py`), Quality (`scripts/quality/data_assertions.py`) | Accountability (Clause 5), Risk Management (Clause 6), Transparency (Clause 7), Auditability (Clause 8) |
+| Real-World Data (Planned) | Validation with sanitized operational examples | Production ETL logs, schema drift cases, lineage of reporting tables, database performance metrics, CRM quality checks | Strengthens Transparency (Clause 7) and Auditability (Clause 8) |
+| External Integrations (Future) | Communication and ticketing platforms | Slack, Freshdesk, Zendesk adapters | Accountability (Clause 5) — only after core stability is confirmed |
+
+---
+
 ## 🚀 How to Run
 
 ```bash
