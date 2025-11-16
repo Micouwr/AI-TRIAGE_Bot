@@ -1,13 +1,21 @@
 import json
+import yaml
 from risk_controls.pii_filters import contains_pii
 
+def load_classification_rules():
+    with open("governance/config/scope.yaml", "r") as f:
+        config = yaml.safe_load(f)
+    return config.get("classification_rules", [])
+
 def classify_ticket(ticket_text):
-    if "password" in ticket_text.lower():
-        category = "access_request"
-        confidence = 0.92
-    elif "invoice" in ticket_text.lower():
-        category = "billing_question"
-        confidence = 0.88
+    rules = load_classification_rules()
+    ticket_lower = ticket_text.lower()
+
+    for rule in rules:
+        if any(keyword in ticket_lower for keyword in rule["keywords"]):
+            category = rule["ticket_type"]
+            confidence = rule["confidence"]
+            break
     else:
         category = "unknown"
         confidence = 0.42
@@ -25,20 +33,14 @@ def classify_ticket(ticket_text):
 
     return result
 
+import datetime
+
 def log_fallback(ticket_text, result):
     fallback_entry = {
         "ticket": ticket_text,
         "result": result,
-        "timestamp": __import__("datetime").datetime.utcnow().isoformat()
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
     }
 
-    try:
-        with open("fallback_log.json", "r") as f:
-            log = json.load(f)
-    except FileNotFoundError:
-        log = []
-
-    log.append(fallback_entry)
-
-    with open("fallback_log.json", "w") as f:
-        json.dump(log, f, indent=2)
+    with open("fallback_log.json", "a") as f:
+        f.write(json.dumps(fallback_entry) + "\n")

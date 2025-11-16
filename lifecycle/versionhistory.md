@@ -9,8 +9,8 @@ This document tracks the lifecycle of the AI Triage Bot, including major changes
 | v0.1    | Nov 2025 | Initial prototype with core `router.py` classification | Established fallback logging (`fallback_log.json`) |
 | v0.2    | Nov 2025 | Added assertion-based test suite (`tests/test_router.py`) | Introduced confidence scoring for transparency |
 | v0.3    | Nov 2025 | Drafted `risk_controls/fallback_protocols.md` and `config/scope.yaml` | Scoped project boundaries, documented fallback protocols |
-| v0.4    | Planned | Add `tools/view_fallbacks.py` for human-readable logs | Expand test coverage, prepare escalation protocols |
-| v0.5    | Planned | Incorporate Pipeline Health Monitor script | Extend accountability and risk monitoring features |
+| v0.4    | Nov 2025 | Replaced manual tests with pytest, enhanced PII detection, refactored logging, and created `tools` directory | Improved auditability with automated testing and stronger PII controls |
+| v0.5    | Nov 2025 | Externalized classification rules, implemented fallback viewer, and fixed deprecation warning | Enhanced transparency and maintainability |
 | v0.6    | Planned | Incorporate Schema Validator script | Strengthen risk management and schema drift detection |
 | v0.7    | Planned | Incorporate Data Lineage Tracker script | Enhance transparency with lineage and impact analysis |
 | v0.8    | Planned | Incorporate Database Performance Analyzer script | Improve risk and auditability with performance diagnostics |

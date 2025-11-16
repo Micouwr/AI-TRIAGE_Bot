@@ -1,7 +1,3 @@
-yaml
-
-config/scope.yaml
-
 system_name: AI-Triage-Bot
 owner: William Ryan Micou
 description: >
@@ -24,17 +20,30 @@ ticket_types:
   - unknown
 
 escalation_rules:
-  - if tickettype == complianceflag: escalateto: humanagent
-  - if confidencescore < 0.7: escalateto: human_agent
-  - if containspii: escalateto: human_agent
-  - else: routeto: automatedresponse
+  - rule: "if tickettype == complianceflag"
+    action: "escalateto: humanagent"
+  - rule: "if confidencescore < 0.7"
+    action: "escalateto: human_agent"
+  - rule: "if containspii"
+    action: "escalateto: human_agent"
+  - rule: "else"
+    action: "routeto: automatedresponse"
 
 fallback_protocol:
-  - if LLM fails to classify: routeto: supportqueue
-  - if escalation fails: notify: AI Governance Lead
+  - rule: "if LLM fails to classify"
+    action: "routeto: supportqueue"
+  - rule: "if escalation fails"
+    action: "notify: AI Governance Lead"
 
 iso_alignment:
   - clause_4.2: Context of the organization
   - clause_6.1: Risk management
   - clause_8.2: Operational controls
-`
+
+classification_rules:
+  - keywords: ["password", "reset"]
+    ticket_type: "access_request"
+    confidence: 0.92
+  - keywords: ["invoice", "billing"]
+    ticket_type: "billing_question"
+    confidence: 0.88

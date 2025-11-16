@@ -22,8 +22,9 @@ It also records milestone completion dates to maintain audit clarity and synchro
 |----------------------|-------------------------|----------------------------------------------|---------------------------------------------|---------------|
 | Clause 5 - Accountability | Clear ownership, traceability | Fallback logging of low-confidence classifications, Pipeline Health Monitor | `fallback_log.json`, `tools/view_fallbacks.py`, `scripts/monitoring/pipeline_health.py` | Planned |
 | Clause 6 - Risk Management | Identify and mitigate risks | PII detection filters, escalation protocols, Schema Validator, Database Performance Analyzer | `bot_engine/pii_filters.py`, `risk_controls/fallback_protocols.md`, `scripts/validation/schema_validator.py`, `scripts/performance/db_analyzer.py` | Planned |
-| Clause 7 - Transparency | Explainability, visibility | Human-readable fallback viewer, scope definition, Data Lineage Tracker | `tools/view_fallbacks.py`, `config/scope.yaml`, `scripts/transparency/data_lineage.py` | Planned |
-| Clause 8 - Auditability | Evidence for compliance | Assertion-based test suite, version history, Data Quality Assertion Framework | `tests/test_router.py`, `lifecycle/version_history.md`, `scripts/quality/data_assertions.py` | Planned |
+| Clause 7 - Transparency | Explainability, visibility | Human-readable fallback viewer, scope definition, Data Lineage Tracker | `tools/view_fallbacks.py`, `config/scope.yaml`, `scripts/transparency/data_lineage.py` | Completed (Nov 2025) |
+| Clause 6 - Risk Management | Identify and mitigate risks | PII detection filters, escalation protocols, Schema Validator, Database Performance Analyzer | `bot_engine/pii_filters.py`, `risk_controls/fallback_protocols.md`, `scripts/validation/schema_validator.py`, `scripts/performance/db_analyzer.py` | Completed (Nov 2025) |
+| Clause 8 - Auditability | Evidence for compliance | Pytest test suite, version history, Data Quality Assertion Framework | `tests/test_router.py`, `lifecycle/version_history.md`, `scripts/quality/data_assertions.py` | Completed (Nov 2025) |
 
 ---
 
