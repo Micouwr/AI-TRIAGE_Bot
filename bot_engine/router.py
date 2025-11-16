@@ -32,13 +32,5 @@ def log_fallback(ticket_text, result):
         "timestamp": __import__("datetime").datetime.utcnow().isoformat()
     }
 
-    try:
-        with open("fallback_log.json", "r") as f:
-            log = json.load(f)
-    except FileNotFoundError:
-        log = []
-
-    log.append(fallback_entry)
-
-    with open("fallback_log.json", "w") as f:
-        json.dump(log, f, indent=2)
+    with open("fallback_log.json", "a") as f:
+        f.write(json.dumps(fallback_entry) + "\n")
