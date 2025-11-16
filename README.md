@@ -9,8 +9,8 @@ This prototype demonstrates modular design, PII detection, and audit-ready loggi
 
 - **Core classification engine** (`bot_engine/router.py`) with confidence scoring
 - **Regex-based PII detection** (`bot_engine/pii_filters.py`) for basic data protection
-- **Assertion-based validation** (`tests/test_router.py`) for reproducible testing
-- **JSON fallback logging** (`fallback_log.json`) for transparency and error tracking
+- **Pytest-based validation** (`tests/test_router.py`) for reproducible testing
+- **JSONL fallback logging** (`fallback_log.json`) for transparency and error tracking
 - **Governance documentation** (`docs/iso42001_mapping.md`) mapping features to ISO/IEC 42001 clauses
 - **Lifecycle tracking** (`lifecycle/version_history.md`) for audit-ready version history
 
@@ -19,7 +19,6 @@ This prototype demonstrates modular design, PII detection, and audit-ready loggi
 ## 🔄 In Progress
 
 - Fallback log viewer (`tools/view_fallbacks.py`) for human review
-- Escalation protocols documentation (`risk_controls/fallback_protocols.md`)
 - Integration of governance scripts under `scripts/`:
   - Monitoring (`scripts/monitoring/pipeline_health.py`)
   - Validation (`scripts/validation/schema_validator.py`)
