@@ -50,4 +50,4 @@ This file is synchronized with:
 - `lifecycle/version_history.md` (for milestone tracking)
 - `docs/iso42001_mapping.md` (for clause alignment)
 
-Dates and status must match across all
+Dates and status must match across all three documents once lifecycle synchronization is finalized.
