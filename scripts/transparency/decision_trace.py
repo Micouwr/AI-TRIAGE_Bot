@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 from typing import Dict, Any, Optional
 
-TRACE_FILE = Path("governance/decision_trace.jsonl")
+TRACE_FILE = Path("logs/transparency.jsonl")
 
 def _append_trace(record: Dict[str, Any]):
     TRACE_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -54,10 +54,11 @@ def _ts():
 # Example usage
 if __name__ == "__main__":
     trace_decision(
-        ticket_id="abc-123",
-        input_summary="User asked for account help; email redacted.",
-        classification="routing",
-        confidence=0.83,
-        rationale="High intent match; no risk flags.",
-        controls_applied=["ip_filters", "output_validator"]
+        ticket_id="ex-001",
+        input_summary="Sanitized user request",
+        classification="access_request",
+        confidence=0.91,
+        rationale="Keywords matched 'password reset'",
+        controls_applied=["pii_filter", "input_sanitizer"],
     )
+    print(f"Decision trace written to {TRACE_FILE}")

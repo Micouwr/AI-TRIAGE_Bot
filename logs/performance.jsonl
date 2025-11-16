@@ -1,0 +1,3 @@
+{"timestamp": "2025-11-16 22:11:16", "component": "example_task", "metric": "latency_ms", "value": 50, "status": "ok", "thresholds": {"warn_ms": 100, "error_ms": 300}}
+{"timestamp": "2025-11-16 22:11:16", "component": "example_task", "metric": "latency_ms", "value": 150, "status": "warn", "thresholds": {"warn_ms": 100, "error_ms": 300}}
+{"timestamp": "2025-11-16 22:11:16", "component": "example_task", "metric": "latency_ms", "value": 350, "status": "error", "thresholds": {"warn_ms": 100, "error_ms": 300}}
