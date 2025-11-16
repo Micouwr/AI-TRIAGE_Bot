@@ -1,46 +1,34 @@
-AI Triage Bot
+# AI Triage Bot – Prototype
 
-📌 Overview
+A ticket classification proof-of-concept built in Python to explore AI governance principles (ISO/IEC 42001) in help desk automation. This prototype demonstrates modular design, PII detection, and audit-ready logging concepts, with planned extensibility for LLM integration and ticketing system adapters.
 
-AI Triage Bot is a governance‑grade ticket classification system designed for enterprise support environments. It classifies incoming tickets, detects sensitive information (PII), and enforces fallback logging for audit readiness. Built with modular Python components, it aligns with ISO/IEC 42001 principles of transparency, risk control, and accountability.
+## ✅ Implemented
 
----
+- **Core classification engine** (`bot_engine/router.py`) with confidence scoring
+- **Regex-based PII detection** (`botengine/piifilters.py`) for basic data protection
+- **Assertion-based validation** (`tests/test_router.py`) for reproducible testing
+- **JSON fallback logging** (`fallback_log.json`) for transparency and error tracking
 
-🧱 Architecture
-- bot_engine/router.py → Core classification engine with confidence scoring  
-- botengine/piifilters.py → Regex‑based PII detection  
-- tests/test_router.py → Assertion‑based test suite for validation  
-- fallback_log.json → Auto‑generated log of low‑confidence or unknown tickets  
-- tools/view_fallbacks.py → Human‑readable fallback viewer (to be added)  
-- riskcontrols/escalationprotocols.md → Escalation triggers and governance rules (to be added)  
+## 🔄 In Progress
 
----
+- Fallback log viewer (`tools/view_fallbacks.py`) for human review
+- Escalation protocols documentation (`riskcontrols/escalationprotocols.md`)
 
-⚖️ Governance Alignment
-- Transparent fallback logging  
-- Assertion‑based validation for audit trails  
-- Modular design for audit‑ready deployment  
-- ISO/IEC 42001 alignment: accountability, risk management, audit readiness  
+## 📋 Roadmap
 
----
+- Expand test coverage with pytest for CI/CD integration
+- Integrate LLM prompt engineering for advanced classification
+- Build adapters for ticketing systems (Slack, Freshdesk, Zendesk)
 
-🚀 How to Run
-`bash
+## 🎯 Governance Alignment
 
-Run tests
+Designed with ISO/IEC 42001 principles: transparency in logging, modularity for auditability, and risk-aware classification thresholds.
+
+## 🚀 How to Run
+
+```bash
+# Run tests
 python tests/test_router.py
 
-View fallback logs
-python tools/view_fallbacks.py
-`
-
----
-
-📂 Roadmap
-- Add fallback viewer (tools/view_fallbacks.py)  
-- Define escalation protocols (riskcontrols/escalationprotocols.md)  
-- Extend test coverage with pytest for CI/CD  
-- Optional: integrate LLM prompt engineering for advanced classification  
-- Optional: build adapters for ticketing systems (Freshdesk, Zendesk, etc.)  
-
----
+# View fallback logs (viewer coming soon)
+cat fallback_log.json
