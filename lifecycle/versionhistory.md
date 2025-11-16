@@ -10,18 +10,9 @@ This document tracks the lifecycle of the AI Triage Bot, including major changes
 | v0.2    |      | Added assertion-based test suite (`tests/test_router.py`) | Introduced confidence scoring for transparency |
 | v0.3    |      | Drafted `risk_controls/fallback_protocols.md` and `config/scope.yaml` | Scoped project boundaries, documented fallback protocols |
 | v0.4    | Planned | Add `tools/view_fallbacks.py` for human-readable logs | Expand test coverage, prepare escalation protocols |
-| v0.5    | Planned | Integrate with Slack/Freshdesk APIs | Document ISO/IEC 42001 clause mapping in `docs/iso42001_mapping.md` |
-| v0.6    | Planned | Incorporate Pipeline Health Monitor script | Extend accountability and risk monitoring features |
-| v0.7    | Planned | Incorporate Schema Validator script | Strengthen risk management and schema drift detection |
-| v0.8    | Planned | Incorporate Data Lineage Tracker script | Enhance transparency with lineage and impact analysis |
-| v0.9    | Planned | Incorporate Database Performance Analyzer script | Improve risk and auditability with performance diagnostics |
-| v1.0    | Planned | Incorporate Data Quality Assertion Framework script | Establish audit-ready quality gates and automated integrity checks |
-| v1.1    | Planned | Introduce real-world data examples (sanitized) | Validate working conditions post-initial tests, strengthen transparency and auditability |
-
----
-
-### Notes
-- Populate the Date column with actual commit timestamps once each milestone is completed.  
-- Keep Planned items undated until the work is committed.  
-- Real-world data examples will only be introduced after initial tests confirm working conditions, and all examples will be sanitized to protect sensitive information.  
-- This table is an evidence trail, not a forecast. Only completed entries should have dates.
+| v0.5    | Planned | Incorporate Pipeline Health Monitor script | Extend accountability and risk monitoring features |
+| v0.6    | Planned | Incorporate Schema Validator script | Strengthen risk management and schema drift detection |
+| v0.7    | Planned | Incorporate Data Lineage Tracker script | Enhance transparency with lineage and impact analysis |
+| v0.8    | Planned | Incorporate Database Performance Analyzer script | Improve risk and auditability with performance diagnostics |
+| v0.9    | Planned | Incorporate Data Quality Assertion Framework script | Establish audit-ready quality gates and automated integrity checks |
+| v1.0
