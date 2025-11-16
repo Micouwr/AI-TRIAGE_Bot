@@ -10,7 +10,7 @@ import json
 from functools import wraps
 from pathlib import Path
 
-LOG_FILE = Path("monitoring/pipeline_health.txt")
+LOG_FILE = Path("logs/performance.jsonl")
 
 def _log(event):
     LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -52,9 +52,10 @@ def track_latency(name: str, warn_ms: int = 500, error_ms: int = 2000):
 
 # Example usage
 if __name__ == "__main__":
-    @track_latency(name="classify_ticket", warn_ms=300, error_ms=1500)
-    def classify_ticket():
-        time.sleep(0.4)  # simulate work
-        return {"type": "routing", "confidence": 0.82}
+    @track_latency(name="example_task", warn_ms=100, error_ms=300)
+    def example_task(duration_s):
+        time.sleep(duration_s)
 
-    classify_ticket()
+    example_task(0.05)  # OK
+    example_task(0.15)  # Warn
+    example_task(0.35)  # Error

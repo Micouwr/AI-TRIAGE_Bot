@@ -1,0 +1,2 @@
+{"timestamp": "2025-11-16 22:11:25", "component": "output_validator", "metric": "validation", "status": "pass", "details": ["ok"]}
+{"timestamp": "2025-11-16 22:11:25", "component": "output_validator", "metric": "validation", "status": "fail", "details": ["confidence_out_of_bounds"]}

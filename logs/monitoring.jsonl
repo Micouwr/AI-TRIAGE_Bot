@@ -1,0 +1,2 @@
+{"timestamp": "2025-11-16 22:11:07,492", "stage": "example_task", "status": "success", "details": ""}
+{"timestamp": "2025-11-16 22:11:07,492", "stage": "example_task", "status": "failure", "details": "This is a simulated failure."}

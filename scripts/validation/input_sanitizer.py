@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 from typing import Dict, Any
 
-SANITIZED_LOG = Path("monitoring/pipeline_health.txt")
+SANITIZED_LOG = Path("logs/validation.jsonl")
 
 PHONE_REGEX = re.compile(r"\b(?:\+?1[-.\s]?)?(?:\(?\d{3}\)?[-.\s]?)\d{3}[-.\s]?\d{4}\b")
 EMAIL_REGEX = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
@@ -64,7 +64,8 @@ def _ts():
 
 # Example usage
 if __name__ == "__main__":
-    sample = "Call me at (502) 555-1234 or email ryan@example.com."
-    result = sanitize_input(sample)
-    assert "[PHONE_REDACTED]" in result["sanitized_text"]
-    assert "[EMAIL_REDACTED]" in result["sanitized_text"]
+    text = "Contact at 555-123-4567 or user@domain.com"
+    sanitized = sanitize_input(text)
+    print(f"Sanitized: {sanitized['sanitized_text']}")
+    assert "555-123-4567" not in sanitized["sanitized_text"]
+    assert "user@domain.com" not in sanitized["sanitized_text"]

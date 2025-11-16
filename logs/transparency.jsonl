@@ -1,0 +1,1 @@
+{"timestamp": "2025-11-16 22:11:33", "ticket_id": "ex-001", "input_summary": "Sanitized user request", "classification": "access_request", "confidence": 0.91, "rationale": "Keywords matched 'password reset'", "controls_applied": ["pii_filter", "input_sanitizer"], "extra": {}}

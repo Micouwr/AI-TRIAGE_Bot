@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 from typing import Dict, Any
 
-LOG_FILE = Path("monitoring/pipeline_health.txt")
+LOG_FILE = Path("logs/quality.jsonl")
 
 REQUIRED_FIELDS = {
     "ticket_id": str,
@@ -67,10 +67,9 @@ def time_str():
 
 # Example usage
 if __name__ == "__main__":
-    sample = {
-        "ticket_id": "abc-123",
-        "type": "routing",
-        "confidence": 0.76,
-        "actions": ["notify", "log"]
-    }
-    assert validate_output(sample, min_confidence=0.6) is True
+    valid_payload = {"ticket_id": "a", "type": "b", "confidence": 0.8, "actions": []}
+    invalid_payload = {"ticket_id": "a", "type": "b", "confidence": 1.1, "actions": []}
+
+    assert validate_output(valid_payload)
+    assert not validate_output(invalid_payload)
+    print("Validation tests passed.")
