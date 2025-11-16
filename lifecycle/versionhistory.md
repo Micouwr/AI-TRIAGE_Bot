@@ -16,10 +16,12 @@ This document tracks the lifecycle of the AI Triage Bot, including major changes
 | v0.8    | Planned | Incorporate Data Lineage Tracker script | Enhance transparency with lineage and impact analysis |
 | v0.9    | Planned | Incorporate Database Performance Analyzer script | Improve risk and auditability with performance diagnostics |
 | v1.0    | Planned | Incorporate Data Quality Assertion Framework script | Establish audit-ready quality gates and automated integrity checks |
+| v1.1    | Planned | Introduce real-world data examples (sanitized) | Validate working conditions post-initial tests, strengthen transparency and auditability |
 
 ---
 
 ### Notes
-- Populate the Date column using the actual commit timestamps for each completed version.
-- Keep Planned items undated until the work is completed and committed.
+- Populate the Date column with actual commit timestamps once each milestone is completed.  
+- Keep Planned items undated until the work is committed.  
+- Real-world data examples will only be introduced after initial tests confirm working conditions, and all examples will be sanitized to protect sensitive information.  
 - This table is an evidence trail, not a forecast. Only completed entries should have dates.
