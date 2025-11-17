@@ -35,8 +35,18 @@ A Python prototype that layers ISO/IEC 42001 governance controls onto an LLM-pow
 # Set your Gemini API key (never commit this to Git)
 export GEMINI_API_KEY="your_key_here"
 
+# Install dependencies
+pip install -r requirements.txt
+
 # Run tests
-python tests/test_router.py
+python -m pytest
 
 # View fallback logs
 cat fallback_log.jsonl
+```
+
+---
+
+##  CI/CD
+
+This project uses GitHub Actions to automate testing. The workflow is defined in `.github/workflows/ci.yml` and runs on every push and pull request.
