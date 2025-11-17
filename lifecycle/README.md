@@ -31,4 +31,4 @@ When updating the version history:
 
 ## Contact
 
-For questions or to report issues with the version history documentation, contact [Your Name] at [Your Email].
+For questions or to report issues with the version history documentation, contact William Micou at micouwr@gmail.com.
