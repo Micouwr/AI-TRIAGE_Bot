@@ -1,4 +1,4 @@
-# Testing Strategy - AI Triage Bot
+# Testing Strategy - AI Triage Bot Prototype
 
 This directory contains all the test scripts for the AI Triage Bot Prototype. The testing strategy is designed to ensure reproducibility, traceability, and auditability in line with ISO/IEC 42001 Clause 8.
 
