@@ -15,7 +15,7 @@ These conditions are monitored by the classification engine and governance scrip
 ## Actions
 
 1. Route ticket to human agent with fallback flag
-2. Log incident in `fallback_log.json` with timestamp and input
+2. Log incident in `fallback_log.jsonl` with timestamp and input
 3. Notify governance team if fallback rate exceeds 5% in a 24-hour window
 
 ## Audit Notes
