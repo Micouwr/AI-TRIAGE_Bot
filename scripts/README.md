@@ -1,4 +1,4 @@
-# Governance Script Suite
+# Governance Scripts
 
 This directory contains governance-grade scripts designed to enforce ISO/IEC 42001 controls across monitoring, performance, quality, transparency, and validation. Each subfolder houses a modular Python script aligned with specific clauses, ensuring accountability, risk management, and auditability.
 
@@ -13,7 +13,7 @@ This directory contains governance-grade scripts designed to enforce ISO/IEC 420
 ## Clause Mapping
 
 | Folder        | Purpose                                      | ISO/IEC 42001 Clauses |
-|---------------|----------------------------------------------|------------------------|
+|---------------|------------------------------|------------------------|
 | monitoring    | Track pipeline stages, log failures, retry logic | Clause 5, Clause 6, Clause 8 |
 | performance   | Measure latency, flag slow components        | Clause 6, Clause 8 |
 | quality       | Validate outputs for completeness/confidence | Clause 6, Clause 8 |
@@ -34,3 +34,5 @@ Each script can be imported into the AI Triage Bot or run standalone for testing
 ---
 
 This suite ensures that every operational control is modular, auditable, and clause-aligned, supporting enterprise deployment and ISO/IEC 42001 compliance.
+
+For questions or issues related to the governance scripts, contact William Ryan Micou at micouwr@gmail.com.
