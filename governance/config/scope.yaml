@@ -1,5 +1,3 @@
-yaml
-
 config/scope.yaml
 
 system_name: AI-Triage-Bot
@@ -24,19 +22,19 @@ ticket_types:
   - unknown
 
 escalation_rules:
-  - if tickettype == complianceflag: escalateto: humanagent
-  - if confidencescore < 0.7: escalateto: human_agent
-  - if containspii: escalateto: human_agent
-  - else: routeto: automatedresponse
+  - if ticket_type == compliance_flag: escalate_to: human_agent
+  - if confidence_score < 0.7: escalate_to: human_agent
+  - if contains_pii: escalate_to: human_agent
+  - else: route_to: automated_response
 
 fallback_protocol:
-  - if LLM fails to classify: routeto: supportqueue
+  - if LLM fails to classify: route_to: support_queue
   - if escalation fails: notify: AI Governance Lead
 
 iso_alignment:
   - clause_4.2: Context of the organization
     description: The AI Triage Bot is designed to integrate seamlessly with existing IT support workflows, enhancing efficiency without disrupting current operations.
   - clause_6.1: Risk management
-    description: Risks are identified and mitigated through PII detection, confidence scoring, and escalation protocols. Regular audits and system assessments are conducted to manage risks effectively.
+    description: Identified and mitigated risks include PII detection, confidence scoring, and escalation protocols, with regular audits and system assessments.
   - clause_8.2: Operational controls
-    description: Operational controls are implemented through automated ticket classification, escalation paths, and governance layer applications. These controls ensure that the system operates within predefined parameters and adheres to compliance requirements.
+    description: Implemented controls include automated ticket classification, escalation paths, and governance layer applications, ensuring that the system operates within predefined parameters and adheres to compliance requirements.
