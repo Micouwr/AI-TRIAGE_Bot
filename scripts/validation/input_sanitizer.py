@@ -7,6 +7,7 @@ Aligns with ISO/IEC 42001: Clause 6 (Risk Management), Clause 8 (Auditability).
 
 import re
 import json
+import time
 from pathlib import Path
 from typing import Dict, Any
 
@@ -44,7 +45,7 @@ def sanitize_input(text: str) -> Dict[str, Any]:
     sanitized = EMAIL_REGEX.sub(_redact_email, sanitized)
 
     event = {
-        "timestamp": _ts(),
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
         "component": "input_sanitizer",
         "metric": "sanitization",
         "status": "ok",
@@ -58,7 +59,7 @@ def sanitize_input(text: str) -> Dict[str, Any]:
         "meta": redactions
     }
 
-def _ts():
+def time_str():
     import time
     return time.strftime("%Y-%m-%d %H:%M:%S")
 
