@@ -1,6 +1,15 @@
 import re
 
 def contains_pii(text):
+    """
+    Detects Personally Identifiable Information (PII) in the given text.
+
+    Args:
+        text (str): The text to search for PII.
+
+    Returns:
+        bool: True if PII is found, False otherwise.
+    """
     patterns = [
         r"\b\d{3}-\d{2}-\d{4}\b",  # SSN
         r"\b\d{16}\b",             # Credit Card
