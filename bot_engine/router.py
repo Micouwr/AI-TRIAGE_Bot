@@ -1,31 +1,31 @@
 import json
-import openai
+import os
+import google.generativeai as genai
 from risk_controls.pii_filters import contains_pii
+
+# Configure Gemini API
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 def classify_ticket(ticket_text):
     """
-    Classifies ticket using GPT-4o-mini with governance layers.
-    Confidence score derived from model's logprobs.
+    Classifies ticket using Gemini 1.5 Flash with governance layers.
     """
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": (
-                    "You are a help desk triage assistant. "
-                    "Classify the ticket into ONE category: "
-                    "access_request, billing_question, technical_support, or unknown. "
-                    "Return ONLY a JSON object with keys: 'category' and 'confidence' (0.0-1.0)."
-                )},
-                {"role": "user", "content": ticket_text}
-            ],
-            temperature=0.1,  # Low temp for consistency
-            logprobs=True,     # Enables confidence scoring
-            max_tokens=50
+        prompt = (
+            "You are a help desk triage assistant. "
+            "Classify the ticket into ONE category: "
+            "access_request, billing_question, technical_support, or unknown. "
+            "Return ONLY a JSON object with keys: 'category' and 'confidence' (0.0-1.0)."
+        )
+        
+        response = model.generate_content(
+            f"{prompt}\n\nTicket: {ticket_text}",
+            generation_config={"temperature": 0.1}
         )
         
         # Parse model output
-        result = json.loads(response.choices[0].message.content)
+        result = json.loads(response.text)
         category = result["category"]
         confidence = result["confidence"]
         
@@ -42,7 +42,7 @@ def classify_ticket(ticket_text):
         "ticket_type": category,
         "confidence_score": round(confidence, 2),
         "contains_pii": pii_flag,
-        "model": "gpt-4o-mini"
+        "model": "gemini-1.5-flash"
     }
 
     # Audit logging
@@ -55,9 +55,10 @@ def log_llm_error(ticket_text, error_msg):
     """Governance: Log when AI model fails."""
     entry = {
         "error": error_msg,
-        "ticket": ticket_text[:100],  # Truncate for safety
+        "ticket": ticket_text[:100],
         "timestamp": __import__("datetime").datetime.utcnow().isoformat()
     }
+    os.makedirs("governance", exist_ok=True)
     with open("governance/llm_error_log.jsonl", "a") as f:
         f.write(json.dumps(entry) + "\n")
 
