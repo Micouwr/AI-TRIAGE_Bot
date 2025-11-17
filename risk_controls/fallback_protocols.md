@@ -5,7 +5,7 @@ This document outlines governance-aligned fallback handling procedures for low-c
 ## Trigger Conditions
 
 Fallback protocols activate when:
-- `confidence_score &lt; 0.5`
+- `confidence_score < 0.5`
 - Escalation fails or times out
 - `ticket_type == "unknown"`
 - LLM output is malformed or missing required fields
