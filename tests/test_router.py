@@ -40,3 +40,9 @@ def test_classify_unknown_without_pii():
         "contains_pii": False,
     }
     assert classify_ticket(ticket_text) == expected
+
+def test_classify_invalid_input():
+    with pytest.raises(ValueError):
+        classify_ticket(None)  # Assuming classify_ticket raises ValueError for invalid inputs
+
+# Additional tests can be added here as needed
