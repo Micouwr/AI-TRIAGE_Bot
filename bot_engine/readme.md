@@ -1,10 +1,10 @@
-# bot_engine
+# AI-TRIAGE-BOT: bot_engine Directory
 
 The `bot_engine` directory contains the core logic of the AI Triage Bot, specifically focusing on ticket classification and governance.
 
 ## Overview
 
-`router.py` is a critical component of the AI Triage Bot, responsible for classifying tickets using the Gemini 1.5 Flash model. It includes governance layers to handle PII detection and manage low-confidence classifications.
+`router.py` is a critical component of the AI-TRIAGE-BOT, responsible for classifying tickets using the Gemini 1.5 Flash model. It includes governance layers to handle PII detection and manage low-confidence classifications.
 
 ## Functionality
 
