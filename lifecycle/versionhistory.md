@@ -21,8 +21,8 @@ This document tracks the lifecycle of the AI Triage Bot, including major changes
 ---
 
 ### Notes
-- Dates for v0.1 through v0.3 are recorded as Nov 2025, reflecting their completion in that month.  
+- Dates for v0.1 through v0.4 are recorded as Nov 2025, reflecting their completion in that month.  
 - Populate future Date entries with actual commit timestamps once each milestone is completed.  
 - Keep Planned items undated until the work is committed.  
 - Real-world data examples will only be introduced after initial tests confirm working conditions, and all examples will be sanitized to protect sensitive information.  
-- This table is an evidence trail, not a forecast. Only completed entries should have dates.
+- This table serves as an evidence trail, not a forecast. Only completed entries should have dates.
