@@ -1,34 +1,28 @@
 """
 monitor_pipeline.py
 
-Governance-aligned pipeline monitor for AI Triage Bot.
-Supports ISO/IEC 42001 Clause 5 (Accountability), Clause 6 (Risk Management), and Clause 8 (Auditability).
+A simple pipeline monitor for the AI Triage Bot Prototype aligned with ISO/IEC 42001 standards.
 """
 
 import time
 import logging
 from functools import wraps
 
-# Setup audit-friendly logging
-logging.basicConfig(
-    filename='fallback_logs.json',
-    level=logging.INFO,
-    format='{"timestamp": "%(asctime)s", "stage": "%(stage)s", "status": "%(status)s", "details": "%(message)s"}'
-)
+# Setup basic logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 class PipelineMonitor:
     def __init__(self):
         self.stage_results = []
 
     def log_stage_result(self, stage_name, status, details=""):
-        entry = {
+        self.stage_results.append({
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             "stage": stage_name,
             "status": status,
             "details": details
-        }
-        self.stage_results.append(entry)
-        logging.info(details, extra={"stage": stage_name, "status": status})
+        })
+        logging.info(f"Stage {stage_name} - {status}: {details}")
 
     def monitor_stage(self, stage_name):
         def decorator(func):
