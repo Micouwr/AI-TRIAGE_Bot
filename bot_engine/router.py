@@ -1,9 +1,13 @@
 import json
 import os
+from dotenv import load_dotenv
 import google.generativeai as genai
 from risk_controls.pii_filters import contains_pii
 
-# Configure Gemini API
+# Load environment variables from .env file
+load_dotenv()
+
+# Configure Gemini API with the loaded API key
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-1.5-flash")
 
