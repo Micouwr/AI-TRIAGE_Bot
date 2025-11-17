@@ -1,5 +1,6 @@
 import json
 import os
+import yaml
 from dotenv import load_dotenv
 import google.generativeai as genai
 from risk_controls.pii_filters import contains_pii
@@ -11,18 +12,23 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-1.5-flash")
 
+def load_classification_categories():
+    """Loads classification categories from the YAML config."""
+    with open("governance/config/scope.yaml", "r") as f:
+        config = yaml.safe_load(f)
+    return config.get("ticket_types", [])
+
 def classify_ticket(ticket_text):
     """
     Classifies ticket using Gemini 1.5 Flash with governance layers.
     """
     try:
-        prompt = (
-            "You are a help desk triage assistant. "
-            "Classify the ticket into ONE category: "
-            "access_request, billing_question, technical_support, or unknown. "
-            "Return ONLY a JSON object with keys: 'category' and 'confidence' (0.0-1.0)."
-        )
+        with open("prompts/classification_prompt.txt", "r") as f:
+            prompt_template = f.read()
         
+        categories = load_classification_categories()
+        prompt = prompt_template.format(categories=", ".join(categories))
+
         response = model.generate_content(
             f"{prompt}\n\nTicket: {ticket_text}",
             generation_config={"temperature": 0.1}
