@@ -1,63 +1,46 @@
 """
 decision_trace.py
 
-Captures decision rationale, inputs, and confidence for traceability.
+Purpose: Capture decision rationale, confidence, and governance controls applied.
 Aligns with ISO/IEC 42001: Clause 5 (Accountability), Clause 8 (Auditability).
+
+## Audit Notes
+- Logs written to `governance/decision_trace.jsonl`.
+- Input summaries must be sanitized (no raw PII).
+- Reviewed weekly by governance team.
 """
 
 import json
+import time
 from pathlib import Path
-from typing import Dict, Any, Optional
 
-TRACE_FILE = Path("governance/decision_trace.jsonl")
+LOG_FILE = Path("governance/decision_trace.jsonl")
 
-def _append_trace(record: Dict[str, Any]):
-    TRACE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with TRACE_FILE.open("a", encoding="utf-8") as f:
-        f.write(json.dumps(record) + "\n")
+def _log(event):
+    LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with LOG_FILE.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(event) + "\n")
 
-def trace_decision(
-    ticket_id: str,
-    input_summary: str,
-    classification: str,
-    confidence: float,
-    rationale: Optional[str],
-    controls_applied: Optional[list] = None,
-    extra: Optional[Dict[str, Any]] = None
-) -> None:
+def log_decision_rationale(decision_id, rationale, confidence, actions, sanitized_input):
     """
-    Appends a structured decision trace for audit review.
-    - ticket_id: unique identifier for correlation
-    - input_summary: sanitized description of input (no raw PII)
-    - classification: e.g., 'routing', 'escalation', 'fallback'
-    - confidence: 0.0-1.0
-    - rationale: brief reason or key signals
-    - controls_applied: list of governance controls enforced
-    - extra: optional dict for additional context
+    Logs the decision rationale, confidence, and actions taken by the bot.
     """
-    record = {
-        "timestamp": _ts(),
-        "ticket_id": ticket_id,
-        "input_summary": input_summary,
-        "classification": classification,
-        "confidence": confidence,
+    event = {
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "decision_id": decision_id,
         "rationale": rationale,
-        "controls_applied": controls_applied or [],
-        "extra": extra or {}
+        "confidence": confidence,
+        "actions": actions,
+        "input_summary": sanitized_input
     }
-    _append_trace(record)
-
-def _ts():
-    import time
-    return time.strftime("%Y-%m-%d %H:%M:%S")
+    _log(event)
 
 # Example usage
 if __name__ == "__main__":
-    trace_decision(
-        ticket_id="abc-123",
-        input_summary="User asked for account help; email redacted.",
-        classification="routing",
-        confidence=0.83,
-        rationale="High intent match; no risk flags.",
-        controls_applied=["ip_filters", "output_validator"]
+    log_decision_rationale(
+        decision_id="123456",
+        rationale="Ticket classified as 'access_request'",
+        confidence=0.95,
+        actions=["route_to_agent", "log_event"],
+        sanitized_input="User requested access to system."
     )
