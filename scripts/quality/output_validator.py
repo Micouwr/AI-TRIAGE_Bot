@@ -6,6 +6,7 @@ Aligns with ISO/IEC 42001: Clause 6 (Risk Management), Clause 8 (Auditability).
 """
 
 import json
+import time
 from pathlib import Path
 from typing import Dict, Any
 
@@ -52,7 +53,7 @@ def validate_output(payload: Dict[str, Any], min_confidence: float = 0.5) -> boo
             valid = False
 
     event = {
-        "timestamp": time_str(),
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
         "component": "output_validator",
         "metric": "validation",
         "status": "pass" if valid else "fail",
