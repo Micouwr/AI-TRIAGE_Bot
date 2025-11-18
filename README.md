@@ -50,9 +50,3 @@ cat fallback_log.jsonl
 ##  CI/CD
 
 This project uses GitHub Actions to automate testing. The workflow is defined in `.github/workflows/ci.yml` and runs on every push and pull request.
-
-## CI/CD
-
-This project uses GitHub Actions for continuous integration.
-
-**Workflow:** `.github/workflows/ci.yml`
