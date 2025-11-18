@@ -1,4 +1,3 @@
-cat << 'EOF' > docs/README.md
 # Documentation
 
 This directory contains governance, compliance, and technical documentation for the AI-TRIAGE Bot.
