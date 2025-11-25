@@ -1,49 +1,106 @@
 import json
 import os
 import yaml
+from pathlib import Path
 from dotenv import load_dotenv
 import google.generativeai as genai
+from google.generativeai.types import GenerationConfig
 from risk_controls.pii_filters import contains_pii
+from datetime import datetime, timezone
 
-# Load environment variables from .env file
-load_dotenv()
+# --- Configuration Loading ---
 
-# Configure Gemini API with the loaded API key
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-1.5-flash")
+def get_project_root() -> Path:
+    """Returns the project root directory."""
+    return Path(__file__).parent.parent
 
-def load_classification_categories():
-    """Loads classification categories from the YAML config."""
-    with open("governance/config/scope.yaml", "r") as f:
-        config = yaml.safe_load(f)
-    return config.get("ticket_types", [])
+def load_config():
+    """Loads the main configuration from the YAML file."""
+    config_path = get_project_root() / "governance" / "config" / "scope.yaml"
+    with config_path.open("r") as f:
+        return yaml.safe_load(f)
 
-def classify_ticket(ticket_text):
-    """
-    Classifies ticket using Gemini 1.5 Flash with governance layers.
-    """
+# Load configuration and environment variables
+config = load_config()
+bot_config = config.get("bot_config", {})
+TICKET_TYPES = config.get("ticket_types", [])
+CONFIDENCE_THRESHOLD = bot_config.get("confidence_threshold", 0.5)
+MODEL_NAME = bot_config.get("model_name", "gemini-1.5-flash")
+
+load_dotenv(get_project_root() / ".env")
+
+# --- Gemini API Initialization ---
+
+try:
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+    model = genai.GenerativeModel(MODEL_NAME)
+except (TypeError, ValueError) as e:
+    print(f"Error: Gemini API key not configured. Please set GEMINI_API_KEY in a .env file. Details: {e}")
+    model = None
+
+# --- Core Functions ---
+
+def prepare_prompt(ticket_text: str) -> str:
+    """Loads the prompt template and formats it with categories and the ticket text."""
+    prompt_path = get_project_root() / "prompts" / "classification_prompt.txt"
+    with prompt_path.open("r") as f:
+        prompt_template = f.read()
+
+    categories_str = ", ".join(TICKET_TYPES)
+    return f"{prompt_template.format(categories=categories_str)}\n\nTicket: {ticket_text}"
+
+def invoke_llm(prompt: str) -> dict:
+    """Invokes the Gemini model and returns the parsed JSON response."""
+    if not model:
+        raise ConnectionError("Gemini model is not initialized. Check API key.")
+
     try:
-        with open("prompts/classification_prompt.txt", "r") as f:
-            prompt_template = f.read()
-        
-        categories = load_classification_categories()
-        prompt = prompt_template.format(categories=", ".join(categories))
-
         response = model.generate_content(
-            f"{prompt}\n\nTicket: {ticket_text}",
-            generation_config={"temperature": 0.1}
+            prompt,
+            generation_config=GenerationConfig(temperature=0.1)
         )
-        
-        # Parse model output
-        result = json.loads(response.text)
-        category = result["category"]
-        confidence = result["confidence"]
-        
+        # Assuming response.text is a JSON string
+        return json.loads(response.text)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"LLM returned malformed JSON: {response.text}") from e
     except Exception as e:
-        # Governance fallback: if LLM fails, log and mark unknown
+        raise ConnectionError(f"API call to Gemini failed: {e}") from e
+
+def process_llm_response(result: dict) -> tuple[str, float]:
+    """Extracts and validates category and confidence from the LLM response."""
+    category = result.get("category", "unknown")
+    confidence = result.get("confidence", 0.0)
+
+    if category not in TICKET_TYPES:
         category = "unknown"
-        confidence = 0.0
+        confidence = 0.0 # Confidence is unreliable if category is invalid
+
+    return category, float(confidence)
+
+def classify_ticket(ticket_text: str) -> dict:
+    """
+    Classifies a support ticket using the Gemini 1.5 Flash model with governance layers.
+    """
+    if not ticket_text or ticket_text.isspace():
+        return {
+            "ticket_type": "unknown",
+            "confidence_score": 0.0,
+            "contains_pii": False,
+            "model": MODEL_NAME
+        }
+
+    category = "unknown"
+    confidence = 0.0
+
+    try:
+        prompt = prepare_prompt(ticket_text)
+        llm_result = invoke_llm(prompt)
+        category, confidence = process_llm_response(llm_result)
+    except (ConnectionError, ValueError) as e:
         log_llm_error(ticket_text, str(e))
+    except Exception as e:
+        # Catch-all for unexpected errors during the process
+        log_llm_error(ticket_text, f"An unexpected error occurred: {e}")
 
     # Apply governance layers
     pii_flag = contains_pii(ticket_text)
@@ -52,32 +109,39 @@ def classify_ticket(ticket_text):
         "ticket_type": category,
         "confidence_score": round(confidence, 2),
         "contains_pii": pii_flag,
-        "model": "gemini-1.5-flash"
+        "model": MODEL_NAME
     }
 
-    # Audit logging
-    if confidence < 0.5 or category == "unknown":
+    # Audit logging for low-confidence or failed classifications
+    if confidence < CONFIDENCE_THRESHOLD or category == "unknown":
         log_fallback(ticket_text, final_result)
 
     return final_result
 
-def log_llm_error(ticket_text, error_msg):
-    """Governance: Log when AI model fails."""
-    entry = {
-        "error": error_msg,
-        "ticket": ticket_text[:100],
-        "timestamp": __import__("datetime").datetime.utcnow().isoformat()
-    }
-    os.makedirs("governance", exist_ok=True)
-    with open("governance/llm_error_log.jsonl", "a") as f:
+# --- Governance and Auditing ---
+
+def log_entry(log_path: Path, entry: dict):
+    """Appends a JSON entry to a specified log file."""
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with log_path.open("a") as f:
         f.write(json.dumps(entry) + "\n")
 
-def log_fallback(ticket_text, result):
-    """Governance: Log low-confidence or unknown classifications."""
+def log_llm_error(ticket_text: str, error_msg: str):
+    """Governance: Log when the AI model fails or returns an invalid response."""
+    entry = {
+        "error": error_msg,
+        "ticket_preview": ticket_text[:100], # Log only a preview
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+    log_path = get_project_root() / "governance" / "llm_error_log.jsonl"
+    log_entry(log_path, entry)
+
+def log_fallback(ticket_text: str, result: dict):
+    """Governance: Log low-confidence or unknown classifications for human review."""
     entry = {
         "ticket": ticket_text,
         "result": result,
-        "timestamp": __import__("datetime").datetime.utcnow().isoformat()
+        "timestamp": datetime.now(timezone.utc).isoformat()
     }
-    with open("fallback_log.jsonl", "a") as f:
-        f.write(json.dumps(entry) + "\n")
+    log_path = get_project_root() / "fallback_log.jsonl"
+    log_entry(log_path, entry)
