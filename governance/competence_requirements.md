@@ -1,14 +1,17 @@
 # Competence Requirements - AI Triage Bot Operators
 
+**Document Status:** APPROVED  
+**Operational Status:** FRAMEWORK  
 **Document Version:** 1.0  
 **Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
+**Purpose:** Training framework for system operators when system becomes operational  
 
 ---
 
 ## 1. Overview
 
-This document defines the knowledge, skills, and training required for personnel operating or interacting with the AI Triage Bot system.
+This document defines the knowledge, skills, and training required for personnel operating or interacting with the AI Triage Bot system. These requirements align with ISO/IEC 42001:2023 Clause 7.2 (Competence).
 
 ---
 
@@ -137,10 +140,10 @@ Format:
 {
   "employee_id": "EMP001",
   "role": "System Operator",
-  "training_date": "2025-01-15",
+  "training_date": "2025-11-25",
   "trainer": "W.R. Micou",
   "assessment_score": 95,
-  "next_refresh_due": "2026-01-15"
+  "next_refresh_due": "2026-11-25"
 }
 ```
 
@@ -195,3 +198,69 @@ Personnel scoring below 80% must:
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2025-11-25 | W.R. Micou | Initial competence framework |
+```
+
+---
+
+## **REVIEW OF FILE #2: `governance/competence_requirements.md`**
+
+### ✅ **Checklist Review:**
+
+**Plan Compliance:**
+- ✅ Document status headers added (APPROVED/FRAMEWORK)
+- ✅ Added "Purpose: Training framework for system operators when system becomes operational"
+- ✅ All em dashes (`—`) removed
+- ✅ No over-promising language
+- ✅ Written as framework/template (Option B confirmed)
+- ✅ Dates corrected to 2025-11-25
+
+**Content Quality:**
+- ✅ No code to have bugs
+- ✅ Markdown syntax valid
+- ✅ Tables formatted correctly
+- ✅ File references accurate
+- ✅ JSON example is valid
+- ✅ No embellishments
+
+**Issues Found:** None
+
+**Status:** ✅ **APPROVED - File #2 is clean and ready**
+
+---
+
+# **CONTEXT RECALL PROMPT**
+```
+I am working on an AI Triage Bot project that classifies support tickets using Google Gemini 1.5 Flash. The system is a work-in-progress implementing ISO/IEC 42001:2023 governance controls.
+
+Current project status:
+- Branch: feat/gui-and-code-refactor
+- System Status: Framework implementation (not production)
+- Primary Goal: Demonstrate ISO 42001 compliance in practice
+
+We are currently cleaning up documentation to:
+1. Remove all em dashes (—) and replace with hyphens (-)
+2. Remove over-promising language (no "production-ready", "enterprise-grade", etc.)
+3. Add document status headers (APPROVED/FRAMEWORK)
+4. Update README.md to reflect current structure
+5. Create docs/PORTFOLIO.md for career-focused content
+6. Update lifecycle/versionhistory.md
+
+Key rules established:
+- NEVER embellish or make things up to sound impressive
+- Facts only, no subjective quality claims
+- Ask for approval before suggesting improvements
+- System is WIP, documentation is framework for when operational
+
+Files being corrected (9 total):
+1. governance/ai_policy.md [COMPLETE]
+2. governance/competence_requirements.md [COMPLETE]
+3. governance/audit_procedures.md [PENDING]
+4. docs/operator_quick_guide.md [PENDING]
+5. governance/training_materials/reviewer_handbook.md [PENDING]
+6. governance/training_materials/admin_technical_guide.md [PENDING]
+7. governance/training_materials/governance_framework.md [PENDING - remove resume section]
+8. README.md [PENDING - update structure]
+9. docs/PORTFOLIO.md [PENDING - create new]
+
+System owner: William Ryan Micou
+Date: 2025-11-25
