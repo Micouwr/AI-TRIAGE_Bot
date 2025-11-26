@@ -134,3 +134,64 @@ Maintained in: `governance/training_records/`
 
 Format:
 ```json
+{
+  "employee_id": "EMP001",
+  "role": "System Operator",
+  "training_date": "2025-01-15",
+  "trainer": "W.R. Micou",
+  "assessment_score": 95,
+  "next_refresh_due": "2026-01-15"
+}
+```
+
+---
+
+## 4. Competence Verification
+
+### 4.1 Initial Assessment
+- Written test covering system operation and policies
+- Practical demonstration of system usage
+- Scenario-based problem solving
+
+**Passing Criteria:** 80% or higher on all assessments
+
+### 4.2 Ongoing Evaluation
+- Monthly spot-checks on ticket handling accuracy
+- Quarterly review of escalation decisions
+- Annual comprehensive re-assessment
+
+### 4.3 Remediation
+Personnel scoring below 80% must:
+1. Receive additional training within 2 weeks
+2. Complete re-assessment within 4 weeks
+3. Escalate to supervisor if second attempt fails
+
+---
+
+## 5. Training Resources Location
+```
+/governance/
+  ├── ai_policy.md                    (All roles)
+  ├── competence_requirements.md      (This document)
+  └── training_materials/
+      ├── operator_quick_guide.md     (Tier 1)
+      ├── reviewer_handbook.md        (Human Review)
+      ├── admin_technical_guide.md    (Administrators)
+      └── governance_framework.md     (Governance Lead)
+```
+
+---
+
+## 6. Contact for Training
+
+**Primary Contact:** William Ryan Micou  
+**Training Coordinator:** [TBD]  
+**Technical Questions:** See `README.md` for support channels
+
+---
+
+**Document History:**
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0 | 2025-01-01 | W.R. Micou | Initial competence framework |
