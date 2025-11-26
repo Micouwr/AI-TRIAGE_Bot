@@ -1,9 +1,12 @@
 # Human Review Agent Handbook - AI Triage Bot
 
+**Document Status:** APPROVED  
+**Operational Status:** FRAMEWORK  
 **Version:** 1.0  
 **Last Updated:** 2025-11-25  
 **Audience:** Human Review Agents  
 **Prerequisite:** Completion of Tier 1 Operator training  
+**Purpose:** Training framework for human review agents when system becomes operational  
 
 ---
 
@@ -41,7 +44,7 @@ The `fallback_log.jsonl` file contains tickets that were automatically flagged f
     "contains_pii": false,
     "model": "gemini-1.5-flash"
   },
-  "timestamp": "2025-01-15T14:23:45.123456+00:00"
+  "timestamp": "2025-11-25T14:23:45.123456+00:00"
 }
 ```
 
@@ -136,7 +139,7 @@ python tools/fallback_viewer.py --date-range 7 --export weekly_review.csv
 **Create a review record:**
 ```json
 {
-  "timestamp": "2025-01-15T10:30:00Z",
+  "timestamp": "2025-11-25T10:30:00Z",
   "reviewer": "Your Name",
   "ticket_id": "fallback-entry-123",
   "ai_classification": "software_issue",
