@@ -1,5 +1,7 @@
 # AI Policy Statement - AI Triage Bot
 
+**Document Status:** APPROVED  
+**Operational Status:** FRAMEWORK  
 **Document Version:** 1.0  
 **Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
@@ -9,13 +11,14 @@
 
 ## 1. Purpose and Scope
 
-This AI Policy establishes the governance framework for the AI Triage Bot, an LLM-powered support ticket classification system designed to enhance IT operations while maintaining transparency, accountability, and compliance with ISO/IEC 42001:2023.
+This AI Policy establishes the governance framework for the AI Triage Bot, an LLM-powered support ticket classification system. This policy defines accountability, risk management, and operational controls in alignment with ISO/IEC 42001:2023.
 
 ### 1.1 System Scope
 - **System Name:** AI-Triage-Bot
 - **Primary Function:** Automated classification of Tier 1 support tickets
 - **AI Model:** Gemini 1.5 Flash (Google Generative AI)
-- **Deployment:** Desktop application (Windows/Mac/Linux)
+- **Deployment Target:** Desktop application (Windows/Mac/Linux)
+- **Current Status:** Framework implementation, not in production use
 
 ---
 
@@ -126,7 +129,7 @@ This policy will be reviewed annually or when:
 - Audit findings require policy updates
 - Stakeholder feedback indicates gaps
 
-**Next Review Date:** 2026-01-01
+**Next Review Date:** 2026-11-25
 
 ---
 
