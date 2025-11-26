@@ -1,6 +1,0 @@
-{"ticket": "My phone number is 555-123-4567.", "result": {"ticket_type": "unknown", "confidence_score": 0.42, "contains_pii": true}, "timestamp": "2025-11-16T21:09:29.798201"}
-{"ticket": "My ZIP is 40202 and my SSN is 123-45-6789.", "result": {"ticket_type": "unknown", "confidence_score": 0.42, "contains_pii": true}, "timestamp": "2025-11-16T21:09:29.800269"}
-{"ticket": "I need help with something.", "result": {"ticket_type": "unknown", "confidence_score": 0.42, "contains_pii": false}, "timestamp": "2025-11-16T21:09:29.801280"}
-{"ticket": "My phone number is 555-123-4567.", "result": {"ticket_type": "unknown", "confidence_score": 0.42, "contains_pii": true}, "timestamp": "2025-11-16T21:10:57.838089"}
-{"ticket": "My ZIP is 40202 and my SSN is 123-45-6789.", "result": {"ticket_type": "unknown", "confidence_score": 0.42, "contains_pii": true}, "timestamp": "2025-11-16T21:10:57.840126"}
-{"ticket": "I need help with something.", "result": {"ticket_type": "unknown", "confidence_score": 0.42, "contains_pii": false}, "timestamp": "2025-11-16T21:10:57.841112"}
