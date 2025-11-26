@@ -1,7 +1,7 @@
 # AI Policy Statement - AI Triage Bot
 
 **Document Version:** 1.0  
-**Effective Date:** 2025-01-01  
+**Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
 **Review Cycle:** Annual  
 
@@ -134,7 +134,7 @@ This policy will be reviewed annually or when:
 
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
-| System Owner | William Ryan Micou | [To Be Signed] | 2025-01-01 |
+| System Owner | William Ryan Micou | [To Be Signed] | 2025-11-25 |
 | Compliance Officer | [TBD] | [To Be Signed] | [TBD] |
 
 ---
@@ -143,4 +143,4 @@ This policy will be reviewed annually or when:
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 1.0 | 2025-01-01 | W.R. Micou | Initial policy creation |
+| 1.0 | 2025-11-25 | W.R. Micou | Initial policy creation |
