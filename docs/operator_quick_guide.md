@@ -1,15 +1,18 @@
 # Operator Quick Guide - AI Triage Bot
 
+**Document Status:** APPROVED  
+**Operational Status:** FRAMEWORK  
 **Version:** 1.0  
 **Last Updated:** 2025-11-25  
 **Audience:** Tier 1 Support Operators  
+**Purpose:** Training guide for system operators when system becomes operational  
 
 ---
 
 ## 🎯 Quick Start
 
 ### What is the AI Triage Bot?
-An AI-powered tool that automatically classifies support tickets into categories, helping you route tickets faster and more accurately.
+A tool designed to classify support tickets into categories using AI-powered analysis.
 
 ### What You Need
 - The AI Triage Bot application installed on your computer
@@ -75,8 +78,8 @@ The ticket classification category. Possible values:
 
 #### 🎯 **Confidence: [Score]%**
 How confident the AI is in its classification:
-- **70-100%** - High confidence (usually accurate)
-- **50-69%** - Medium confidence (review recommended)
+- **70-100%** - High confidence
+- **50-69%** - Medium confidence
 - **0-49%** - Low confidence (human review required)
 
 #### 🔒 **Contains PII: [Yes/No]**
@@ -253,7 +256,7 @@ Whether the ticket contains Personally Identifiable Information:
 ---
 
 ### Issue: Results seem incorrect
-**Cause:** AI misclassification (happens occasionally)  
+**Cause:** AI misclassification  
 **Solution:**
 1. Use your judgment - the AI is a tool to assist you, not replace you
 2. Manually reclassify if needed
@@ -323,3 +326,7 @@ Whether the ticket contains Personally Identifiable Information:
 **Questions? Contact your supervisor or System Administrator.**
 
 **Document Version:** 1.0 | Last Updated: 2025-11-25
+```
+
+---
+
