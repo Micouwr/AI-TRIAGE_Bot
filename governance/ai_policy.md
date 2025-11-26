@@ -2,7 +2,7 @@
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
-**Document Version:** 1.0  
+**Document Version:** 1.1  
 **Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
 **Review Cycle:** Annual  
@@ -16,7 +16,7 @@ This AI Policy establishes the governance framework for the AI Triage Bot, an LL
 ### 1.1 System Scope
 - **System Name:** AI-Triage-Bot
 - **Primary Function:** Automated classification of Tier 1 support tickets
-- **AI Model:** Gemini 1.5 Flash (Google Generative AI)
+- **AI Model:** Gemini 2.5 Flash (Google Generative AI)
 - **Deployment Target:** Desktop application (Windows/Mac/Linux)
 - **Current Status:** Framework implementation, not in production use
 
@@ -57,6 +57,7 @@ This AI Policy establishes the governance framework for the AI Triage Bot, an LL
 | PII exposure | High | Automated PII detection, escalation protocols |
 | Model unavailability | Medium | Graceful degradation, error logging |
 | Bias in classification | Low | Regular audit of fallback logs |
+| API rate limiting | Low | Free tier awareness (15 RPM), error handling |
 
 ### 3.2 Escalation Protocols
 Automatic escalation to human agents when:
@@ -64,6 +65,7 @@ Automatic escalation to human agents when:
 - PII detected in ticket text
 - Category = "compliance_flag"
 - LLM returns malformed response
+- API rate limit exceeded
 
 ---
 
@@ -147,3 +149,4 @@ This policy will be reviewed annually or when:
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2025-11-25 | W.R. Micou | Initial policy creation |
+| 1.1 | 2025-11-25 | W.R. Micou | Updated model to Gemini 2.5 Flash, added rate limiting risk |
