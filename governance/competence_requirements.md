@@ -1,7 +1,7 @@
 # Competence Requirements - AI Triage Bot Operators
 
 **Document Version:** 1.0  
-**Effective Date:** 2025-01-01  
+**Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
 
 ---
@@ -194,4 +194,4 @@ Personnel scoring below 80% must:
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 1.0 | 2025-01-01 | W.R. Micou | Initial competence framework |
+| 1.0 | 2025-11-25 | W.R. Micou | Initial competence framework |
