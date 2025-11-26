@@ -1,7 +1,7 @@
 # Internal Audit Procedures - AI Triage Bot
 
 **Document Version:** 1.0  
-**Effective Date:** 2025-01-01  
+**Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
 **Audit Frequency:** Quarterly  
 
@@ -416,4 +416,4 @@ Options:
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 1.0 | 2025-01-01 | W.R. Micou | Initial audit procedures |
+| 1.0 | 2025-11-25 | W.R. Micou | Initial audit procedures |
