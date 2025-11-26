@@ -1,9 +1,12 @@
 # Internal Audit Procedures - AI Triage Bot
 
+**Document Status:** APPROVED  
+**Operational Status:** FRAMEWORK  
 **Document Version:** 1.0  
 **Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
-**Audit Frequency:** Quarterly  
+**Audit Frequency:** Quarterly (when system becomes operational)  
+**Purpose:** Audit procedures framework for ISO/IEC 42001:2023 compliance verification  
 
 ---
 
@@ -321,13 +324,13 @@ Retention: 7 years (compliance requirement)
 ```json
 {
   "nc_id": "NC-2025-001",
-  "audit_date": "2025-01-15",
+  "audit_date": "2025-11-25",
   "severity": "High",
   "description": "PII false negative rate exceeded threshold",
   "root_cause": "Regex pattern missing international phone formats",
   "corrective_action": "Update pii_filters.py with international patterns",
   "assigned_to": "System Administrator",
-  "due_date": "2025-02-01",
+  "due_date": "2025-12-25",
   "status": "In Progress",
   "verification_date": null,
   "verified_by": null
