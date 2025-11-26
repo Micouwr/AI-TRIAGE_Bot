@@ -2,7 +2,7 @@
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
-**Version:** 1.0  
+**Version:** 1.1  
 **Last Updated:** 2025-11-25  
 **Audience:** System Administrators  
 **Prerequisite:** Python development experience, system administration skills  
@@ -37,6 +37,10 @@ As a **System Administrator**, you are responsible for:
 - Windows 10/11
 - macOS 10.15+
 - Linux (Ubuntu 20.04+, RHEL 8+, or equivalent)
+
+**API Requirements:**
+- Google Gemini API key (free tier supported)
+- Free tier limits: 15 requests per minute, 1,500 requests per day
 
 ---
 
@@ -74,7 +78,7 @@ pip list
 ```
 
 Expected packages:
-- google-generativeai>=0.3.0
+- google-generativeai>=0.8.0
 - python-dotenv>=1.0.0
 - pyyaml>=6.0
 - pytest>=7.4.0
@@ -168,7 +172,7 @@ description: >
 
 bot_config:
   confidence_threshold: 0.5      # Adjust based on accuracy requirements
-  model_name: "gemini-1.5-flash" # Model selection
+  model_name: "gemini-2.5-flash" # Model selection
 
 ticket_types:
   - access_request
@@ -206,6 +210,28 @@ escalation_rules:
 3. Restart application
 4. Monitor fallback log for 1 week
 5. Adjust as needed based on accuracy metrics
+
+---
+
+### Changing AI Model
+
+**Current Model:** `gemini-2.5-flash`
+
+**Available Models (Free Tier):**
+
+| Model | Speed | Intelligence | Rate Limit | Best For |
+|-------|-------|--------------|------------|----------|
+| `gemini-2.5-flash` | Fast | High | 15 RPM | Balanced (current) |
+| `gemini-2.5-flash-lite` | Fastest | Medium | 15 RPM | High-volume, cost-sensitive |
+| `gemini-2.5-pro` | Slower | Highest | 5 RPM | Complex reasoning (limited use) |
+
+**To Change Model:**
+1. Edit `governance/config/scope.yaml`
+2. Modify `model_name: "gemini-2.5-flash"` to desired model
+3. Test with sample tickets
+4. Monitor performance and accuracy
+
+**Note:** Pro model has lower rate limits (5 RPM) - not recommended for GUI application.
 
 ---
 
@@ -294,7 +320,7 @@ tail -n 20 governance/llm_error_log.jsonl | jq .
 ```json
    {"error": "Resource has been exhausted", ...}
 ```
-   **Solution:** Implement exponential backoff or upgrade API quota
+   **Solution:** Free tier: 15 RPM limit. Wait or upgrade API plan.
 
 2. **Authentication Failures**
 ```json
@@ -544,10 +570,38 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print('API 
    
    load_dotenv()
    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-   model = genai.GenerativeModel("gemini-1.5-flash")
+   model = genai.GenerativeModel("gemini-2.5-flash")
    response = model.generate_content("Test")
    print(response.text)
 ```
+
+---
+
+### Issue: API Rate Limit Exceeded
+
+**Symptoms:**
+- Error: "Resource has been exhausted"
+- Classifications fail after 15 requests in 1 minute
+
+**Diagnosis:**
+```bash
+# Check error log for rate limit errors
+grep "exhausted" governance/llm_error_log.jsonl
+```
+
+**Solution:**
+1. **Free Tier Limits:**
+   - 15 requests per minute (RPM)
+   - 1,500 requests per day (RPD)
+
+2. **Immediate Fix:**
+   - Wait 60 seconds before retrying
+   - System will automatically log error and return "unknown"
+
+3. **Long-term Solutions:**
+   - Upgrade to paid API plan for higher limits
+   - Implement request queuing/throttling
+   - Cache common ticket patterns
 
 ---
 
@@ -696,9 +750,9 @@ print(f"\nAverage classification time: {avg_time:.2f}s")
 - Keep category list concise
 
 **2. Model Selection**
-- `gemini-1.5-flash` - Fast, good for most cases (current)
-- `gemini-1.5-pro` - Slower but more accurate
-- Configure in `scope.yaml`
+- `gemini-2.5-flash` - Fast, balanced (current)
+- `gemini-2.5-flash-lite` - Fastest, lower intelligence
+- `gemini-2.5-pro` - Slower but more accurate (rate limited)
 
 **3. Caching (Future Enhancement)**
 - Cache common ticket patterns
@@ -846,4 +900,14 @@ grep "$(date +%Y-%m-%d)" fallback_log.jsonl | wc -l
 
 **Questions? Contact AI Governance Lead or System Owner.**
 
-**Document Version:** 1.0 | Last Updated: 2025-11-25
+**Document History:**
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0 | 2025-11-25 | W.R. Micou | Initial guide |
+| 1.1 | 2025-11-25 | W.R. Micou | Updated model to Gemini 2.5 Flash, added rate limit troubleshooting |
+
+---
+
+**Document Version:** 1.1 | Last Updated: 2025-11-25
+```
