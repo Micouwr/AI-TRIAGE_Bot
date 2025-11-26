@@ -2,7 +2,7 @@
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
-**Version:** 1.0  
+**Version:** 1.1  
 **Last Updated:** 2025-11-25  
 **Audience:** AI Governance Lead, Compliance Officers, Executive Stakeholders  
 **Purpose:** Governance framework documentation for ISO/IEC 42001:2023 implementation  
@@ -16,7 +16,7 @@ The AI Triage Bot implements ISO/IEC 42001:2023 governance controls in an LLM-po
 ### System Overview
 
 **System Name:** AI-Triage-Bot  
-**Function:** Automated classification of support tickets using Gemini 1.5 Flash  
+**Function:** Automated classification of support tickets using Gemini 2.5 Flash  
 **Status:** Work in progress - framework implementation  
 **Owner:** William Ryan Micou  
 
@@ -146,6 +146,14 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
   - Human review of edge cases
 - **Monitoring:** Monthly bias assessment via fallback log analysis
 
+#### Risk 5: API Rate Limiting
+- **Severity:** Low
+- **Mitigation:**
+  - Free tier: 15 requests per minute
+  - Error handling for rate limit responses
+  - User notification of temporary unavailability
+- **Monitoring:** Error log tracking of rate limit hits
+
 **Evidence Files:**
 - `governance/ai_policy.md` (Section 3: Risk Management)
 - `risk_controls/pii_filters.py`
@@ -230,12 +238,13 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 - `README.md` with deployment instructions
 
 #### 8.2.3 Outsourced Processes
-- **Third-Party Model:** Gemini 1.5 Flash (Google)
+- **Third-Party Model:** Gemini 2.5 Flash (Google)
 - **Risk Controls:** 
   - Output validation (JSON parsing)
   - Error handling for API failures
   - No training data sent to Google (inference only)
   - API key security procedures
+  - Rate limit awareness and handling
 - **Monitoring:** Error logs track API failures
 
 **Evidence Files:**
@@ -389,7 +398,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 - **MINOR:** New features (e.g., new ticket category, improved PII detection)
 - **PATCH:** Bug fixes (e.g., error handling improvements)
 
-**Current Version:** 1.0.0
+**Current Version:** 1.1.0
 
 **Version History Location:** `lifecycle/version_history.md`
 
@@ -408,6 +417,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 | R-005 | Unauthorized access to system/logs | Low | High | **MEDIUM** | ✅ Mitigated (access controls, API key security) |
 | R-006 | Training data leakage to model provider | Very Low | Medium | **LOW** | ✅ Mitigated (no training, inference only) |
 | R-007 | Inadequate operator training | Medium | Low | **LOW** | ✅ Mitigated (comprehensive training materials) |
+| R-008 | API rate limit exceeded | Low | Low | **LOW** | ✅ Mitigated (error handling, user notification) |
 
 **Risk Level Calculation:** Likelihood × Impact
 
@@ -486,7 +496,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 ## ✅ Final Compliance Statement
 
 **System Name:** AI Triage Bot  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Standard:** ISO/IEC 42001:2023  
 **Compliance Date:** 2025-11-25  
 **Status:** COMPLIANT (Framework)  
@@ -504,4 +514,12 @@ This governance framework implements ISO/IEC 42001:2023 controls in a functional
 
 ---
 
-**Document Version:** 1.0 | Last Updated: 2025-11-25
+**Document History:**
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0 | 2025-11-25 | W.R. Micou | Initial framework |
+| 1.1 | 2025-11-25 | W.R. Micou | Updated model to Gemini 2.5 Flash, added rate limiting risk |
+---
+
+**Document Version:** 1.1 | Last Updated: 2025-11-25
