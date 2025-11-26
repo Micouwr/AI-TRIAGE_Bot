@@ -4,49 +4,67 @@ A Python prototype that layers ISO/IEC 42001 governance controls onto an LLM-pow
 
 ---
 
-## ✅ Implemented
+## ✅ Features
 
-- **LLM classification engine** (`bot_engine/router.py`) using Gemini 1.5 Flash with model-derived confidence scoring and error logging
-- **Regex-based PII detection** (`bot_engine/pii_filters.py`) for basic data protection
-- **Pytest validation** (`tests/test_router.py`) for reproducible testing, including LLM failure modes
-- **JSONL fallback logging** (`fallback_log.jsonl`) for transparency and audit trails
-- **Governance documentation** (`docs/iso42001_mapping.md`) mapping features to ISO/IEC 42001 clauses
-
----
-
-## 🔄 In Progress
-
-- **Fallback log viewer** (`tools/view_fallbacks.py`) for human review of low-confidence classifications
+- **Graphical User Interface** (`main_gui.py`) for easy, interactive ticket classification.
+- **Standalone Executable** created with PyInstaller for cross-platform distribution.
+- **LLM Classification Engine** (`bot_engine/router.py`) using Gemini 1.5 Flash with configurable confidence scoring and robust error handling.
+- **Refined PII Detection** (`risk_controls/pii_filters.py`) with enhanced regex patterns and dedicated tests.
+- **Expanded Pytest Suite** (`tests/`) covering edge cases like malformed LLM responses and empty inputs.
+- **Centralized Configuration** (`governance/config/scope.yaml`) for bot settings, ticket types, and model parameters.
+- **Comprehensive Governance** with JSONL fallback logging, error logging, and documentation mapping features to ISO/IEC 42001 clauses.
 
 ---
 
-## 📋 Roadmap
+## 🚀 Getting Started
 
-- Expand pytest coverage for CI/CD integration
-- Introduce sanitized real-world data validation examples
-- Integrate LLM prompt engineering for advanced classification
-- Build adapters for ticketing systems (Slack, Freshdesk, Zendesk) after core stability is confirmed
+### Prerequisites
 
----
+- Python 3.8+
+- An environment variable `GEMINI_API_KEY` set with your Gemini API key.
 
-## 🚀 How to Run
+### Running the GUI Application
 
+1.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Run the Application:**
+    ```bash
+    python main_gui.py
+    ```
+    This will launch the AI Ticket Classifier GUI, where you can enter ticket text and receive a classification.
+
+### Building the Standalone Executable
+
+For users who want to run the application without a Python environment, a standalone executable can be built.
+
+1.  **Install Dependencies (including PyInstaller):**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Run the Build Command:**
+    ```bash
+    pyinstaller --onefile --add-data "governance:governance" --add-data "prompts:prompts" main_gui.py
+    ```
+
+3.  **Find the Executable:**
+    The executable will be located in the `dist/` directory.
+
+### Running Tests
+
+To ensure the application is working correctly, you can run the full test suite:
 ```bash
-# Set your Gemini API key (never commit this to Git)
-export GEMINI_API_KEY="your_key_here"
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run tests
 python -m pytest
-
-# View fallback logs
-cat fallback_log.jsonl
 ```
 
 ---
 
-##  CI/CD
+## 📋 Project Roadmap
 
-This project uses GitHub Actions to automate testing. The workflow is defined in `.github/workflows/ci.yml` and runs on every push and pull request.
+- Integrate a fallback log viewer for human review of low-confidence classifications.
+- Introduce sanitized real-world data validation examples.
+- Build adapters for ticketing systems (e.g., Slack, Freshdesk, Zendesk) after core stability is confirmed.
+- Enhance CI/CD workflows for automated building and testing.

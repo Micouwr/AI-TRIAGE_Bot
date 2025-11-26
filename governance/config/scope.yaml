@@ -1,5 +1,3 @@
-config/scope.yaml
-
 system_name: AI-Triage-Bot
 owner: William Ryan Micou
 description: >
@@ -12,6 +10,10 @@ intended_use:
   - Escalate complex or sensitive cases to human agents
   - Log decisions for audit and compliance
 
+bot_config:
+  confidence_threshold: 0.5
+  model_name: "gemini-2.5-flash"
+
 ticket_types:
   - access_request
   - password_reset
@@ -22,14 +24,14 @@ ticket_types:
   - unknown
 
 escalation_rules:
-  - if ticket_type == compliance_flag: escalate_to: human_agent
-  - if confidence_score < 0.7: escalate_to: human_agent
-  - if contains_pii: escalate_to: human_agent
-  - else: route_to: automated_response
+  - "if ticket_type == compliance_flag: escalate_to: human_agent"
+  - "if confidence_score < 0.7: escalate_to: human_agent"
+  - "if contains_pii: escalate_to: human_agent"
+  - "else: route_to: automated_response"
 
 fallback_protocol:
-  - if LLM fails to classify: route_to: support_queue
-  - if escalation fails: notify: AI Governance Lead
+  - "if LLM fails to classify: route_to: support_queue"
+  - "if escalation fails: notify: AI Governance Lead"
 
 iso_alignment:
   - clause_4.2: Context of the organization
