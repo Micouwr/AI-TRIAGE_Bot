@@ -347,7 +347,6 @@ If you notice issues or have suggestions:
 
 **System Owner:** William Ryan Micou  
 **Repository:** https://github.com/Micouwr/AI-TRIAGE_Bot  
-**Branch:** feat/gui-and-code-refactor (current work)  
 
 ---
 
@@ -359,4 +358,4 @@ If you notice issues or have suggestions:
 
 ---
 
-**Document Version:** 1.1 | Last Updated: 2025-11-25
+**Document Version:** 1.1 | Last Updated: 2025-11-26
