@@ -1,4 +1,4 @@
-# Documentation Index - AI Triage Bot
+# Documentation Index - AI Triage Bot Prototype
 
 **Last Updated:** 2025-11-29  
 **Owner:** William Ryan Micou  
@@ -8,7 +8,7 @@
 
 ## 📋 Overview
 
-This directory contains all user-facing documentation, training materials, and project portfolio information for the AI Triage Bot system.
+This directory contains all user-facing documentation, training materials, and project portfolio information for the AI Triage Bot prototype system.
 
 ---
 
@@ -17,7 +17,8 @@ This directory contains all user-facing documentation, training materials, and p
 docs/
 ├── README.md                    (This file)
 ├── operator_quick_guide.md      (End-user training guide)
-└── PORTFOLIO.md                 (Project portfolio document)
+├── PORTFOLIO.md                 (Project portfolio document)
+└── iso42001_comprehensive_mapping.md (ISO compliance mapping - coming soon)
 ```
 
 ---
@@ -81,17 +82,36 @@ docs/
 
 ---
 
+### 3. ISO 42001 Comprehensive Mapping (Coming Soon)
+
+**Audience:** Auditors, compliance officers, governance leads  
+**Status:** IN DEVELOPMENT  
+**Purpose:** Complete mapping of system features to ISO/IEC 42001:2023 clauses
+
+**Will Include:**
+- All 10 ISO clauses with detailed mappings
+- Evidence files for each requirement
+- Status tracking and dates
+- Prototype feature alignment
+- Compliance checklist
+
+**Note:** This will replace the current duplicate ISO mapping files with a single authoritative source.
+
+---
+
 ## 🎓 Role-Based Documentation Map
 
 ### For System Operators (Tier 1 Support)
 **Required Reading:**
 1. ✅ `operator_quick_guide.md` - Daily usage guide
-2. ✅ `../governance/ai_policy.md` - Policy overview (Section 1-2)
+2. ✅ `../governance/ai_policy.md` - Policy overview (Sections 1-2)
 3. ✅ `../governance/competence_requirements.md` - Training requirements
 
 **Optional:**
 - `../README.md` - System overview
 - `../governance/roles_and_responsibilities.md` - Role clarification
+
+**Estimated Training Time:** 2 hours
 
 ---
 
@@ -106,6 +126,8 @@ docs/
 - `../governance/ai_policy.md` - Full policy context
 - `../governance/audit_procedures.md` - Audit procedures
 
+**Estimated Training Time:** 4 hours
+
 ---
 
 ### For System Administrators
@@ -119,6 +141,8 @@ docs/
 - `operator_quick_guide.md` - Understanding user perspective
 - `../governance/ai_policy.md` - Policy context
 
+**Estimated Training Time:** 8 hours
+
 ---
 
 ### For AI Governance Leads
@@ -127,10 +151,12 @@ docs/
 2. ✅ `../governance/ai_policy.md` - Complete policy
 3. ✅ `../governance/audit_procedures.md` - Audit framework
 4. ✅ `../governance/competence_requirements.md` - Training framework
-5. ✅ All training materials
+5. ✅ ISO 42001 Comprehensive Mapping (when available)
 
 **Optional:**
 - `PORTFOLIO.md` - Project presentation context
+
+**Estimated Training Time:** 16 hours
 
 ---
 
@@ -138,7 +164,12 @@ docs/
 
 ### Governance Documentation
 - **Location:** `../governance/`
-- **See:** `../governance/README.md` for complete index
+- **Index:** `../governance/README.md`
+- **Key Documents:**
+  - AI Policy Statement
+  - Audit Procedures
+  - Competence Requirements
+  - Roles and Responsibilities
 
 ### Technical Documentation
 - **Main README:** `../README.md`
@@ -160,22 +191,58 @@ docs/
 
 **For documentation updates:**
 - Create an issue in the GitHub repository
-- Follow change management procedures
+- Follow change management procedures in `../governance/roles_and_responsibilities.md`
 
 ---
 
 ## 🔄 Documentation Maintenance
 
 ### Review Schedule
-- **Operator Quick Guide:** Annual review
+- **Operator Quick Guide:** Annual review (next: 2026-11-25)
 - **Portfolio Document:** Update after major milestones
+- **ISO Mapping:** Update when compliance requirements change
 - **This Index:** Update when new documents added
 
 ### Version Control
 - All documentation is version-controlled via Git
 - Major updates increment version number
 - Document history tracked in each file
+- Changes require System Owner approval
+
+---
+
+## ✅ ISO/IEC 42001 Compliance
+
+**Clause 7.2 (Competence):**
+- ✅ Training materials documented for all roles
+- ✅ Competence requirements defined
+- ✅ Assessment criteria established
+
+**Clause 7.5 (Documented Information):**
+- ✅ Documentation indexed and accessible
+- ✅ Version control implemented
+- ✅ Review schedule defined
 
 ---
 
 **Document Version:** 1.0 | Created: 2025-11-29
+```
+
+---
+
+## **COMMIT MESSAGE FOR `docs/README.md`:**
+```
+Add docs/README.md - Documentation index and training guide navigation
+
+- Create documentation index for user-facing materials
+- Define role-based documentation maps with training times
+- List all documentation files with descriptions
+- Support ISO/IEC 42001 Clause 7.2 (Competence) and 7.5 (Documentation)
+- Note upcoming ISO 42001 comprehensive mapping file
+```
+
+---
+
+## **SHORT VERSION:**
+```
+Add docs/README.md - Documentation index and role-based training guide
