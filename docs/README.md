@@ -227,22 +227,3 @@ docs/
 
 **Document Version:** 1.0 | Created: 2025-11-29
 ```
-
----
-
-## **COMMIT MESSAGE FOR `docs/README.md`:**
-```
-Add docs/README.md - Documentation index and training guide navigation
-
-- Create documentation index for user-facing materials
-- Define role-based documentation maps with training times
-- List all documentation files with descriptions
-- Support ISO/IEC 42001 Clause 7.2 (Competence) and 7.5 (Documentation)
-- Note upcoming ISO 42001 comprehensive mapping file
-```
-
----
-
-## **SHORT VERSION:**
-```
-Add docs/README.md - Documentation index and role-based training guide
