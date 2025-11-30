@@ -1,6 +1,6 @@
-# AI Triage Bot - ISO/IEC 42001 Governance Implementation - Prototype
+# AI Triage Bot - ISO/IEC 42001 Governance Prototype
 
-A work-in-progress system implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 2.5 Flash to demonstrate practical application of AI management system requirements.
+A work-in-progress prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 2.5 Flash to demonstrate practical application of AI management system requirements.
 
 ---
 
@@ -130,6 +130,7 @@ AI-TRIAGE_Bot/
 │   └── pii_filters.py               # PII detection with Luhn algorithm
 ├── governance/
 │   ├── __init__.py
+│   ├── README.md                    # Governance documentation index
 │   ├── ai_policy.md                 # AI policy statement
 │   ├── audit_procedures.md          # Audit framework
 │   ├── competence_requirements.md   # Training requirements
@@ -141,14 +142,17 @@ AI-TRIAGE_Bot/
 │       ├── governance_framework.md
 │       └── reviewer_handbook.md
 ├── docs/
+│   ├── README.md                    # Documentation index
 │   ├── operator_quick_guide.md      # User guide
 │   └── PORTFOLIO.md                 # Project portfolio
 ├── tests/
 │   ├── __init__.py
+│   ├── README.md                    # Testing documentation
 │   ├── test_router.py               # Router tests
 │   └── test_pii_filters.py          # PII detection tests
 ├── tools/
 │   ├── __init__.py
+│   ├── README.md                    # Tools documentation
 │   └── fallback_viewer.py           # Log analysis tool
 ├── prompts/
 │   └── classification_prompt.txt    # LLM prompt template
@@ -214,6 +218,8 @@ python tools/fallback_viewer.py --max-confidence 0.3
 python tools/fallback_viewer.py --export report.csv
 ```
 
+**See:** `tools/README.md` for detailed usage instructions
+
 ---
 
 ## 📋 ISO/IEC 42001:2023 Compliance
@@ -232,7 +238,7 @@ This system implements governance controls aligned with ISO/IEC 42001:2023:
 | **Clause 9** - Performance | Monitoring tools, audit procedures | `tools/fallback_viewer.py`, `governance/audit_procedures.md` |
 | **Clause 10** - Improvement | Feedback mechanisms, version control | `governance/training_materials/reviewer_handbook.md` |
 
-**Full Compliance Documentation:** See `governance/training_materials/governance_framework.md`
+**Full Compliance Documentation:** See `governance/README.md` for complete governance documentation index
 
 ---
 
@@ -254,6 +260,8 @@ This system implements governance controls aligned with ISO/IEC 42001:2023:
 
 ### Project Portfolio
 - **Portfolio Document:** `docs/PORTFOLIO.md`
+
+**See:** `docs/README.md` for complete documentation index
 
 ---
 
@@ -316,6 +324,9 @@ chmod 640 governance/llm_error_log.jsonl
 - ✅ Training materials and documentation
 - ✅ Fallback log viewer tool
 
+### In Progress
+- 🔄 Migration to new Google GenAI SDK (`google-genai`)
+
 ### Planned
 - [ ] Fallback log viewer GUI
 - [ ] Additional PII patterns (international formats)
@@ -358,4 +369,4 @@ If you notice issues or have suggestions:
 
 ---
 
-**Document Version:** 1.1 | Last Updated: 2025-11-25
+**Document Version:** 1.2 | Last Updated: 2025-11-29
