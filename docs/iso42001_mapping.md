@@ -1,4 +1,4 @@
-# ISO/IEC 42001:2023 Mapping for AI Triage Bot
+# ISO/IEC 42001:2023 Mapping for AI Triage Bot Prototype
 
 This document maps the features and controls of the AI Triage Bot to the relevant clauses of the ISO/IEC 42001:2023 standard for Artificial Intelligence Management Systems.
 
