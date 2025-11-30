@@ -1,4 +1,4 @@
-# AI Triage Bot - ISO/IEC 42001 Governance Implementation
+# AI Triage Bot - ISO/IEC 42001 Governance Implementation - Prototype
 
 A work-in-progress system implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 2.5 Flash to demonstrate practical application of AI management system requirements.
 
