@@ -1,8 +1,8 @@
 # Tools Documentation - AI Triage Bot Prototype
 
-**Last Updated:** 2025-11-29  
-**Owner:** William Ryan Micou  
-**Purpose:** Documentation for monitoring and audit tools  
+**Last Updated:** 2025-11-29
+**Owner:** William Ryan Micou
+**Purpose:** Documentation for monitoring and audit tools
 
 ---
 
@@ -15,9 +15,9 @@ This directory contains tools for monitoring, auditing, and analyzing the AI Tri
 ## 📁 Directory Structure
 ```
 tools/
-├── README.md              (This file)
-├── __init__.py           (Package initialization)
-└── fallback_viewer.py    (Fallback log analysis tool)
+├── README.md (This file)
+├── __init__.py (Package initialization)
+└── fallback_viewer.py (Fallback log analysis tool)
 ```
 
 ---
@@ -26,10 +26,10 @@ tools/
 
 ### Fallback Log Viewer (`fallback_viewer.py`)
 
-**Purpose:** Human-readable interface for reviewing low-confidence ticket classifications  
-**ISO Clause:** 9.1 (Monitoring), 9.2 (Internal Audit), 10.2 (Continual Improvement)  
-**Status:** ACTIVE  
-**Version:** 1.0  
+**Purpose:** Human-readable interface for reviewing low-confidence ticket classifications
+**ISO Clause:** 9.1 (Monitoring), 9.2 (Internal Audit), 10.2 (Continual Improvement)
+**Status:** ACTIVE
+**Version:** 1.0
 
 **Features:**
 - ✅ Load and parse JSONL fallback logs
@@ -75,21 +75,23 @@ python tools/fallback_viewer.py --date-range 30 --export report.csv
 python tools/fallback_viewer.py [OPTIONS]
 
 Options:
-  --log-path PATH          Path to fallback log file (default: fallback_log.jsonl)
-  --date-range DAYS        Show entries from last N days
-  --min-confidence X       Filter by minimum confidence score (0.0-1.0)
-  --max-confidence X       Filter by maximum confidence score (0.0-1.0)
-  --category CAT           Filter by ticket category
-  --contains-pii           Show only PII-flagged tickets
-  --no-pii                 Show only tickets WITHOUT PII
-  --limit N                Limit number of entries displayed
-  --export FILE            Export filtered results to CSV file
-  --stats-only             Show only summary statistics
+--log-path PATH         Path to fallback log file (default: fallback_log.jsonl)
+--date-range DAYS       Show entries from last N days
+--min-confidence X      Filter by minimum confidence score (0.0-1.0)
+--max-confidence X      Filter by maximum confidence score (0.0-1.0)
+--category CAT          Filter by ticket category
+--contains-pii          Show only PII-flagged tickets
+--no-pii                Show only tickets WITHOUT PII
+--limit N               Limit number of entries displayed
+--export FILE           Export filtered results to CSV file
+--stats-only            Show only summary statistics
 ```
 
 ---
 
-## 📈 Use Cases
+## 📈 Example Usage Scenarios
+
+**Note:** These are recommended workflows for using the tool, not documented historical uses.
 
 ### 1. Daily Review (Human Review Agents)
 
@@ -177,22 +179,22 @@ python tools/fallback_viewer.py --category hardware_issue --stats-only
 📈 Total Entries: 47
 
 📂 Classification Distribution:
-   software_issue      : 15 (31.9%)
-   access_request      : 12 (25.5%)
-   unknown             : 10 (21.3%)
-   hardware_issue      : 7  (14.9%)
-   billing_question    : 3  (6.4%)
+software_issue  : 15 (31.9%)
+access_request  : 12 (25.5%)
+unknown         : 10 (21.3%)
+hardware_issue  : 7 (14.9%)
+billing_question: 3 (6.4%)
 
 🎯 Confidence Scores:
-   Average: 0.38
-   Range:   0.12 - 0.49
+Average: 0.38
+Range: 0.12 - 0.49
 
 🔒 PII Detection:
-   Tickets with PII: 5 (10.6%)
+Tickets with PII: 5 (10.6%)
 
 📅 Date Range:
-   Oldest: 2025-11-22 08:15:23
-   Newest: 2025-11-29 19:45:12
+Oldest: 2025-11-22 08:15:23
+Newest: 2025-11-29 19:45:12
 ===================================================================
 ```
 
@@ -202,13 +204,13 @@ python tools/fallback_viewer.py --category hardware_issue --stats-only
 ```
 Entry #1
 ──────────────────────────────────────────────────────────────────
-⏰ Timestamp:   2025-11-29T19:45:12.123456+00:00
-📂 Category:    software_issue
-🎯 Confidence:  0.42
+⏰ Timestamp: 2025-11-29T19:45:12.123456+00:00
+📂 Category: software_issue
+🎯 Confidence: 0.42
 🔒 Contains PII: No
 📝 Ticket Text:
-   Excel keeps crashing when I open large spreadsheets. Started 
-   after yesterday's update.
+Excel keeps crashing when I open large spreadsheets. Started
+after yesterday's update.
 ```
 
 ---
