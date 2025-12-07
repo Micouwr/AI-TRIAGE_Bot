@@ -1,4 +1,4 @@
-# Roles and Responsibilities — AI-Triage-Bot Governance
+# Roles and Responsibilities - AI-Triage-Bot Governance
 
 This document defines the roles, responsibilities, and authorities required to govern, operate, and maintain the AI-Triage-Bot system in alignment with ISO/IEC 42001:2023.
 
@@ -52,7 +52,7 @@ All changes to bot behavior, classification logic, or governance policies must b
 
 - **Monthly**: Audit log review, fallback protocol validation
 - **Quarterly**: Prompt performance analysis, risk control updates
-- **Annually**: Full ISO/IEC 42001 compliance review
+- **Annually**: Full ISO/IEC 42001:2023 compliance review
 
 ---
 
@@ -61,4 +61,4 @@ All changes to bot behavior, classification logic, or governance policies must b
 - `config/scope.yaml`
 - `risk_controls/fallback_protocols.md`
 - `lifecycle/version_history.md`
-- `docs/iso42001_mapping.md`
+- `docs/iso42001_compliance_mapping.md`
