@@ -6,8 +6,11 @@ PII_PATTERNS = [
     # Social Security Number (SSN) - US format
     re.compile(r"\b\d{3}-\d{2}-\d{4}\b"),
     
-    # Credit Card Number (formatted in groups of 4) - More specific to avoid false positives
-    re.compile(r"\b(?:\d{4}[- ]){3}\d{4}\b"),
+    # Credit Card Number (16 digits, no formatting)
+    re.compile(r"\b\d{16}\b"),
+    
+    # Credit Card Number (formatted with hyphens or spaces) - Fixed word boundary issue
+    re.compile(r"\b(?:\d{4}[- ]){3}\d{4}(?=\s|[.,;!?]|$)"),
     
     # Email Address
     re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"),
@@ -46,6 +49,8 @@ def contains_pii(text: str) -> bool:
     """
     Detects Personally Identifiable Information (PII) in the given text using pre-compiled regexes.
     
+    Supports ISO/IEC 42001:2023 Clause 6.1 (Risk Management - data protection).
+    
     Args:
         text (str): The text to search for PII.
     
@@ -55,16 +60,15 @@ def contains_pii(text: str) -> bool:
     if not isinstance(text, str):
         return False
     
-    # Check for SSN, formatted credit cards, emails, and phone numbers
-    for i, pattern in enumerate(PII_PATTERNS):
-        match = pattern.search(text)
-        if match:
-            # For credit card patterns (index 1), validate with Luhn algorithm
-            if i == 1:
-                if _luhn_check(match.group(0)):
-                    return True
-                # If Luhn fails, continue checking other patterns
-            else:
-                return True
+    # Check for SSN, emails, and phone numbers (indices 0, 3, 4)
+    for i in [0, 3, 4]:
+        if PII_PATTERNS[i].search(text):
+            return True
+    
+    # Check for credit cards (indices 1, 2) with Luhn validation
+    for i in [1, 2]:
+        match = PII_PATTERNS[i].search(text)
+        if match and _luhn_check(match.group(0)):
+            return True
     
     return False
