@@ -1,6 +1,6 @@
 # Documentation Index - AI Triage Bot Prototype
 
-**Last Updated:** 2025-11-29  
+**Last Updated:** 2025-12-07  
 **Owner:** William Ryan Micou  
 **Purpose:** Index of all user-facing and training documentation  
 
@@ -15,10 +15,10 @@ This directory contains all user-facing documentation, training materials, and p
 ## 📁 Directory Structure
 ```
 docs/
-├── README.md                    (This file)
-├── operator_quick_guide.md      (End-user training guide)
-├── PORTFOLIO.md                 (Project portfolio document)
-└── iso42001_comprehensive_mapping.md (ISO compliance mapping - coming soon)
+├── README.md                           (This file)
+├── operator_quick_guide.md             (End-user training guide)
+├── PORTFOLIO.md                        (Project portfolio document)
+└── iso42001_compliance_mapping.md      (ISO/IEC 42001:2023 compliance mapping)
 ```
 
 ---
@@ -64,7 +64,7 @@ docs/
 **Contents:**
 - Project overview and objectives
 - Technical implementation details
-- ISO/IEC 42001 governance implementation
+- ISO/IEC 42001:2023 governance implementation
 - Documentation created
 - Quality assurance approach
 - Security and privacy implementation
@@ -82,20 +82,27 @@ docs/
 
 ---
 
-### 3. ISO 42001 Comprehensive Mapping (Coming Soon)
+### 3. ISO/IEC 42001:2023 Comprehensive Compliance Mapping (`iso42001_compliance_mapping.md`)
 
 **Audience:** Auditors, compliance officers, governance leads  
-**Status:** IN DEVELOPMENT  
+**Status:** APPROVED  
+**Version:** 1.0  
+**Last Updated:** 2025-12-07  
 **Purpose:** Complete mapping of system features to ISO/IEC 42001:2023 clauses
 
-**Will Include:**
-- All 10 ISO clauses with detailed mappings
-- Evidence files for each requirement
-- Status tracking and dates
+**Contents:**
+- All 10 ISO/IEC 42001:2023 clauses with detailed mappings
+- Evidence files for each requirement (22 supporting files documented)
+- 8 identified risks with mitigations
+- Compliance status tracking (95% compliant)
 - Prototype feature alignment
-- Compliance checklist
+- Comprehensive compliance checklist
 
-**Note:** This will replace the current duplicate ISO mapping files with a single authoritative source.
+**When to Use:**
+- Internal audits
+- External compliance reviews
+- Governance oversight
+- Risk assessments
 
 ---
 
@@ -151,7 +158,7 @@ docs/
 2. ✅ `../governance/ai_policy.md` - Complete policy
 3. ✅ `../governance/audit_procedures.md` - Audit framework
 4. ✅ `../governance/competence_requirements.md` - Training framework
-5. ✅ ISO 42001 Comprehensive Mapping (when available)
+5. ✅ `iso42001_compliance_mapping.md` - ISO/IEC 42001:2023 compliance mapping
 
 **Optional:**
 - `PORTFOLIO.md` - Project presentation context
@@ -200,7 +207,7 @@ docs/
 ### Review Schedule
 - **Operator Quick Guide:** Annual review (next: 2026-11-25)
 - **Portfolio Document:** Update after major milestones
-- **ISO Mapping:** Update when compliance requirements change
+- **ISO/IEC 42001:2023 Mapping:** Update when compliance requirements change
 - **This Index:** Update when new documents added
 
 ### Version Control
@@ -211,7 +218,7 @@ docs/
 
 ---
 
-## ✅ ISO/IEC 42001 Compliance
+## ✅ ISO/IEC 42001:2023 Compliance
 
 **Clause 7.2 (Competence):**
 - ✅ Training materials documented for all roles
@@ -225,5 +232,4 @@ docs/
 
 ---
 
-**Document Version:** 1.0 | Created: 2025-11-29
-```
+**Document Version:** 1.1 | Created: 2025-11-29 | Updated: 2025-12-07
