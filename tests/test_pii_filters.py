@@ -6,11 +6,12 @@ from risk_controls.pii_filters import contains_pii
 
 # Parameters for testing strings that SHOULD contain PII
 # Note: ZIP codes have been removed as they are prone to false positives with simple regex.
+# Credit card numbers use industry-standard test numbers that pass Luhn validation.
 pii_positive_cases = [
     ("My SSN is 123-45-6789.", "SSN"),
-    ("Please use card 1234567812345678 for the payment.", "16-digit credit card"),
-    ("My card is 1234-5678-1234-5678.", "Credit card with hyphens"),
-    ("Use 1234 5678 1234 5678.", "Credit card with spaces"),
+    ("Please use card 4532015112830366 for the payment.", "16-digit credit card (Visa test number)"),
+    ("My card is 4532-0151-1283-0366.", "Credit card with hyphens (Visa test number)"),
+    ("Use 5425 2334 3010 9903.", "Credit card with spaces (Mastercard test number)"),
     ("Contact me at test.user+alias@example.com.", "Email with alias"),
     ("My email is simple@domain.org.", "Simple email"),
     ("Call me at (555) 123-4567.", "Phone number with parentheses"),
@@ -27,7 +28,7 @@ pii_negative_cases = [
     ("The price is $123.45", "Currency amount"),
     ("", "Empty string"),
     (None, "None input"),
-    (123456, "Integer input"), # Changed to integer to avoid string matching
+    (123456, "Integer input"),
 ]
 
 @pytest.mark.parametrize("text, description", pii_positive_cases)
