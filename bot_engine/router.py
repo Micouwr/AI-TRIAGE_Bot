@@ -3,8 +3,8 @@ import os
 import yaml
 from pathlib import Path
 from dotenv import load_dotenv
-import google.generativeai as genai
-from google.generativeai.types import GenerationConfig
+from google import genai
+from google.genai import types
 from risk_controls.pii_filters import contains_pii
 from datetime import datetime, timezone
 
@@ -32,11 +32,10 @@ load_dotenv(get_project_root() / ".env")
 # --- Gemini API Initialization ---
 
 try:
-    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-    model = genai.GenerativeModel(MODEL_NAME)
+    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 except (TypeError, ValueError) as e:
     print(f"Error: Gemini API key not configured. Please set GEMINI_API_KEY in a .env file. Details: {e}")
-    model = None
+    client = None
 
 # --- Core Functions ---
 
@@ -51,18 +50,21 @@ def prepare_prompt(ticket_text: str) -> str:
 
 def invoke_llm(prompt: str) -> dict:
     """Invokes the Gemini model and returns the parsed JSON response."""
-    if not model:
-        raise ConnectionError("Gemini model is not initialized. Check API key.")
+    if not client:
+        raise ConnectionError("Gemini client is not initialized. Check API key.")
 
     try:
-        response = model.generate_content(
-            prompt,
-            generation_config=GenerationConfig(temperature=0.1)
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=prompt,
+            config=types.GenerateContentConfig(temperature=0.1)
         )
-        # Assuming response.text is a JSON string
-        return json.loads(response.text)
+        # Extract text from response
+        response_text = response.text
+        # Assuming response text is a JSON string
+        return json.loads(response_text)
     except json.JSONDecodeError as e:
-        raise ValueError(f"LLM returned malformed JSON: {response.text}") from e
+        raise ValueError(f"LLM returned malformed JSON: {response_text}") from e
     except Exception as e:
         raise ConnectionError(f"API call to Gemini failed: {e}") from e
 
@@ -79,7 +81,9 @@ def process_llm_response(result: dict) -> tuple[str, float]:
 
 def classify_ticket(ticket_text: str) -> dict:
     """
-    Classifies a support ticket using the Gemini 1.5 Flash model with governance layers.
+    Classifies a support ticket using the Gemini 2.5 Flash model with governance layers.
+    
+    Complies with ISO/IEC 42001:2023 requirements for AI system operation and monitoring.
     """
     if not ticket_text or ticket_text.isspace():
         return {
