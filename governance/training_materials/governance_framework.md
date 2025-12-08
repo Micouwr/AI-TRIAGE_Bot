@@ -335,7 +335,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 
 | Role | Primary Responsibilities | Key Competencies | Training Required |
 |------|-------------------------|------------------|-------------------|
-| **AI Governance Lead** | - Policy oversight<br>- Risk management<br>- Audit coordination<br>- Stakeholder communication | - ISO 42001 knowledge<br>- Risk assessment<br>- Policy development | 16 hours initial<br>4 hours annual |
+| **AI Governance Lead** | - Policy oversight<br>- Risk management<br>- Audit coordination<br>- Stakeholder communication | - ISO/IEC 42001:2023 knowledge<br>- Risk assessment<br>- Policy development | 16 hours initial<br>4 hours annual |
 | **System Administrator** | - System deployment<br>- Configuration management<br>- Troubleshooting<br>- Log monitoring | - Python development<br>- YAML configuration<br>- API key security<br>- Testing procedures | 8 hours initial<br>2 hours annual |
 | **Human Review Agent** | - Fallback log review<br>- Classification validation<br>- Pattern identification<br>- Feedback provision | - Ticket classification<br>- Log analysis<br>- PII handling<br>- Quality metrics | 4 hours initial<br>1 hour annual |
 | **System Operator** | - Daily ticket processing<br>- Result interpretation<br>- Escalation execution | - Basic system operation<br>- Confidence interpretation<br>- PII recognition<br>- Error handling | 2 hours initial<br>30 min annual |
