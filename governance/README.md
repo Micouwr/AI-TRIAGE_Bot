@@ -120,7 +120,7 @@ governance/
 **Contents:**
 - Executive summary
 - Three-layer governance model
-- Detailed ISO 42001 clause-by-clause compliance mapping
+- Detailed ISO/IEC 42001:2023 clause-by-clause compliance mapping
 - Role matrix and escalation pathways
 - Key Performance Indicators (KPIs)
 - Risk register
