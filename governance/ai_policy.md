@@ -97,7 +97,7 @@ Automatic escalation to human agents when:
 
 ### 5.2 Audit Schedule
 - **Internal Audits:** Quarterly review of logs and configurations
-- **External Audits:** Annual third-party ISO 42001 assessment
+- **External Audits:** Annual third-party ISO/IEC 42001:2023 assessment
 - **Incident Reviews:** Within 48 hours of any system failure
 
 ### 5.3 Improvement Process
