@@ -1,15 +1,36 @@
-# License Information
+MIT License
 
-This directory contains the licensing information for the AI Triage Bot Prototype.
+Copyright (c) 2025 William Ryan Micou
 
-## License Details
+PORTFOLIO & EVALUATION LICENSE
 
-The AI Triage Bot Prototype is released under the MIT License. This license allows for the free use, modification, and distribution of the software, subject to certain conditions.
+This software is provided for demonstration, portfolio, and evaluation purposes.
 
-### MIT License
+PERMITTED USES:
+✓ Viewing and reviewing the code for employment consideration
+✓ Technical assessment and code review by recruiters and employers
+✓ Educational study and academic review
+✓ Reference for learning ISO/IEC 42001:2023 implementation
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+RESTRICTED USES (Require Written Permission):
+✗ Commercial use or deployment in production environments
+✗ Modification or creation of derivative works
+✗ Redistribution or sublicensing
+✗ Integration into other products or services
+✗ Use as basis for competing products
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+For commercial licensing, consulting, or implementation services, 
+please contact: micouwr2025@gmail.com
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+DISCLAIMER:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR OR COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+This software demonstrates ISO/IEC 42001:2023 compliance implementation.
+The governance framework and methodology may be subject to additional 
+intellectual property protections.
