@@ -355,7 +355,26 @@ If you notice issues or have suggestions:
 
 ## 📄 License
 
-[Add your license information here]
+**Custom Portfolio & Evaluation License**
+
+Copyright (c) 2025 William Ryan Micou. All Rights Reserved.
+
+This software is provided for demonstration, portfolio, and evaluation purposes.
+
+**Permitted Uses:**
+- ✅ Viewing and reviewing for employment consideration
+- ✅ Technical assessment and code review
+- ✅ Educational and academic study
+- ✅ Reference for ISO/IEC 42001:2023 implementation learning
+
+**Restricted Uses (Require Written Permission):**
+- ❌ Commercial use or production deployment
+- ❌ Modification or derivative works
+- ❌ Redistribution or sublicensing
+
+For commercial licensing inquiries, contact: **micouwr2025@gmail.com**
+
+See [LICENSE](LICENSE) file for complete terms.
 
 ---
 
@@ -363,6 +382,7 @@ If you notice issues or have suggestions:
 
 **System Owner:** William Ryan Micou  
 **Repository:** https://github.com/Micouwr/AI-TRIAGE_Bot  
+**Email:** micouwr2025@gmail.com
 
 ---
 
@@ -374,5 +394,4 @@ If you notice issues or have suggestions:
 
 ---
 
-**Document Version:** 2.0 | Last Updated: 2025-12-07
-```
+**Document Version:** 2.0 | Last Updated: 2025-12-09
