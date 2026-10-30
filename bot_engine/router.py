@@ -79,6 +79,85 @@ def process_llm_response(result: dict) -> tuple[str, float]:
 
     return category, float(confidence)
 
+# --- Escalation Rules ---
+# The rules below are declared in governance/config/scope.yaml as plain strings,
+# e.g. "if confidence_score < 0.7: escalate_to: human_agent". The parser here
+# turns them into evaluators so every classification result carries a routing
+# decision instead of the rules living only in documentation.
+
+def _compare(left, op: str, right) -> bool:
+    if op == "==":
+        return left == right
+    if op == "<":
+        return left < right
+    if op == ">":
+        return left > right
+    if op == "<=":
+        return left <= right
+    if op == ">=":
+        return left >= right
+    return False
+
+def _parse_condition(condition_str: str):
+    """Parses a rule condition into a callable evaluated against a result dict."""
+    condition_str = condition_str.strip()
+    for op in ("==", "<=", ">=", "<", ">"):
+        if op in condition_str:
+            field, _, value = condition_str.partition(op)
+            field = field.strip()
+            value = value.strip()
+            if field == "confidence_score":
+                threshold = float(value)
+                return lambda result, f=field, t=threshold, o=op: _compare(float(result.get(f, 0.0)), o, t)
+            return lambda result, f=field, v=value, o=op: _compare(str(result.get(f, "")), o, v)
+    # Bare flag, e.g. "contains_pii": matches when the flag is truthy.
+    field = condition_str
+    return lambda result, f=field: bool(result.get(f, False))
+
+def _parse_action(action_str: str) -> str:
+    """Parses a rule action such as 'escalate_to: human_agent' into a route name."""
+    _, _, route = action_str.strip().partition(":")
+    route = route.strip()
+    if not route:
+        raise ValueError(f"Unparseable escalation action: {action_str!r}")
+    return route
+
+def _parse_escalation_rule(rule_str: str):
+    """Parses one 'if <condition>: <action>' or 'else: <action>' rule string."""
+    text = rule_str.strip()
+    if text.startswith("else:"):
+        return (lambda result: True), _parse_action(text[len("else:"):]), text
+    if text.startswith("if "):
+        condition_part, _, action_part = text[len("if "):].partition(":")
+        if not action_part:
+            raise ValueError(f"Unparseable escalation rule: {rule_str!r}")
+        return _parse_condition(condition_part), _parse_action(action_part), text
+    raise ValueError(f"Unparseable escalation rule: {rule_str!r}")
+
+def _load_escalation_rules():
+    """Parses the escalation_rules list from scope.yaml, skipping malformed entries."""
+    parsed = []
+    for rule_str in config.get("escalation_rules", []):
+        try:
+            parsed.append(_parse_escalation_rule(str(rule_str)))
+        except ValueError:
+            continue
+    return parsed
+
+ESCALATION_RULES = _load_escalation_rules()
+
+def evaluate_routing(result: dict) -> dict:
+    """
+    Applies the escalation rules from governance/config/scope.yaml in order and
+    returns the routing decision for a classification result, e.g.
+    {"route": "human_agent", "reason": "if confidence_score < 0.7: escalate_to: human_agent"}.
+    """
+    for condition, route, rule_text in ESCALATION_RULES:
+        if condition(result):
+            return {"route": route, "reason": rule_text}
+    # Fail safe: if no rule matches, escalate to a human.
+    return {"route": "human_agent", "reason": "no matching rule; defaulted to human review"}
+
 def classify_ticket(ticket_text: str) -> dict:
     """
     Classifies a support ticket using the Gemini 2.5 Flash model with governance layers.
@@ -86,12 +165,14 @@ def classify_ticket(ticket_text: str) -> dict:
     Complies with ISO/IEC 42001:2023 requirements for AI system operation and monitoring.
     """
     if not ticket_text or ticket_text.isspace():
-        return {
+        empty_result = {
             "ticket_type": "unknown",
             "confidence_score": 0.0,
             "contains_pii": False,
             "model": MODEL_NAME
         }
+        empty_result["routing_decision"] = evaluate_routing(empty_result)
+        return empty_result
 
     category = "unknown"
     confidence = 0.0
@@ -115,6 +196,7 @@ def classify_ticket(ticket_text: str) -> dict:
         "contains_pii": pii_flag,
         "model": MODEL_NAME
     }
+    final_result["routing_decision"] = evaluate_routing(final_result)
 
     # Audit logging for low-confidence or failed classifications
     if confidence < CONFIDENCE_THRESHOLD or category == "unknown":

@@ -47,6 +47,10 @@ class TicketClassifierApp:
         pii_label = tk.Label(results_frame, textvariable=self.pii_text, font=("Arial", 11))
         pii_label.pack(anchor="w")
         
+        self.routing_text = tk.StringVar(value="Routing: N/A")
+        routing_label = tk.Label(results_frame, textvariable=self.routing_text, font=("Arial", 11))
+        routing_label.pack(anchor="w")
+        
         # Status Bar
         self.status_text = tk.StringVar(value="Ready")
         status_bar = tk.Label(root, textvariable=self.status_text, bd=1, relief=tk.SUNKEN, anchor="w")
@@ -93,6 +97,15 @@ class TicketClassifierApp:
         # Safely handle PII flag
         pii_status = "Yes" if result.get('contains_pii') else "No"
         self.pii_text.set(f"Contains PII: {pii_status}")
+        
+        # Safely handle routing decision
+        routing = result.get('routing_decision', {})
+        route = routing.get('route', 'unknown')
+        reason = routing.get('reason', '')
+        if reason:
+            self.routing_text.set(f"Routing: {route} ({reason})")
+        else:
+            self.routing_text.set(f"Routing: {route}")
         
         self.status_text.set("Classification complete.")
     

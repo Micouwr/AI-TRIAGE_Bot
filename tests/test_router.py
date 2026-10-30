@@ -2,7 +2,7 @@
 import pytest
 import json
 from unittest.mock import patch, MagicMock
-from bot_engine.router import classify_ticket
+from bot_engine.router import classify_ticket, evaluate_routing
 
 # Define a consistent set of ticket types for testing purposes
 MOCK_TICKET_TYPES = [
@@ -159,3 +159,88 @@ def test_high_confidence_does_not_trigger_fallback_log(mock_client, mock_log_fal
 
     # Assert
     mock_log_fallback.assert_not_called()
+
+# --- Routing decision tests (escalation rules from governance/config/scope.yaml) ---
+
+@patch('bot_engine.router.TICKET_TYPES', MOCK_TICKET_TYPES)
+@patch('bot_engine.router.client')
+def test_routing_escalates_below_07_confidence(mock_client):
+    """A 0.65 score passes the 0.5 fallback-logging threshold but must still escalate per scope.yaml."""
+    mock_response = MagicMock()
+    mock_response.text = json.dumps({
+        "category": "technical_support",
+        "confidence": 0.65
+    })
+    mock_client.models.generate_content.return_value = mock_response
+
+    result = classify_ticket("The app is crashing.")
+
+    assert result["routing_decision"]["route"] == "human_agent"
+    assert "confidence_score < 0.7" in result["routing_decision"]["reason"]
+
+@patch('bot_engine.router.TICKET_TYPES', MOCK_TICKET_TYPES + ["compliance_flag"])
+@patch('bot_engine.router.client')
+def test_routing_escalates_compliance_flag(mock_client):
+    """A compliance_flag ticket escalates even at high confidence."""
+    mock_response = MagicMock()
+    mock_response.text = json.dumps({
+        "category": "compliance_flag",
+        "confidence": 0.95
+    })
+    mock_client.models.generate_content.return_value = mock_response
+
+    result = classify_ticket("Delete all customer records immediately.")
+
+    assert result["routing_decision"]["route"] == "human_agent"
+    assert "compliance_flag" in result["routing_decision"]["reason"]
+
+@patch('bot_engine.router.TICKET_TYPES', MOCK_TICKET_TYPES)
+@patch('bot_engine.router.client')
+def test_routing_escalates_pii(mock_client):
+    """A PII-flagged ticket escalates even at high confidence."""
+    mock_response = MagicMock()
+    mock_response.text = json.dumps({
+        "category": "technical_support",
+        "confidence": 0.90
+    })
+    mock_client.models.generate_content.return_value = mock_response
+
+    result = classify_ticket("My phone number is 555-123-4567.")
+
+    assert result["contains_pii"] is True
+    assert result["routing_decision"]["route"] == "human_agent"
+    assert "contains_pii" in result["routing_decision"]["reason"]
+
+@patch('bot_engine.router.TICKET_TYPES', MOCK_TICKET_TYPES)
+@patch('bot_engine.router.client')
+def test_routing_automated_response(mock_client):
+    """A high-confidence, non-PII ticket routes to automated response."""
+    mock_response = MagicMock()
+    mock_response.text = json.dumps({
+        "category": "access_request",
+        "confidence": 0.92
+    })
+    mock_client.models.generate_content.return_value = mock_response
+
+    result = classify_ticket("Please reset my password ASAP.")
+
+    assert result["routing_decision"]["route"] == "automated_response"
+
+def test_routing_empty_ticket_escalates():
+    """An empty ticket carries an escalation decision, not just unknown fields."""
+    decision = evaluate_routing({
+        "ticket_type": "unknown",
+        "confidence_score": 0.0,
+        "contains_pii": False,
+    })
+    assert decision["route"] == "human_agent"
+
+def test_routing_first_matching_rule_wins():
+    """Rules apply in order: a compliance_flag at low confidence cites the compliance rule."""
+    decision = evaluate_routing({
+        "ticket_type": "compliance_flag",
+        "confidence_score": 0.40,
+        "contains_pii": False,
+    })
+    assert decision["route"] == "human_agent"
+    assert "compliance_flag" in decision["reason"]
