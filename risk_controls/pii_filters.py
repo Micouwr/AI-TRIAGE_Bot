@@ -2,22 +2,31 @@
 import re
 
 # Pre-compile regex patterns for efficiency. This avoids recompiling them on every call.
+# Each entry pairs a PII type label with its pattern so detection and redaction
+# stay consistent with each other.
 PII_PATTERNS = [
     # Social Security Number (SSN) - US format
-    re.compile(r"\b\d{3}-\d{2}-\d{4}\b"),
-    
+    ("ssn", re.compile(r"\b\d{3}-\d{2}-\d{4}\b")),
+
     # Credit Card Number (16 digits, no formatting)
-    re.compile(r"\b\d{16}\b"),
-    
+    ("card", re.compile(r"\b\d{16}\b")),
+
     # Credit Card Number (formatted with hyphens or spaces) - Fixed word boundary issue
-    re.compile(r"\b(?:\d{4}[- ]){3}\d{4}(?=\s|[.,;!?]|$)"),
-    
+    ("card", re.compile(r"\b(?:\d{4}[- ]){3}\d{4}(?=\s|[.,;!?]|$)")),
+
     # Email Address
-    re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"),
-    
+    ("email", re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")),
+
     # Phone Number (matches various US formats)
-    re.compile(r"\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b"),
+    ("phone", re.compile(r"\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b")),
 ]
+
+REDACTION_TOKENS = {
+    "ssn": "[REDACTED_SSN]",
+    "card": "[REDACTED_CARD]",
+    "email": "[REDACTED_EMAIL]",
+    "phone": "[REDACTED_PHONE]",
+}
 
 # Secondary validation: Credit card Luhn algorithm check
 def _luhn_check(card_number: str) -> bool:
@@ -57,18 +66,40 @@ def contains_pii(text: str) -> bool:
     Returns:
         bool: True if any PII pattern is found, False otherwise.
     """
+    return len(detect_pii_types(text)) > 0
+
+
+def detect_pii_types(text: str) -> list:
+    """
+    Returns the sorted list of PII type labels found in the text, e.g. ["email", "ssn"].
+    Credit card matches are validated with the Luhn algorithm, mirroring contains_pii.
+    """
+    if not isinstance(text, str) or not text:
+        return []
+
+    found = set()
+    for label, pattern in PII_PATTERNS:
+        for match in pattern.finditer(text):
+            if label == "card" and not _luhn_check(match.group(0)):
+                continue
+            found.add(label)
+    return sorted(found)
+
+
+def redact_pii(text: str) -> str:
+    """
+    Replaces detected PII in the text with redaction tokens such as [REDACTED_SSN].
+    Used before writing tickets to the fallback log so personal information is
+    never stored in log files. Non-string input is returned unchanged.
+    """
     if not isinstance(text, str):
-        return False
-    
-    # Check for SSN, emails, and phone numbers (indices 0, 3, 4)
-    for i in [0, 3, 4]:
-        if PII_PATTERNS[i].search(text):
-            return True
-    
-    # Check for credit cards (indices 1, 2) with Luhn validation
-    for i in [1, 2]:
-        match = PII_PATTERNS[i].search(text)
-        if match and _luhn_check(match.group(0)):
-            return True
-    
-    return False
+        return text
+
+    redacted = text
+    for label, pattern in PII_PATTERNS:
+        def _replace(match, label=label):
+            if label == "card" and not _luhn_check(match.group(0)):
+                return match.group(0)
+            return REDACTION_TOKENS[label]
+        redacted = pattern.sub(_replace, redacted)
+    return redacted

@@ -5,7 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from risk_controls.pii_filters import contains_pii
+from risk_controls.pii_filters import contains_pii, redact_pii, detect_pii_types
 from datetime import datetime, timezone
 
 # --- Configuration Loading ---
@@ -223,11 +223,19 @@ def log_llm_error(ticket_text: str, error_msg: str):
     log_entry(log_path, entry)
 
 def log_fallback(ticket_text: str, result: dict):
-    """Governance: Log low-confidence or unknown classifications for human review."""
+    """Governance: Log low-confidence or unknown classifications for human review.
+
+    Tickets flagged for PII are logged with personal information redacted; the
+    entry records which PII types were found instead of their values, so the
+    log file never stores raw personal information.
+    """
+    pii_flagged = bool(result.get("contains_pii"))
     entry = {
-        "ticket": ticket_text,
+        "ticket": redact_pii(ticket_text) if pii_flagged else ticket_text,
         "result": result,
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
+    if pii_flagged:
+        entry["pii_types"] = detect_pii_types(ticket_text)
     log_path = get_project_root() / "fallback_log.jsonl"
     log_entry(log_path, entry)
