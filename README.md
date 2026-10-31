@@ -1,6 +1,6 @@
 # AI Triage Bot - ISO/IEC 42001 Governance Prototype
 
-A work-in-progress prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 2.5 Flash to demonstrate practical application of AI management system requirements.
+A work-in-progress prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 3 Flash to demonstrate practical application of AI management system requirements.
 
 ---
 
@@ -8,7 +8,7 @@ A work-in-progress prototype implementing ISO/IEC 42001:2023 governance controls
 
 - **Graphical User Interface** (`main_gui.py`) for interactive ticket classification
 - **Standalone Executable** capability via PyInstaller for cross-platform distribution
-- **LLM Classification Engine** (`bot_engine/router.py`) using Gemini 2.5 Flash with configurable confidence scoring and error handling
+- **LLM Classification Engine** (`bot_engine/router.py`) using Gemini 3 Flash with configurable confidence scoring and error handling
 - **PII Detection** (`risk_controls/pii_filters.py`) with regex patterns and Luhn algorithm validation
 - **Pytest Suite** (`tests/`) covering classification logic, PII detection, and edge cases
 - **Centralized Configuration** (`governance/config/scope.yaml`) for system settings, ticket types, and model parameters
@@ -177,7 +177,7 @@ AI-TRIAGE_Bot/
 
 Key settings:
 - `confidence_threshold`: Minimum confidence score (default: 0.5)
-- `model_name`: AI model to use (default: "gemini-2.5-flash")
+- `model_name`: AI model to use (default: "gemini-3-flash-preview")
 - `ticket_types`: List of classification categories
 - `escalation_rules`: Rules for human escalation
 
@@ -318,7 +318,7 @@ chmod 640 governance/llm_error_log.jsonl
 ## 📈 Development Roadmap
 
 ### Completed
-- ✅ Core classification engine with Gemini 2.5 Flash
+- ✅ Core classification engine with Gemini 3 Flash
 - ✅ GUI application
 - ✅ PII detection with Luhn validation
 - ✅ Comprehensive test suite (24/24 passing - 100%)
@@ -388,7 +388,7 @@ See [LICENSE](LICENSE) file for complete terms.
 
 ## 🙏 Acknowledgments
 
-- **Google Gemini API** - LLM classification engine (Gemini 2.5 Flash)
+- **Google Gemini API** - LLM classification engine (Gemini 3 Flash)
 - **ISO/IEC 42001:2023** - AI Management Systems standard framework
 - **NIST AI RMF** - Risk management guidance
 

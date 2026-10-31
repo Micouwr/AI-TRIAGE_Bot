@@ -25,7 +25,7 @@ config = load_config()
 bot_config = config.get("bot_config", {})
 TICKET_TYPES = config.get("ticket_types", [])
 CONFIDENCE_THRESHOLD = bot_config.get("confidence_threshold", 0.5)
-MODEL_NAME = bot_config.get("model_name", "gemini-1.5-flash")
+MODEL_NAME = bot_config.get("model_name", "gemini-3-flash-preview")
 
 load_dotenv(get_project_root() / ".env")
 
@@ -160,7 +160,7 @@ def evaluate_routing(result: dict) -> dict:
 
 def classify_ticket(ticket_text: str) -> dict:
     """
-    Classifies a support ticket using the Gemini 2.5 Flash model with governance layers.
+    Classifies a support ticket using the Gemini 3 Flash model with governance layers.
     
     Complies with ISO/IEC 42001:2023 requirements for AI system operation and monitoring.
     """
