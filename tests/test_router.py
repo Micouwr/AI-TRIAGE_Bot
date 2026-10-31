@@ -244,3 +244,13 @@ def test_routing_first_matching_rule_wins():
     })
     assert decision["route"] == "human_agent"
     assert "compliance_flag" in decision["reason"]
+
+def test_routing_escalates_confident_unknown():
+    """A confident 'unknown' classification must still go to a human, not automated response."""
+    decision = evaluate_routing({
+        "ticket_type": "unknown",
+        "confidence_score": 0.95,
+        "contains_pii": False,
+    })
+    assert decision["route"] == "human_agent"
+    assert "ticket_type == unknown" in decision["reason"]

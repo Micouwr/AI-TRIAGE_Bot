@@ -73,13 +73,14 @@ returned compliance_flag at 0.95 confidence. A PII-heavy identity-verification
 request reads as a compliance matter to the model. It still went to human
 review, which is the safe outcome, but the category was wrong.
 
-**The escalation rules have a gap.** Tickets 22 and 23 were vague
+**The escalation rules had a gap.** Tickets 22 and 23 were vague
 ("The thing is broken again, please fix ASAP"). The model confidently
 predicted `unknown` (0.95, 0.90), and the declared rules routed them to
-automated_response because no rule covers a confident `unknown`. An
-unclassifiable ticket should not be auto-handled. Recommended fix: add
+automated_response because no rule covered a confident `unknown`. An
+unclassifiable ticket should not be auto-handled. Fixed 2026-10-31: added
 `if ticket_type == unknown: escalate_to: human_agent` to the escalation rules
-in `governance/config/scope.yaml`.
+in `governance/config/scope.yaml`, with a regression test. The per-ticket table
+above records the routing measured during the evaluation, before this fix.
 
 ## Limitations
 

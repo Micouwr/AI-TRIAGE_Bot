@@ -25,6 +25,7 @@ ticket_types:
 
 escalation_rules:
   - "if ticket_type == compliance_flag: escalate_to: human_agent"
+  - "if ticket_type == unknown: escalate_to: human_agent"
   - "if confidence_score < 0.7: escalate_to: human_agent"
   - "if contains_pii: escalate_to: human_agent"
   - "else: route_to: automated_response"
