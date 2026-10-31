@@ -1,6 +1,6 @@
 # AI Triage Bot - ISO/IEC 42001 Governance Prototype
 
-A work-in-progress prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 3 Flash to demonstrate practical application of AI management system requirements.
+A working prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 3 Flash to demonstrate practical application of AI management system requirements.
 
 ---
 
@@ -23,7 +23,7 @@ A work-in-progress prototype implementing ISO/IEC 42001:2023 governance controls
 - Python 3.10+ (3.8+ supported but 3.10+ recommended)
 - A Gemini API key (set as environment variable `GEMINI_API_KEY`)
   - Free tier supported (15 requests per minute)
-  - Get your key at: https://makersuite.google.com/app/apikey
+  - Get your key at: https://aistudio.google.com/apikey
 
 ### Installation
 
@@ -145,7 +145,9 @@ AI-TRIAGE_Bot/
 │   ├── README.md                    # Documentation index
 │   ├── iso42001_compliance_mapping.md # ISO/IEC 42001:2023 compliance mapping
 │   ├── operator_quick_guide.md      # User guide
-│   └── PORTFOLIO.md                 # Project portfolio
+│   ├── PORTFOLIO.md                 # Project portfolio
+│   ├── eval_tickets.json            # Labeled tickets used for evaluation
+│   └── evaluation_results.md        # Live-model evaluation write-up
 ├── tests/
 │   ├── __init__.py
 │   ├── README.md                    # Testing documentation
@@ -156,7 +158,9 @@ AI-TRIAGE_Bot/
 │   ├── README.md                    # Tools documentation
 │   └── fallback_viewer.py           # Log analysis tool
 ├── prompts/
-│   └── classification_prompt.txt    # LLM prompt template
+│   ├── README.md                    # Prompt documentation
+│   ├── classification_prompt.txt    # LLM prompt template
+│   └── classify_ticket.txt          # Alternate prompt template
 ├── lifecycle/
 │   ├── README.md                    # Lifecycle documentation
 │   └── versionhistory.md            # Version tracking
@@ -321,12 +325,13 @@ chmod 640 governance/llm_error_log.jsonl
 - ✅ Core classification engine with Gemini 3 Flash
 - ✅ GUI application
 - ✅ PII detection with Luhn validation
-- ✅ Comprehensive test suite (24/24 passing - 100%)
+- ✅ Comprehensive test suite (39/39 passing - 100%)
 - ✅ ISO/IEC 42001:2023 governance framework (95% compliant)
 - ✅ Training materials and documentation
 - ✅ Fallback log viewer tool
 - ✅ Migration to modern Google GenAI SDK (`google-genai`)
 - ✅ Repository-wide documentation standardization
+- ✅ CI pipeline running the test suite on every push
 
 ### In Progress
 - None currently - system stable and fully functional
@@ -336,7 +341,6 @@ chmod 640 governance/llm_error_log.jsonl
 - [ ] Additional PII patterns (international formats)
 - [ ] Performance benchmarking suite
 - [ ] Integration adapters (Zendesk, Freshdesk, Slack)
-- [ ] CI/CD pipeline for automated testing
 - [ ] Enhanced error recovery mechanisms
 - [ ] Multi-model support (Gemini + OpenAI)
 
@@ -394,4 +398,4 @@ See [LICENSE](LICENSE) file for complete terms.
 
 ---
 
-**Document Version:** 2.0 | Last Updated: 2025-12-09
+**Document Version:** 2.1 | Last Updated: 2026-10-31
