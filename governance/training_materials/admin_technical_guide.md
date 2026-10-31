@@ -172,7 +172,7 @@ description: >
 
 bot_config:
   confidence_threshold: 0.5      # Adjust based on accuracy requirements
-  model_name: "gemini-3-flash-preview" # Model selection
+  model_name: "gemini-3.8-flash" # Model selection
 
 ticket_types:
   - access_request
@@ -215,19 +215,19 @@ escalation_rules:
 
 ### Changing AI Model
 
-**Current Model:** `gemini-3-flash-preview`
+**Current Model:** `gemini-3.8-flash`
 
 **Available Models (Free Tier):**
 
 | Model | Speed | Intelligence | Rate Limit | Best For |
 |-------|-------|--------------|------------|----------|
-| `gemini-3-flash-preview` | Fast | High | 15 RPM | Balanced (current) |
+| `gemini-3.8-flash` | Fast | High | 15 RPM | Balanced (current) |
 | `gemini-flash-lite-latest` | Fastest | Medium | 15 RPM | High-volume, cost-sensitive |
 | `gemini-2.5-pro` | Slower | Highest | 5 RPM | Complex reasoning (limited use) |
 
 **To Change Model:**
 1. Edit `governance/config/scope.yaml`
-2. Modify `model_name: "gemini-3-flash-preview"` to desired model
+2. Modify `model_name: "gemini-3.8-flash"` to desired model
 3. Test with sample tickets
 4. Monitor performance and accuracy
 
@@ -570,7 +570,7 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print('API 
    
    load_dotenv()
    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-   model = genai.GenerativeModel("gemini-3-flash-preview")
+   model = genai.GenerativeModel("gemini-3.8-flash")
    response = model.generate_content("Test")
    print(response.text)
 ```
@@ -750,7 +750,7 @@ print(f"\nAverage classification time: {avg_time:.2f}s")
 - Keep category list concise
 
 **2. Model Selection**
-- `gemini-3-flash-preview` - Fast, balanced (current)
+- `gemini-3.8-flash` - Fast, balanced (current)
 - `gemini-flash-lite-latest` - Fastest, lower intelligence
 - `gemini-2.5-pro` - Slower but more accurate (rate limited)
 

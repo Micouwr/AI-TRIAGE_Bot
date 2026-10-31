@@ -25,7 +25,7 @@ config = load_config()
 bot_config = config.get("bot_config", {})
 TICKET_TYPES = config.get("ticket_types", [])
 CONFIDENCE_THRESHOLD = bot_config.get("confidence_threshold", 0.5)
-MODEL_NAME = bot_config.get("model_name", "gemini-3-flash-preview")
+MODEL_NAME = bot_config.get("model_name", "gemini-3.8-flash")
 
 load_dotenv(get_project_root() / ".env")
 

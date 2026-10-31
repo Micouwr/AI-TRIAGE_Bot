@@ -42,7 +42,7 @@ The `fallback_log.jsonl` file contains tickets that were automatically flagged f
     "ticket_type": "access_request",
     "confidence_score": 0.42,
     "contains_pii": false,
-    "model": "gemini-3-flash-preview"
+    "model": "gemini-3.8-flash"
   },
   "timestamp": "2025-11-25T14:23:45.123456+00:00"
 }

@@ -25,7 +25,7 @@ Objectives:
 ## 2. Technical Implementation Details
 
 - Language: Python 3.
-- AI model: Google Gemini 3 Flash (gemini-3-flash-preview), called through the google-genai SDK at low temperature (0.1) for consistent output. The project previously pinned Gemini 2.5 Flash, which Google retired for new API projects in 2026; the configuration was updated so the bot runs with current keys.
+- AI model: Google Gemini 3.8 Flash (gemini-3.8-flash), called through the google-genai SDK at low temperature (0.1) for consistent output. The project previously pinned Gemini 2.5 Flash, which Google retired for new API projects in 2026; the configuration was updated so the bot runs with current keys.
 - Interface: a small tkinter desktop app. Paste in a ticket, get back a category and a confidence score.
 - Classification prompt: a template in `prompts/classification_prompt.txt` that instructs the model to return only JSON with `category` and `confidence`.
 - Ticket types: access_request, password_reset, software_issue, hardware_issue, billing_question, compliance_flag, unknown.
@@ -105,4 +105,3 @@ Built iteratively across November and December 2025. Early versions established 
 ## 11. Future Enhancements
 
 - Add a short screen-recorded demo for reviewers who will not install a desktop app.
-- Revisit the pinned model name when Google finalizes the Gemini 3 flash naming (currently `gemini-3-flash-preview`).

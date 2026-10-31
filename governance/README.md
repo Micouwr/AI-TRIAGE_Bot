@@ -179,7 +179,7 @@ governance/
 
 **Key Settings:**
 - `confidence_threshold`: 0.5 (50%)
-- `model_name`: "gemini-3-flash-preview"
+- `model_name`: "gemini-3.8-flash"
 - `ticket_types`: 7 categories
 - `escalation_rules`: 4 rules
 

@@ -16,7 +16,7 @@ This AI Policy establishes the governance framework for the AI Triage Bot, an LL
 ### 1.1 System Scope
 - **System Name:** AI-Triage-Bot
 - **Primary Function:** Automated classification of Tier 1 support tickets
-- **AI Model:** Gemini 3 Flash (Google Generative AI)
+- **AI Model:** Gemini 3.8 Flash (Google Generative AI)
 - **Deployment Target:** Desktop application (Windows/Mac/Linux)
 - **Current Status:** Framework implementation, not in production use
 

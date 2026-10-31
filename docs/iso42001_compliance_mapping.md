@@ -15,13 +15,13 @@ This document provides a comprehensive mapping between the AI Triage Bot prototy
 - Only maps features that are actually implemented or documented
 - Clearly distinguishes between "IMPLEMENTED" and "PLANNED" status
 - References actual files in the repository
-- Updated to reflect current system state (Gemini 3 Flash)
+- Updated to reflect current system state (Gemini 3.8 Flash)
 
 ---
 
 ## System Context
 
-**AI Model:** Gemini 3 Flash (gemini-3-flash-preview)
+**AI Model:** Gemini 3.8 Flash (gemini-3.8-flash)
 **Deployment:** Desktop application (Windows/Mac/Linux)
 **API Tier:** Free tier (15 RPM, 1,500 RPD)
 **Primary Function:** Automated IT help desk ticket classification with human oversight
@@ -198,7 +198,7 @@ This document provides a comprehensive mapping between the AI Triage Bot prototy
 |-------------|----------------|----------|--------|
 | Control AI system changes | Version control system tracks all changes | Git repository | IMPLEMENTED |
 | Document changes | Version history document | `lifecycle/version_history.md` | NEEDS UPDATE |
-| Model version tracking | Configuration file specifies model version | `governance/config/scope.yaml` (gemini-3-flash-preview) | IMPLEMENTED |
+| Model version tracking | Configuration file specifies model version | `governance/config/scope.yaml` (gemini-3.8-flash) | IMPLEMENTED |
 
 ---
 
@@ -380,7 +380,7 @@ docs: Create comprehensive ISO 42001 compliance mapping
 
 - Consolidates and replaces iso42001_mapping.md and iso42001mapping.md
 - Maps all clauses (4-10) to actual implemented features
-- References Gemini 3 Flash (current model)
+- References Gemini 3.8 Flash (current model)
 - Documents 8 identified risks with mitigations
 - Lists all 22 supporting files (9 governance, 5 technical, 2 tests, 6 docs)
 - Includes compliance summary showing 95% coverage

@@ -16,7 +16,7 @@ The AI Triage Bot implements ISO/IEC 42001:2023 governance controls in an LLM-po
 ### System Overview
 
 **System Name:** AI-Triage-Bot  
-**Function:** Automated classification of support tickets using Gemini 3 Flash  
+**Function:** Automated classification of support tickets using Gemini 3.8 Flash  
 **Status:** Work in progress - framework implementation  
 **Owner:** William Ryan Micou  
 
@@ -238,7 +238,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 - `README.md` with deployment instructions
 
 #### 8.2.3 Outsourced Processes
-- **Third-Party Model:** Gemini 3 Flash (Google)
+- **Third-Party Model:** Gemini 3.8 Flash (Google)
 - **Risk Controls:** 
   - Output validation (JSON parsing)
   - Error handling for API failures
