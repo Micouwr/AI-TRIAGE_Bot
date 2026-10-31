@@ -100,11 +100,9 @@ Built iteratively across November and December 2025. Early versions established 
 - Declaring escalation rules in a config file is not the same as enforcing them. The rules in `scope.yaml` are declared; wiring every result through them as routing decisions in code is the next build step. Documentation that outruns implementation is a finding, not a feature.
 - Mocked tests prove the workflow logic, not the model. Real evaluation needs labeled tickets and measured accuracy.
 - Governance documentation earns trust only when it is honest about implemented versus planned. The compliance mapping marks both, and this file does the same.
+- Unused code is a finding, not a roadmap. The `scripts/` folder held five generic monitoring and validation stubs that nothing called, one of them validating a data schema the bot does not return. They were deleted rather than wired up: the functions they gestured at (PII redaction, audit logging, routing decisions) already live in the codebase, and a prototype earns trust by being small and honest.
 
 ## 11. Future Enhancements
 
-- Enforce the escalation rules in code so every result carries a routing decision.
-- Redact PII in fallback logs and remove historical log data from the repo.
-- Run 20 to 30 labeled sample tickets through the classifier and publish accuracy and escalation-rate numbers.
 - Add a short screen-recorded demo for reviewers who will not install a desktop app.
-- Wire up or remove the unused `scripts/` stubs.
+- Revisit the pinned model name when Google finalizes the Gemini 3 flash naming (currently `gemini-3-flash-preview`).
