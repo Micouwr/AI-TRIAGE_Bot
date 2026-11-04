@@ -13,7 +13,6 @@ import csv
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from collections import Counter
-from typing import List, Dict
 
 
 class FallbackLogViewer:
@@ -43,7 +42,7 @@ class FallbackLogViewer:
                         )
                     self.entries.append(entry)
                 except json.JSONDecodeError:
-                    print(f"️  Warning: Skipping malformed log entry")
+                    print("️  Warning: Skipping malformed log entry")
                     continue
         
         print(f"Loaded {len(self.entries)} fallback entries")
@@ -116,7 +115,7 @@ class FallbackLogViewer:
             avg_conf = sum(confidence_scores) / len(confidence_scores)
             min_conf = min(confidence_scores)
             max_conf = max(confidence_scores)
-            print(f"\nConfidence Scores:")
+            print("\nConfidence Scores:")
             print(f"   Average: {avg_conf:.2f}")
             print(f"   Range:   {min_conf:.2f} - {max_conf:.2f}")
         
@@ -126,7 +125,7 @@ class FallbackLogViewer:
             if 'result' in e and e['result'].get('contains_pii', False)
         )
         pii_percentage = (pii_count / len(self.entries)) * 100 if self.entries else 0
-        print(f"\nPII Detection:")
+        print("\nPII Detection:")
         print(f"   Tickets with PII: {pii_count} ({pii_percentage:.1f}%)")
         
         # Date range
@@ -134,7 +133,7 @@ class FallbackLogViewer:
             timestamps = [e['timestamp_parsed'] for e in self.entries if 'timestamp_parsed' in e]
             oldest = min(timestamps)
             newest = max(timestamps)
-            print(f"\nDate Range:")
+            print("\nDate Range:")
             print(f"   Oldest: {oldest.strftime('%Y-%m-%d %H:%M:%S')}")
             print(f"   Newest: {newest.strftime('%Y-%m-%d %H:%M:%S')}")
         
@@ -163,7 +162,7 @@ class FallbackLogViewer:
             print(f"Category:    {result.get('ticket_type', 'N/A')}")
             print(f"Confidence:  {result.get('confidence_score', 'N/A')}")
             print(f"Contains PII: {'Yes' if result.get('contains_pii') else 'No'}")
-            print(f"Ticket Text:")
+            print("Ticket Text:")
             print(f"   {ticket_text[:200]}{'...' if len(ticket_text) > 200 else ''}")
             print()
         
