@@ -90,7 +90,7 @@ This launches the Vigil GUI where you can:
 pyinstaller --onefile --windowed ^
   --add-data "governance;governance" ^
   --add-data "prompts;prompts" ^
-  --name "AI-Triage-Bot" ^
+  --name "Vigil" ^
   main_gui.py
 ```
 
@@ -99,11 +99,11 @@ pyinstaller --onefile --windowed ^
 pyinstaller --onefile --windowed \
   --add-data "governance:governance" \
   --add-data "prompts:prompts" \
-  --name "AI-Triage-Bot" \
+  --name "Vigil" \
   main_gui.py
 ```
 
-**Output Location:** `dist/AI-Triage-Bot` (or `.exe` on Windows)
+**Output Location:** `dist/Vigil` (or `.exe` on Windows)
 
 ---
 
