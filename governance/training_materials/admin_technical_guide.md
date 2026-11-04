@@ -1,4 +1,4 @@
-# System Administrator Technical Guide - AI Triage Bot
+# System Administrator Technical Guide - Vigil
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -14,7 +14,7 @@
 
 As a **System Administrator**, you are responsible for:
 
-1. **Deployment** - Installing and configuring the AI Triage Bot
+1. **Deployment** - Installing and configuring the Vigil
 2. **Maintenance** - Updating dependencies and system components
 3. **Monitoring** - Tracking system health and performance
 4. **Troubleshooting** - Diagnosing and resolving technical issues
@@ -48,8 +48,8 @@ As a **System Administrator**, you are responsible for:
 
 #### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/Micouwr/AI-TRIAGE_Bot.git
-cd AI-TRIAGE_Bot
+git clone https://github.com/Micouwr/Vigil.git
+cd Vigil
 ```
 
 #### Step 2: Create Virtual Environment
@@ -378,7 +378,7 @@ echo "Deleted logs older than $DAYS_TO_KEEP days"
 crontab -e
 
 # Add this line to run every Sunday at 2 AM
-0 2 * * 0 /path/to/AI-TRIAGE_Bot/scripts/rotate_logs.sh
+0 2 * * 0 /path/to/Vigil/scripts/rotate_logs.sh
 ```
 
 ---

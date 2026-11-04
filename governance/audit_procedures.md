@@ -1,4 +1,4 @@
-# Internal Audit Procedures - AI Triage Bot
+# Internal Audit Procedures - Vigil
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -249,7 +249,7 @@ Report saved to: `governance/audit_reports/error_review_YYYY-MM.md`
 
 ### 4.1 Report Structure
 ```markdown
-# AI Triage Bot Audit Report
+# Vigil Audit Report
 
 **Audit Period:** YYYY-MM-DD to YYYY-MM-DD  
 **Auditor:** [Name]  

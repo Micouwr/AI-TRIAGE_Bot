@@ -1,4 +1,4 @@
-# Tools Documentation - AI Triage Bot Prototype
+# Tools Documentation - Vigil Prototype
 
 **Last Updated:** 2025-11-29
 **Owner:** William Ryan Micou
@@ -8,7 +8,7 @@
 
 ## 📋 Overview
 
-This directory contains tools for monitoring, auditing, and analyzing the AI Triage Bot system. These tools support ISO/IEC 42001:2023 compliance requirements for performance evaluation and audit readiness.
+This directory contains tools for monitoring, auditing, and analyzing the Vigil system. These tools support ISO/IEC 42001:2023 compliance requirements for performance evaluation and audit readiness.
 
 ---
 

@@ -1,4 +1,4 @@
-# Fallback Protocols - AI Triage Bot
+# Fallback Protocols - Vigil
 
 This document outlines governance-aligned fallback handling procedures for low-confidence classifications, escalation failures, and malformed LLM outputs, supporting ISO/IEC 42001:2023 Clauses 5, 6, and 8.
 

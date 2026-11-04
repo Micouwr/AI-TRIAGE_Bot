@@ -1,4 +1,4 @@
-# AI Triage Bot: Project Portfolio
+# Vigil: Project Portfolio
 
 **Audience:** External stakeholders, recruiters, technical reviewers
 **Status:** APPROVED
@@ -10,7 +10,7 @@
 
 ## 1. Project Overview and Objectives
 
-AI Triage Bot is a prototype that shows how a routine IT support workflow, ticket triage, can be partly automated with an AI classifier while keeping a human in the loop for anything risky or uncertain.
+Vigil is a prototype that shows how a routine IT support workflow, ticket triage, can be partly automated with an AI classifier while keeping a human in the loop for anything risky or uncertain.
 
 The objective was never production software. It was to design the workflow end to end: what the AI is allowed to decide, where it must hand off to a person, and how every decision gets logged for audit. The working code exists to prove the workflow is real, not just a diagram.
 

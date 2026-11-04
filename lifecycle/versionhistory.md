@@ -1,6 +1,6 @@
-# Version History - AI Triage Bot
+# Version History - Vigil
 
-This document tracks the lifecycle of the AI Triage Bot, including major changes, governance milestones, and audit-relevant updates.
+This document tracks the lifecycle of the Vigil, including major changes, governance milestones, and audit-relevant updates.
 
 ---
 

@@ -1,15 +1,15 @@
-# ISO/IEC 42001:2023 Compliance Mapping - AI Triage Bot Prototype
+# ISO/IEC 42001:2023 Compliance Mapping - Vigil Prototype
 
 **Document Status:** APPROVED
 **Last Updated:** 2025-11-29
 **Owner:** William Ryan Micou
-**Purpose:** Maps AI Triage Bot features to ISO/IEC 42001:2023 requirements
+**Purpose:** Maps Vigil features to ISO/IEC 42001:2023 requirements
 
 ---
 
 ## Document Overview
 
-This document provides a comprehensive mapping between the AI Triage Bot prototype's features, controls, and documentation against the requirements of ISO/IEC 42001:2023 - Artificial Intelligence Management Systems.
+This document provides a comprehensive mapping between the Vigil prototype's features, controls, and documentation against the requirements of ISO/IEC 42001:2023 - Artificial Intelligence Management Systems.
 
 **Key Principles:**
 - Only maps features that are actually implemented or documented

@@ -1,4 +1,6 @@
-# AI Triage Bot - ISO/IEC 42001 Governance Prototype
+# Vigil - ISO/IEC 42001 Governance Prototype
+
+*Vigil keeps watch over the AI, calling for a human the moment something looks wrong.*
 
 A working prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 3.8 Flash to demonstrate practical application of AI management system requirements.
 
@@ -29,8 +31,8 @@ A working prototype implementing ISO/IEC 42001:2023 governance controls in an LL
 
 1. **Clone the Repository:**
 ```bash
-   git clone https://github.com/Micouwr/AI-TRIAGE_Bot.git
-   cd AI-TRIAGE_Bot
+   git clone https://github.com/Micouwr/Vigil.git
+   cd Vigil
 ```
 
 2. **Create Virtual Environment:**
@@ -70,7 +72,7 @@ A working prototype implementing ISO/IEC 42001:2023 governance controls in an LL
 python main_gui.py
 ```
 
-This launches the AI Ticket Classifier GUI where you can:
+This launches the Vigil GUI where you can:
 - Enter ticket text
 - View classification results with confidence scores
 - See PII detection flags
@@ -121,7 +123,7 @@ python -m pytest --cov=bot_engine --cov=risk_controls --cov-report=html
 
 ## 📁 Project Structure
 ```
-AI-TRIAGE_Bot/
+Vigil/
 ├── bot_engine/
 │   ├── __init__.py
 │   └── router.py                    # Core classification logic
@@ -385,7 +387,7 @@ See [LICENSE](LICENSE) file for complete terms.
 ## 📞 Contact
 
 **System Owner:** William Ryan Micou  
-**Repository:** https://github.com/Micouwr/AI-TRIAGE_Bot  
+**Repository:** https://github.com/Micouwr/Vigil  
 **Email:** micouwr2025@gmail.com
 
 ---

@@ -36,7 +36,7 @@ fallback_protocol:
 
 iso_alignment:
   - clause_4.2: Context of the organization
-    description: The AI Triage Bot is designed to integrate seamlessly with existing IT support workflows, enhancing efficiency without disrupting current operations.
+    description: The Vigil is designed to integrate seamlessly with existing IT support workflows, enhancing efficiency without disrupting current operations.
   - clause_6.1: Risk management
     description: Identified and mitigated risks include PII detection, confidence scoring, and escalation protocols, with regular audits and system assessments.
   - clause_8.2: Operational controls

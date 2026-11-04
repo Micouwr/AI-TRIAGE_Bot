@@ -1,4 +1,4 @@
-# Governance Documentation - AI Triage Bot
+# Governance Documentation - Vigil
 
 **Document Status:** APPROVED  
 **Last Updated:** 2025-11-29  
@@ -9,7 +9,7 @@
 
 ## 📋 Overview
 
-This directory contains all governance documentation for the AI Triage Bot system, aligned with ISO/IEC 42001:2023 requirements for Artificial Intelligence Management Systems.
+This directory contains all governance documentation for the Vigil system, aligned with ISO/IEC 42001:2023 requirements for Artificial Intelligence Management Systems.
 
 ---
 

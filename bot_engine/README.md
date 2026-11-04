@@ -1,10 +1,10 @@
-# AI-TRIAGE-BOT Prototype
+# Vigil Prototype
 
-The `AI-TRIAGE-BOT Prototype` directory contains the core logic of the AI Triage Bot, specifically focusing on ticket classification and governance. This is a prototype version, and as such, it is subject to ongoing development and refinement.
+The `Vigil Prototype` directory contains the core logic of the Vigil, specifically focusing on ticket classification and governance. This is a prototype version, and as such, it is subject to ongoing development and refinement.
 
 ## Overview
 
-`router.py` is a critical component of the AI Triage Bot, responsible for classifying tickets using the Gemini 3.8 Flash model. It includes governance layers to handle PII detection and manage low-confidence classifications.
+`router.py` is a critical component of the Vigil, responsible for classifying tickets using the Gemini 3.8 Flash model. It includes governance layers to handle PII detection and manage low-confidence classifications.
 
 ## Functionality
 

@@ -1,4 +1,4 @@
-# AI Governance Framework Guide - AI Triage Bot
+# AI Governance Framework Guide - Vigil
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -11,7 +11,7 @@
 
 ## 🎯 Executive Summary
 
-The AI Triage Bot implements ISO/IEC 42001:2023 governance controls in an LLM-powered ticket classification system. This document describes the governance framework structure, compliance mapping, and operational procedures.
+The Vigil implements ISO/IEC 42001:2023 governance controls in an LLM-powered ticket classification system. This document describes the governance framework structure, compliance mapping, and operational procedures.
 
 ### System Overview
 
@@ -462,7 +462,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 
 ### For Technical Implementation
 
-- **Repository:** https://github.com/Micouwr/AI-TRIAGE_Bot
+- **Repository:** https://github.com/Micouwr/Vigil
 - **Documentation:** See `README.md` in repository
 - **Training Materials:** All materials in `governance/training_materials/` and `docs/`
 
@@ -495,7 +495,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 
 ## ✅ Final Compliance Statement
 
-**System Name:** AI Triage Bot  
+**System Name:** Vigil  
 **Version:** 1.1.0  
 **Standard:** ISO/IEC 42001:2023  
 **Compliance Date:** 2025-11-25  

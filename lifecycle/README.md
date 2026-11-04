@@ -1,10 +1,10 @@
 # Version History Documentation
 
-This directory contains the version history documentation for the AI Triage Bot Prototype. It serves as a record of the project's development lifecycle, detailing significant changes, governance milestones, and audit-relevant updates.
+This directory contains the version history documentation for the Vigil Prototype. It serves as a record of the project's development lifecycle, detailing significant changes, governance milestones, and audit-relevant updates.
 
 ## Contents
 
-- **version_history.md**: A comprehensive log of each version release of the AI Triage Bot, outlining key changes, features added, and associated governance and audit notes.
+- **version_history.md**: A comprehensive log of each version release of the Vigil, outlining key changes, features added, and associated governance and audit notes.
 
 ## Purpose
 
@@ -15,7 +15,7 @@ Tracking the version history is essential for:
 
 ## Usage
 
-To understand the development changes and milestones of the AI Triage Bot, refer to the `version_history.md` file. This file should be updated with each new release, detailing the key changes and their implications.
+To understand the development changes and milestones of the Vigil, refer to the `version_history.md` file. This file should be updated with each new release, detailing the key changes and their implications.
 
 ## How to Contribute
 

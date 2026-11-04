@@ -1,4 +1,4 @@
-# Competence Requirements - AI Triage Bot Operators
+# Competence Requirements - Vigil Operators
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -11,7 +11,7 @@
 
 ## 1. Overview
 
-This document defines the knowledge, skills, and training required for personnel operating or interacting with the AI Triage Bot system. These requirements align with ISO/IEC 42001:2023 Clause 7.2 (Competence).
+This document defines the knowledge, skills, and training required for personnel operating or interacting with the Vigil system. These requirements align with ISO/IEC 42001:2023 Clause 7.2 (Competence).
 
 ---
 
@@ -71,7 +71,7 @@ This document defines the knowledge, skills, and training required for personnel
 ### 2.3 System Administrator
 
 **Responsibilities:**
-- Deploy and maintain the AI Triage Bot
+- Deploy and maintain the Vigil
 - Configure system parameters
 - Troubleshoot technical issues
 - Monitor system health
@@ -199,7 +199,7 @@ Personnel scoring below 80% must:
 |---------|------|--------|---------|
 | 1.0 | 2025-11-25 | W.R. Micou | Initial competence framework |
 ```
-# Competence Requirements - AI Triage Bot Operators
+# Competence Requirements - Vigil Operators
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -212,7 +212,7 @@ Personnel scoring below 80% must:
 
 ## 1. Overview
 
-This document defines the knowledge, skills, and training required for personnel operating or interacting with the AI Triage Bot system. These requirements align with ISO/IEC 42001:2023 Clause 7.2 (Competence).
+This document defines the knowledge, skills, and training required for personnel operating or interacting with the Vigil system. These requirements align with ISO/IEC 42001:2023 Clause 7.2 (Competence).
 
 ---
 
@@ -272,7 +272,7 @@ This document defines the knowledge, skills, and training required for personnel
 ### 2.3 System Administrator
 
 **Responsibilities:**
-- Deploy and maintain the AI Triage Bot
+- Deploy and maintain the Vigil
 - Configure system parameters
 - Troubleshoot technical issues
 - Monitor system health

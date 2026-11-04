@@ -1,5 +1,5 @@
 """
-Test Suite for AI Triage Bot
+Test Suite for Vigil
 Covers router, PII filters, and edge cases.
 """
 

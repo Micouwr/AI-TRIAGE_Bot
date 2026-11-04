@@ -1,4 +1,4 @@
-# AI Policy Statement - AI Triage Bot
+# AI Policy Statement - Vigil
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -11,7 +11,7 @@
 
 ## 1. Purpose and Scope
 
-This AI Policy establishes the governance framework for the AI Triage Bot, an LLM-powered support ticket classification system. This policy defines accountability, risk management, and operational controls in alignment with ISO/IEC 42001:2023.
+This AI Policy establishes the governance framework for the Vigil, an LLM-powered support ticket classification system. This policy defines accountability, risk management, and operational controls in alignment with ISO/IEC 42001:2023.
 
 ### 1.1 System Scope
 - **System Name:** AI-Triage-Bot

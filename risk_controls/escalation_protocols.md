@@ -1,4 +1,4 @@
-# Escalation Protocols - AI Triage Bot
+# Escalation Protocols - Vigil
 
 This document outlines escalation procedures for unresolved fallback events, system errors, and governance threshold breaches, supporting ISO/IEC 42001 Clauses 5, 6, and 8.
 

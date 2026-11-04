@@ -8,7 +8,7 @@ import threading
 class TicketClassifierApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("AI Ticket Classifier")
+        self.root.title("Vigil")
         self.root.geometry("600x450")
         
         # --- UI Elements ---

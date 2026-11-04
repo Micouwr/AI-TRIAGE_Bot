@@ -1,4 +1,4 @@
-# Testing Documentation - AI Triage Bot Prototype
+# Testing Documentation - Vigil Prototype
 
 **Last Updated:** 2025-11-29  
 **Owner:** William Ryan Micou  
@@ -8,7 +8,7 @@
 
 ## 📋 Overview
 
-This directory contains the test suite for the AI Triage Bot prototype, ensuring functionality, reliability, and compliance with ISO/IEC 42001:2023 requirements.
+This directory contains the test suite for the Vigil prototype, ensuring functionality, reliability, and compliance with ISO/IEC 42001:2023 requirements.
 
 ---
 

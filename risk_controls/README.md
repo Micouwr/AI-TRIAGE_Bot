@@ -1,6 +1,6 @@
 # Risk Controls Documentation
 
-This directory contains scripts and documentation related to the risk management and governance controls implemented in the AI Triage Bot Prototype. These controls ensure compliance with ISO/IEC 42001 standards, particularly focusing on accountability, risk management, and auditability.
+This directory contains scripts and documentation related to the risk management and governance controls implemented in the Vigil Prototype. These controls ensure compliance with ISO/IEC 42001 standards, particularly focusing on accountability, risk management, and auditability.
 
 ## Contents
 
@@ -11,7 +11,7 @@ This directory contains scripts and documentation related to the risk management
 ## Purpose
 
 The documents and scripts in this directory are designed to:
-- Ensure the AI Triage Bot operates within defined risk parameters.
+- Ensure the Vigil operates within defined risk parameters.
 - Enable traceability and accountability in case of system failures or governance breaches.
 - Support compliance with relevant ISO/IEC 42001 clauses.
 

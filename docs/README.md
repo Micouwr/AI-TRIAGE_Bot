@@ -1,4 +1,4 @@
-# Documentation Index - AI Triage Bot Prototype
+# Documentation Index - Vigil Prototype
 
 **Last Updated:** 2025-12-07  
 **Owner:** William Ryan Micou  
@@ -8,7 +8,7 @@
 
 ## 📋 Overview
 
-This directory contains all user-facing documentation, training materials, and project portfolio information for the AI Triage Bot prototype system.
+This directory contains all user-facing documentation, training materials, and project portfolio information for the Vigil prototype system.
 
 ---
 

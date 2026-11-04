@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fallback Log Viewer - AI Triage Bot
+Fallback Log Viewer - Vigil
 ISO/IEC 42001 Compliance Tool
 
 Purpose: Human-readable interface for reviewing low-confidence ticket classifications.
@@ -202,7 +202,7 @@ class FallbackLogViewer:
 def main():
     """Main entry point for the fallback log viewer."""
     parser = argparse.ArgumentParser(
-        description='AI Triage Bot Fallback Log Viewer - ISO/IEC 42001 Compliance Tool',
+        description='Vigil Fallback Log Viewer - ISO/IEC 42001 Compliance Tool',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

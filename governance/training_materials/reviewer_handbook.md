@@ -1,4 +1,4 @@
-# Human Review Agent Handbook - AI Triage Bot
+# Human Review Agent Handbook - Vigil
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -12,7 +12,7 @@
 
 ## 🎯 Your Role
 
-As a **Human Review Agent**, you are the quality assurance layer for the AI Triage Bot. Your responsibilities include:
+As a **Human Review Agent**, you are the quality assurance layer for the Vigil. Your responsibilities include:
 
 1. **Review flagged tickets** from the fallback log
 2. **Validate or correct** AI classifications

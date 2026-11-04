@@ -1,4 +1,4 @@
-# Operator Quick Guide - AI Triage Bot
+# Operator Quick Guide - Vigil
 
 **Document Status:** APPROVED  
 **Operational Status:** FRAMEWORK  
@@ -11,11 +11,11 @@
 
 ## 🎯 Quick Start
 
-### What is the AI Triage Bot?
+### What is the Vigil?
 A tool designed to classify support tickets into categories using AI-powered analysis.
 
 ### What You Need
-- The AI Triage Bot application installed on your computer
+- The Vigil application installed on your computer
 - Your Gemini API key configured (ask your System Administrator)
 - Basic understanding of ticket categories
 
@@ -35,7 +35,7 @@ Double-click: AI-Triage-Bot.exe
 python main_gui.py
 ```
 
-You should see the **AI Ticket Classifier** window open.
+You should see the **Vigil** window open.
 
 ---
 

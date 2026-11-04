@@ -1,6 +1,6 @@
 # Prompts Directory
 
-This directory contains prompt templates used by the AI Triage Bot to classify and process support tickets.
+This directory contains prompt templates used by the Vigil to classify and process support tickets.
 
 ## Contents
 
@@ -8,7 +8,7 @@ This directory contains prompt templates used by the AI Triage Bot to classify a
 
 ## Purpose
 
-The prompts in this directory are designed to guide the AI model in making accurate and consistent classifications, ensuring that the AI Triage Bot operates effectively and adheres to governance standards.
+The prompts in this directory are designed to guide the AI model in making accurate and consistent classifications, ensuring that the Vigil operates effectively and adheres to governance standards.
 
 ## Usage
 
