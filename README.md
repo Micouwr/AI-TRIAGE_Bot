@@ -4,6 +4,10 @@
 
 A working prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 3.8 Flash to demonstrate practical application of AI management system requirements.
 
+## Why "Vigil"?
+
+A vigil is keeping watch through the night: alert, patient, ready to act, but never acting prematurely. That is what this system does. It does not just classify tickets. It watches every decision, including its own confidence, and the moment something looks wrong (low confidence, PII, an unknown ticket type), it stops and hands off to a human. The name is the philosophy: AI that knows when not to trust itself.
+
 ---
 
 ## ✅ Current Features
