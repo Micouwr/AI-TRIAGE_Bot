@@ -390,12 +390,6 @@ See [LICENSE](LICENSE) file for complete terms.
 
 ---
 
-## Related project
-
-[CareerForge](https://github.com/Micouwr/job-application-bot) applies the same principle to a different problem: AI resume tailoring that refuses to run when the match is weak, with grounding rules keeping every word factual. Both projects share one design philosophy: the AI proposes, rules and humans dispose.
-
----
-
 ## 🙏 Acknowledgments
 
 - **Google Gemini API** - LLM classification engine (Gemini 3.8 Flash)
