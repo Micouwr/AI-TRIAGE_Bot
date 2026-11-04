@@ -28,7 +28,7 @@ class FallbackLogViewer:
     def load_entries(self):
         """Load all entries from the JSONL fallback log."""
         if not self.log_path.exists():
-            print(f"⚠️  Warning: Log file not found: {self.log_path}")
+            print(f"️  Warning: Log file not found: {self.log_path}")
             print("    No fallback entries to display.")
             return
         
@@ -43,10 +43,10 @@ class FallbackLogViewer:
                         )
                     self.entries.append(entry)
                 except json.JSONDecodeError:
-                    print(f"⚠️  Warning: Skipping malformed log entry")
+                    print(f"️  Warning: Skipping malformed log entry")
                     continue
         
-        print(f"✅ Loaded {len(self.entries)} fallback entries")
+        print(f"Loaded {len(self.entries)} fallback entries")
     
     def filter_by_date_range(self, days: int):
         """Filter entries within the last N days."""
@@ -55,7 +55,7 @@ class FallbackLogViewer:
             e for e in self.entries 
             if 'timestamp_parsed' in e and e['timestamp_parsed'] >= cutoff_date
         ]
-        print(f"📅 Filtered to last {days} days: {len(self.entries)} entries")
+        print(f"Filtered to last {days} days: {len(self.entries)} entries")
     
     def filter_by_confidence(self, min_confidence: float, max_confidence: float = 1.0):
         """Filter entries by confidence score range."""
@@ -64,7 +64,7 @@ class FallbackLogViewer:
             if 'result' in e and 'confidence_score' in e['result']
             and min_confidence <= e['result']['confidence_score'] <= max_confidence
         ]
-        print(f"🎯 Filtered by confidence [{min_confidence}-{max_confidence}]: {len(self.entries)} entries")
+        print(f"Filtered by confidence [{min_confidence}-{max_confidence}]: {len(self.entries)} entries")
     
     def filter_by_category(self, category: str):
         """Filter entries by ticket classification category."""
@@ -72,7 +72,7 @@ class FallbackLogViewer:
             e for e in self.entries
             if 'result' in e and e['result'].get('ticket_type') == category
         ]
-        print(f"📂 Filtered by category '{category}': {len(self.entries)} entries")
+        print(f"Filtered by category '{category}': {len(self.entries)} entries")
     
     def filter_by_pii(self, contains_pii: bool = True):
         """Filter entries that contain (or don't contain) PII."""
@@ -81,27 +81,27 @@ class FallbackLogViewer:
             if 'result' in e and e['result'].get('contains_pii') == contains_pii
         ]
         pii_status = "with" if contains_pii else "without"
-        print(f"🔒 Filtered {pii_status} PII: {len(self.entries)} entries")
+        print(f"Filtered {pii_status} PII: {len(self.entries)} entries")
     
     def generate_summary_stats(self):
         """Generate and display summary statistics."""
         if not self.entries:
-            print("📊 No entries to analyze")
+            print("No entries to analyze")
             return
         
         print("\n" + "="*70)
-        print("📊 FALLBACK LOG SUMMARY STATISTICS")
+        print("FALLBACK LOG SUMMARY STATISTICS")
         print("="*70)
         
         # Total entries
-        print(f"\n📈 Total Entries: {len(self.entries)}")
+        print(f"\nTotal Entries: {len(self.entries)}")
         
         # Category distribution
         categories = Counter(
             e['result'].get('ticket_type', 'unknown') 
             for e in self.entries if 'result' in e
         )
-        print("\n📂 Classification Distribution:")
+        print("\nClassification Distribution:")
         for category, count in categories.most_common():
             percentage = (count / len(self.entries)) * 100
             print(f"   {category:20s}: {count:4d} ({percentage:5.1f}%)")
@@ -116,7 +116,7 @@ class FallbackLogViewer:
             avg_conf = sum(confidence_scores) / len(confidence_scores)
             min_conf = min(confidence_scores)
             max_conf = max(confidence_scores)
-            print(f"\n🎯 Confidence Scores:")
+            print(f"\nConfidence Scores:")
             print(f"   Average: {avg_conf:.2f}")
             print(f"   Range:   {min_conf:.2f} - {max_conf:.2f}")
         
@@ -126,7 +126,7 @@ class FallbackLogViewer:
             if 'result' in e and e['result'].get('contains_pii', False)
         )
         pii_percentage = (pii_count / len(self.entries)) * 100 if self.entries else 0
-        print(f"\n🔒 PII Detection:")
+        print(f"\nPII Detection:")
         print(f"   Tickets with PII: {pii_count} ({pii_percentage:.1f}%)")
         
         # Date range
@@ -134,7 +134,7 @@ class FallbackLogViewer:
             timestamps = [e['timestamp_parsed'] for e in self.entries if 'timestamp_parsed' in e]
             oldest = min(timestamps)
             newest = max(timestamps)
-            print(f"\n📅 Date Range:")
+            print(f"\nDate Range:")
             print(f"   Oldest: {oldest.strftime('%Y-%m-%d %H:%M:%S')}")
             print(f"   Newest: {newest.strftime('%Y-%m-%d %H:%M:%S')}")
         
@@ -143,13 +143,13 @@ class FallbackLogViewer:
     def display_entries(self, limit: int = None):
         """Display entries in a human-readable format."""
         if not self.entries:
-            print("📭 No entries to display")
+            print("No entries to display")
             return
         
         entries_to_show = self.entries[:limit] if limit else self.entries
         
         print("\n" + "="*70)
-        print("📋 FALLBACK LOG ENTRIES")
+        print("FALLBACK LOG ENTRIES")
         print("="*70 + "\n")
         
         for i, entry in enumerate(entries_to_show, 1):
@@ -160,10 +160,10 @@ class FallbackLogViewer:
             print(f"Entry #{i}")
             print(f"{'─'*70}")
             print(f"⏰ Timestamp:   {timestamp}")
-            print(f"📂 Category:    {result.get('ticket_type', 'N/A')}")
-            print(f"🎯 Confidence:  {result.get('confidence_score', 'N/A')}")
-            print(f"🔒 Contains PII: {'Yes' if result.get('contains_pii') else 'No'}")
-            print(f"📝 Ticket Text:")
+            print(f"Category:    {result.get('ticket_type', 'N/A')}")
+            print(f"Confidence:  {result.get('confidence_score', 'N/A')}")
+            print(f"Contains PII: {'Yes' if result.get('contains_pii') else 'No'}")
+            print(f"Ticket Text:")
             print(f"   {ticket_text[:200]}{'...' if len(ticket_text) > 200 else ''}")
             print()
         
@@ -175,7 +175,7 @@ class FallbackLogViewer:
     def export_to_csv(self, output_path: Path):
         """Export filtered entries to a CSV file."""
         if not self.entries:
-            print("⚠️  No entries to export")
+            print("️  No entries to export")
             return
         
         with output_path.open('w', newline='', encoding='utf-8') as csvfile:
@@ -196,7 +196,7 @@ class FallbackLogViewer:
                     'ticket_text': entry.get('ticket', '')
                 })
         
-        print(f"✅ Exported {len(self.entries)} entries to {output_path}")
+        print(f"Exported {len(self.entries)} entries to {output_path}")
 
 
 def main():
