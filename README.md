@@ -367,7 +367,7 @@ chmod 640 governance/llm_error_log.jsonl
 
 ---
 
-## 🤝 Contributing
+## Feedback
 
 This is a personal portfolio project demonstrating ISO/IEC 42001 governance controls in a working AI system. 
 
@@ -420,6 +420,7 @@ See [LICENSE](LICENSE) file for complete terms.
 ---
 
 **Document Version:** 2.1 | Last Updated: 2026-10-31
+
 
 
 
