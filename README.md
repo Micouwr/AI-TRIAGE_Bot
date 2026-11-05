@@ -1,8 +1,8 @@
 # Vigil - ISO/IEC 42001 Governance Prototype
 
-*Vigil keeps watch over the AI, calling for a human the moment something looks wrong.*
+*AI that knows when not to trust itself.*
 
-A working prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Built with Google Gemini 3.8 Flash to demonstrate practical application of AI management system requirements.
+A working prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Vigil keeps watch over the AI, calling for a human the moment something looks wrong. Built with Google Gemini 3.8 Flash to demonstrate practical application of AI management system requirements.
 
 ## Why "Vigil"?
 
@@ -416,3 +416,4 @@ See [LICENSE](LICENSE) file for complete terms.
 - **Google Gemini API** - LLM classification engine (Gemini 3.8 Flash)
 - **ISO/IEC 42001:2023** - AI Management Systems standard framework
 - **NIST AI RMF** - Risk management guidance
+
