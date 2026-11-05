@@ -343,8 +343,9 @@ chmod 640 governance/llm_error_log.jsonl
 
 ### Completed
 - ✅ Core classification engine with Gemini 3.8 Flash
-- ✅ GUI application
-- ✅ PII detection with Luhn validation
+- ✅ Escalation rules enforced in code, including unknown-to-human routing
+- ✅ PII detection with Luhn validation and redaction in fallback logs
+- ✅ Basic GUI prototype for interactive ticket classification
 - ✅ Comprehensive test suite (39/39 passing - 100%)
 - ✅ ISO/IEC 42001:2023 governance framework (95% compliant)
 - ✅ Training materials and documentation
@@ -354,10 +355,10 @@ chmod 640 governance/llm_error_log.jsonl
 - ✅ CI pipeline running the test suite on every push
 
 ### In Progress
-- None currently - system stable and fully functional
+- Reviewer dashboard: plain-language handoff reasons and recorded reviewer decisions, closing the loop after handoff
+- Screen-recorded demo video
 
 ### Planned
-- [ ] Fallback log viewer GUI
 - [ ] Additional PII patterns (international formats)
 - [ ] Performance benchmarking suite
 - [ ] Integration adapters (Zendesk, Freshdesk, Slack)
@@ -419,5 +420,6 @@ See [LICENSE](LICENSE) file for complete terms.
 ---
 
 **Document Version:** 2.1 | Last Updated: 2026-10-31
+
 
 
