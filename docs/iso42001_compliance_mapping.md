@@ -111,7 +111,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 | **Risk:** Model bias in classification | Documented limitation, mitigation through human review of low-confidence results | `governance/ai_policy.md` Section 5.3 | IMPLEMENTED |
 | **Risk:** Unauthorized access to sensitive data | Access controls and data handling procedures defined | `governance/ai_policy.md` Section 6 | IMPLEMENTED |
 | **Risk:** Lack of user competence | Role-specific training materials provided | `governance/training_materials/` | IMPLEMENTED |
-| **Risk:** Configuration errors | Centralized configuration with validation | `governance/config/scope.yaml` | IMPLEMENTED |
+| **Risk:** Configuration errors | Centralized configuration with validation | `governance/config/scope.yaml` | PARTIAL |
 
 ---
 
@@ -197,7 +197,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
 | Control AI system changes | Version control system tracks all changes | Git repository | IMPLEMENTED |
-| Document changes | Version history document | `lifecycle/version_history.md` | NEEDS UPDATE |
+| Document changes | Version history document | `lifecycle/versionhistory.md` | PARTIAL |
 | Model version tracking | Configuration file specifies model version | `governance/config/scope.yaml` (gemini-3.8-flash) | IMPLEMENTED |
 
 ---
@@ -227,7 +227,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Conduct internal audits | Audit procedures document with quarterly schedule | `governance/audit_procedures.md` | IMPLEMENTED |
+| Conduct internal audits | Audit procedures document with quarterly schedule | `governance/audit_procedures.md` | PARTIAL |
 | Audit planning | Defined audit scope, frequency, and responsibilities | `governance/audit_procedures.md` | IMPLEMENTED |
 | Audit evidence collection | Fallback viewer tool supports audit data collection and export | `tools/fallback_viewer.py` | IMPLEMENTED |
 
@@ -237,8 +237,8 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Regular management review | Audit procedures include management review requirements | `governance/audit_procedures.md` Section 4 | IMPLEMENTED |
-| Review inputs documented | Audit reports, performance metrics, improvement opportunities | `governance/audit_procedures.md` | IMPLEMENTED |
+| Regular management review | Audit procedures include management review requirements | `governance/audit_procedures.md` Section 4 | PARTIAL |
+| Review inputs documented | Audit reports, performance metrics, improvement opportunities | `governance/audit_procedures.md` | PARTIAL |
 
 ---
 
@@ -257,7 +257,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
 | React to nonconformities | Escalation procedures for PII detection and classification failures | `governance/ai_policy.md` Section 7 | IMPLEMENTED |
-| Evaluate corrective actions | Audit procedures include corrective action tracking | `governance/audit_procedures.md` | IMPLEMENTED |
+| Evaluate corrective actions | Audit procedures include corrective action tracking | `governance/audit_procedures.md` | PARTIAL |
 
 ---
 
@@ -265,9 +265,9 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Improve suitability and effectiveness | Fallback review process identifies improvement opportunities | `governance/training_materials/reviewer_handbook.md` | IMPLEMENTED |
+| Improve suitability and effectiveness | Fallback review process identifies improvement opportunities | `governance/training_materials/reviewer_handbook.md` | PARTIAL |
 | Pattern identification | Fallback viewer tool enables trend analysis | `tools/fallback_viewer.py` | IMPLEMENTED |
-| Feedback mechanisms | Human review process provides feedback for system improvement | `governance/training_materials/reviewer_handbook.md` | IMPLEMENTED |
+| Feedback mechanisms | Human review process provides feedback for system improvement | `governance/training_materials/reviewer_handbook.md` | PARTIAL |
 
 ---
 
@@ -277,13 +277,13 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Clause | Title | Coverage | Key Evidence |
 |--------|-------|----------|--------------|
-| 4 | Context of the Organization | FULL | `governance/config/scope.yaml`, `governance/ai_policy.md` |
-| 5 | Leadership | FULL | `governance/ai_policy.md`, `governance/roles_and_responsibilities.md` |
-| 6 | Planning | FULL | 8 risks documented, `risk_controls/pii_filters.py`, `bot_engine/router.py` |
-| 7 | Support | FULL | `governance/competence_requirements.md`, 4 training guides, 5 README files |
-| 8 | Operation | FULL | `bot_engine/router.py`, `governance/config/scope.yaml`, `tests/` |
-| 9 | Performance Evaluation | FULL | `tools/fallback_viewer.py`, `governance/audit_procedures.md` |
-| 10 | Improvement | FULL | `governance/audit_procedures.md`, feedback mechanisms |
+| 4 | Context of the Organization | 100% | `governance/config/scope.yaml`, `governance/ai_policy.md` |
+| 5 | Leadership | 100% | `governance/ai_policy.md`, `governance/roles_and_responsibilities.md` |
+| 6 | Planning | 95% | 8 risks documented, `risk_controls/pii_filters.py`, `bot_engine/router.py` |
+| 7 | Support | 100% | `governance/competence_requirements.md`, 4 training guides, 5 README files |
+| 8 | Operation | 95.5% | `bot_engine/router.py`, `governance/config/scope.yaml`, `tests/` |
+| 9 | Performance Evaluation | 81.2% | `tools/fallback_viewer.py`, `governance/audit_procedures.md` |
+| 10 | Improvement | 75% | `governance/audit_procedures.md`, `governance/training_materials/reviewer_handbook.md` |
 
 ---
 
@@ -331,15 +331,19 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Item | ISO Clause | Target Date | Priority |
 |------|-----------|-------------|----------|
-| SDK migration (google-generativeai to google-genai) | 8.3 (Change Management) | 2025-11-30 | HIGH |
-| Update lifecycle/version_history.md | 8.3 (Change Management) | 2025-11-30 | HIGH |
-| Repository audit (em dashes, outdated references) | 7.5 (Documented Information) | 2025-11-30 | MEDIUM |
+| Conduct first internal audit | 9.2 (Internal Audit) | TBD | HIGH |
+| Hold first management review | 9.3 (Management Review) | TBD | HIGH |
+| Add config validation for scope.yaml | 6.1 (Risk) | TBD | MEDIUM |
+| Record reviewer decisions and feedback (dashboard Phase 2) | 10.3 (Continual Improvement) | TBD | HIGH |
+| Track corrective-action evaluations | 10.2 (Nonconformity and Corrective Action) | TBD | MEDIUM |
 
 ---
 
 ## Compliance Assessment
 
-**Overall Status:** 95% compliant with ISO/IEC 42001:2023
+**Overall Status:** 93.4% compliant with ISO/IEC 42001:2023
+
+**Method:** Each of the 61 requirement rows in this document was scored against its cited evidence: fully met counts as 1, partially met as 0.5, not met as 0. Result: 53 fully met, 8 partially met, 0 not met. (53 + 4) / 61 = 93.4%. The 8 partial items are the rows marked PARTIAL above: config validation (6.1), version history reference (8.3), internal audits (9.2), management review and review inputs (9.3), corrective-action evaluation (10.2), and improvement effectiveness and feedback mechanisms (10.3).
 
 **Strengths:**
 - Comprehensive governance documentation
@@ -349,17 +353,18 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 - Documented processes and procedures
 
 **Areas for Improvement:**
-- Complete SDK migration to modern API
-- Update version history with recent changes
-- Ensure all documentation uses consistent formatting (no em dashes)
+- Close the feedback loop: record reviewer decisions and feed corrections back into the system (Clause 10.3; dashboard work)
+- Conduct the first internal audit and management review (Clauses 9.2, 9.3)
+- Add configuration validation for scope.yaml (Clause 6.1)
+- Corrective-action evaluations have no tracked record yet (Clause 10.2)
 
 ---
 
 ## Document Control
 
-**Version:** 1.0
+**Version:** 1.1
 **Created:** 2025-11-29
-**Next Review:** 2025-12-29 (or upon significant system changes)
+**Next Review:** 2026-12-05 (or upon significant system changes)
 **Approved By:** William Ryan Micou (System Owner)
 
 ---
@@ -374,17 +379,3 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 ---
 
-## Commit Message:
-```
-docs: Create comprehensive ISO 42001 compliance mapping
-
-- Consolidates and replaces iso42001_mapping.md and iso42001mapping.md
-- Maps all clauses (4-10) to actual implemented features
-- References Gemini 3.8 Flash (current model)
-- Documents 8 identified risks with mitigations
-- Lists all 22 supporting files (9 governance, 5 technical, 2 tests, 6 docs)
-- Includes compliance summary showing 95% coverage
-- Marks planned improvements (SDK migration, version history update)
-
-DELETE: docs/iso42001_mapping.md, docs/iso42001mapping.md
-ADD: docs/iso42001_compliance_mapping.md

@@ -271,7 +271,7 @@ This system implements governance controls aligned with ISO/IEC 42001:2023:
 | **Clause 9** - Performance | Monitoring tools, audit procedures | `tools/fallback_viewer.py`, `governance/audit_procedures.md` |
 | **Clause 10** - Improvement | Feedback mechanisms, version control | `governance/training_materials/reviewer_handbook.md` |
 
-**Full Compliance Documentation:** See `docs/iso42001_compliance_mapping.md` for comprehensive clause-by-clause mapping (95% compliant)
+**Full Compliance Documentation:** See `docs/iso42001_compliance_mapping.md` for comprehensive clause-by-clause mapping (93.4% compliant)
 
 ---
 
@@ -354,7 +354,7 @@ chmod 640 governance/llm_error_log.jsonl
 - ✅ PII detection with Luhn validation and redaction in fallback logs
 - ✅ Basic GUI prototype for interactive ticket classification
 - ✅ Comprehensive test suite (39/39 passing - 100%)
-- ✅ ISO/IEC 42001:2023 governance framework (95% compliant)
+- ✅ ISO/IEC 42001:2023 governance framework (93.4% compliant)
 - ✅ Training materials and documentation
 - ✅ Fallback log viewer tool
 - ✅ Migration to modern Google GenAI SDK (`google-genai`)
