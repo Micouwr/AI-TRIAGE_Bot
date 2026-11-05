@@ -87,7 +87,7 @@ class TicketClassifierApp:
         ticket_type = result.get('ticket_type', 'Error')
         self.result_text.set(f"Result: {ticket_type}")
         
-        # Safely handle confidence_score - FIX FOR BUG #1
+        # Safely handle confidence_score
         conf_score = result.get('confidence_score', 0.0)
         if isinstance(conf_score, (int, float)):
             self.confidence_text.set(f"Confidence: {conf_score * 100:.2f}%")
@@ -123,3 +123,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = TicketClassifierApp(root)
     root.mainloop()
+

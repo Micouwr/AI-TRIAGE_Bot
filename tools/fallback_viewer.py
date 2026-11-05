@@ -27,7 +27,7 @@ class FallbackLogViewer:
     def load_entries(self):
         """Load all entries from the JSONL fallback log."""
         if not self.log_path.exists():
-            print(f"️  Warning: Log file not found: {self.log_path}")
+            print(f"  Warning: Log file not found: {self.log_path}")
             print("    No fallback entries to display.")
             return
         
@@ -42,7 +42,7 @@ class FallbackLogViewer:
                         )
                     self.entries.append(entry)
                 except json.JSONDecodeError:
-                    print("️  Warning: Skipping malformed log entry")
+                    print("  Warning: Skipping malformed log entry")
                     continue
         
         print(f"Loaded {len(self.entries)} fallback entries")
@@ -174,7 +174,7 @@ class FallbackLogViewer:
     def export_to_csv(self, output_path: Path):
         """Export filtered entries to a CSV file."""
         if not self.entries:
-            print("️  No entries to export")
+            print("  No entries to export")
             return
         
         with output_path.open('w', newline='', encoding='utf-8') as csvfile:
@@ -325,3 +325,4 @@ Examples:
 
 if __name__ == "__main__":
     main()
+

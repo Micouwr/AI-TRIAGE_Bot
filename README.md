@@ -40,7 +40,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 ### Prerequisites
 
-- Python 3.10+ (3.8+ supported but 3.10+ recommended)
+- Python 3.11+
 - A Gemini API key (set as environment variable `GEMINI_API_KEY`)
   - Free tier supported (15 requests per minute)
   - Get your key at: https://aistudio.google.com/apikey
@@ -144,9 +144,13 @@ python -m pytest --cov=bot_engine --cov=risk_controls --cov-report=html
 Vigil/
 ├── bot_engine/
 │   ├── __init__.py
+│   ├── README.md                    # Engine documentation
 │   └── router.py                    # Core classification logic
 ├── risk_controls/
 │   ├── __init__.py
+│   ├── README.md                    # Risk controls documentation
+│   ├── escalation_protocols.md      # Escalation procedures
+│   ├── fallback_protocols.md        # Fallback handling procedures
 │   └── pii_filters.py               # PII detection with Luhn algorithm
 ├── governance/
 │   ├── __init__.py
@@ -163,6 +167,7 @@ Vigil/
 │       └── reviewer_handbook.md
 ├── docs/
 │   ├── README.md                    # Documentation index
+│   ├── DESIGN_NOTES.md              # Threshold design notes
 │   ├── iso42001_compliance_mapping.md # ISO/IEC 42001:2023 compliance mapping
 │   ├── operator_quick_guide.md      # User guide
 │   ├── PORTFOLIO.md                 # Project portfolio
@@ -322,7 +327,7 @@ chmod 640 governance/llm_error_log.jsonl
 
 ### Common Issues
 
-**Issue: "Gemini model is not initialized"**
+**Issue: "Gemini API key not configured" (or "Gemini client is not initialized")**
 - **Solution:** Verify `.env` file exists with valid `GEMINI_API_KEY`
 
 **Issue: Rate limit exceeded**
@@ -353,7 +358,6 @@ chmod 640 governance/llm_error_log.jsonl
 - ✅ Training materials and documentation
 - ✅ Fallback log viewer tool
 - ✅ Migration to modern Google GenAI SDK (`google-genai`)
-- ✅ Repository-wide documentation standardization
 - ✅ CI pipeline running the test suite on every push
 
 ### In Progress
@@ -418,6 +422,7 @@ See [LICENSE](LICENSE) file for complete terms.
 - **Google Gemini API** - LLM classification engine (Gemini 3.8 Flash)
 - **ISO/IEC 42001:2023** - AI Management Systems standard framework
 - **NIST AI RMF** - Risk management guidance
+
 
 
 
