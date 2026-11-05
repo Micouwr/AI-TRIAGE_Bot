@@ -25,13 +25,14 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 ## ✅ Current Features
 
+- **Escalation rules enforced in code** (`governance/config/scope.yaml`): compliance flags, unknown ticket types, confidence below 0.7, and PII all route to a human
+- **Governance Framework** with JSONL logging, audit procedures, and ISO/IEC 42001 documentation
+- **PII Detection** (`risk_controls/pii_filters.py`) with regex patterns and Luhn algorithm validation
+- **LLM Classification Engine** (`bot_engine/router.py`) using Gemini 3.8 Flash with configurable confidence scoring and error handling
+- **Centralized Configuration** (`governance/config/scope.yaml`) for system settings, ticket types, and model parameters
+- **Pytest Suite** (`tests/`) covering classification logic, PII detection, and edge cases
 - **Graphical User Interface** (`main_gui.py`) for interactive ticket classification
 - **Standalone Executable** capability via PyInstaller for cross-platform distribution
-- **LLM Classification Engine** (`bot_engine/router.py`) using Gemini 3.8 Flash with configurable confidence scoring and error handling
-- **PII Detection** (`risk_controls/pii_filters.py`) with regex patterns and Luhn algorithm validation
-- **Pytest Suite** (`tests/`) covering classification logic, PII detection, and edge cases
-- **Centralized Configuration** (`governance/config/scope.yaml`) for system settings, ticket types, and model parameters
-- **Governance Framework** with JSONL logging, audit procedures, and ISO/IEC 42001 documentation
 
 ---
 
@@ -418,4 +419,5 @@ See [LICENSE](LICENSE) file for complete terms.
 ---
 
 **Document Version:** 2.1 | Last Updated: 2026-10-31
+
 
