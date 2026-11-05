@@ -10,6 +10,22 @@ A vigil is keeping watch through the night: alert, patient, ready to act, but ne
 
 ---
 
+## How It Works
+
+```mermaid
+flowchart TD
+    A[Ticket] --> B[Gemini classification]
+    B --> C[PII detection]
+    C --> D[Escalation rules, checked in order]
+    D -->|Compliance flag, unknown type, confidence below 0.7, or PII| E[Human review]
+    D -->|No rule applies| F[Automated response]
+    E --> G[Audit log: confidence below 0.5 or unknown, PII redacted]
+```
+
+Every check can divert the ticket to a human. The escalation rules are enforced in code (`governance/config/scope.yaml`), not left to the model's judgment.
+
+---
+
 ## Evaluation
 
 Evaluated on 26 author-labeled tickets with gemini-3.8-flash (2026-11-01). Full results in `docs/evaluation_results.md`.
