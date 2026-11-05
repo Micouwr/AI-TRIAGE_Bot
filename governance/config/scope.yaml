@@ -1,4 +1,4 @@
-system_name: AI-Triage-Bot
+system_name: Vigil
 owner: William Ryan Micou
 description: >
   AI-powered support triage system designed to classify incoming tickets,
@@ -36,8 +36,9 @@ fallback_protocol:
 
 iso_alignment:
   - clause_4.2: Context of the organization
-    description: The Vigil is designed to integrate seamlessly with existing IT support workflows, enhancing efficiency without disrupting current operations.
+    description: Vigil is designed to integrate seamlessly with existing IT support workflows, enhancing efficiency without disrupting current operations.
   - clause_6.1: Risk management
     description: Identified and mitigated risks include PII detection, confidence scoring, and escalation protocols, with regular audits and system assessments.
   - clause_8.2: Operational controls
     description: Implemented controls include automated ticket classification, escalation paths, and governance layer applications, ensuring that the system operates within predefined parameters and adheres to compliance requirements.
+
