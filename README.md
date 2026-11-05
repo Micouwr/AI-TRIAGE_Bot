@@ -361,10 +361,11 @@ chmod 640 governance/llm_error_log.jsonl
 - ✅ CI pipeline running the test suite on every push
 
 ### In Progress
-- Reviewer dashboard: plain-language handoff reasons and recorded reviewer decisions, closing the loop after handoff
-- Screen-recorded demo video
+- None currently
 
 ### Planned
+- [ ] Reviewer dashboard: plain-language handoff reasons and recorded reviewer decisions, closing the loop after handoff
+- [ ] Screen-recorded demo video
 - [ ] Additional PII patterns (international formats)
 - [ ] Performance benchmarking suite
 - [ ] Integration adapters (Zendesk, Freshdesk, Slack)
