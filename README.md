@@ -25,7 +25,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 ## Current Features
 
-- **Escalation rules enforced in code** (`governance/config/scope.yaml`): compliance flags, unknown ticket types, confidence below 0.7, and PII all route to a human
+- **Escalation rules enforced in code** (`governance/config/scope.yaml`): compliance flags, unknown ticket types, confidence below 0.7 (routing threshold), and PII all route to a human
 - **Governance Framework** with JSONL logging, audit procedures, and ISO/IEC 42001 documentation
 - **PII Detection** (`risk_controls/pii_filters.py`) with regex patterns and Luhn algorithm validation
 - **LLM Classification Engine** (`bot_engine/router.py`) using Gemini 3.8 Flash with configurable confidence scoring and error handling
@@ -200,10 +200,12 @@ Vigil/
 **Location:** `governance/config/scope.yaml`
 
 Key settings:
-- `confidence_threshold`: Minimum confidence score (default: 0.5)
+- `confidence_threshold`: Audit threshold (default: 0.5). Predictions scored below this are written to the fallback log for audit. This is separate from the routing threshold below.
 - `model_name`: AI model to use (default: "gemini-3.8-flash")
 - `ticket_types`: List of classification categories
-- `escalation_rules`: Rules for human escalation
+- `escalation_rules`: Rules for human escalation, including routing anything with confidence below 0.7 to a human
+
+Two different thresholds, two different jobs. The 0.5 audit threshold decides what gets logged. The 0.7 routing threshold decides what goes to a human. Both are initial operating values, not derived from production data. They separate "uncertain" from "confident" behavior until real ticket volume is available for calibration.
 
 ### Ticket Categories
 
@@ -416,4 +418,5 @@ See [LICENSE](LICENSE) file for complete terms.
 - **Google Gemini API** - LLM classification engine (Gemini 3.8 Flash)
 - **ISO/IEC 42001:2023** - AI Management Systems standard framework
 - **NIST AI RMF** - Risk management guidance
+
 
