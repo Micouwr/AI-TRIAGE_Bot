@@ -10,6 +10,19 @@ A vigil is keeping watch through the night: alert, patient, ready to act, but ne
 
 ---
 
+## Evaluation
+
+Evaluated on 26 author-labeled tickets with gemini-3.8-flash (2026-11-01). Full results in `docs/evaluation_results.md`.
+
+- **Accuracy:** 23 of 26 (88.5%)
+- **PII detection recall:** 6 of 6 (100%)
+- **Escalated to human review:** 10 of 26 (38.5%)
+- **Every miss routed to a human.** The 3 misclassified tickets were all PII-heavy, and each one hit an escalation rule and went to human review. The misses cost accuracy, not safety.
+
+Limitations: labels were assigned by the author, not independent labelers, and 26 tickets is a small sample. Treat this as a first measurement, not a benchmark.
+
+---
+
 ## ✅ Current Features
 
 - **Graphical User Interface** (`main_gui.py`) for interactive ticket classification
@@ -405,3 +418,4 @@ See [LICENSE](LICENSE) file for complete terms.
 ---
 
 **Document Version:** 2.1 | Last Updated: 2026-10-31
+
