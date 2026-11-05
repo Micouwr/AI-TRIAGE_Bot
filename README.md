@@ -23,7 +23,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 ---
 
-## ✅ Current Features
+## Current Features
 
 - **Escalation rules enforced in code** (`governance/config/scope.yaml`): compliance flags, unknown ticket types, confidence below 0.7, and PII all route to a human
 - **Governance Framework** with JSONL logging, audit procedures, and ISO/IEC 42001 documentation
@@ -36,7 +36,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -83,7 +83,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 ---
 
-## 🖥️ Running the Application
+## Running the Application
 
 ### GUI Application
 ```bash
@@ -97,7 +97,7 @@ This launches the Vigil GUI where you can:
 
 ---
 
-## 🏗️ Building Standalone Executable
+## Building Standalone Executable
 
 ### Windows
 ```bash
@@ -121,7 +121,7 @@ pyinstaller --onefile --windowed \
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 ```bash
 # Run all tests
 python -m pytest
@@ -139,7 +139,7 @@ python -m pytest --cov=bot_engine --cov=risk_controls --cov-report=html
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 ```
 Vigil/
 ├── bot_engine/
@@ -193,7 +193,7 @@ Vigil/
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### Main Configuration File
 
@@ -217,7 +217,7 @@ Key settings:
 
 ---
 
-## 📊 Monitoring and Logs
+## Monitoring and Logs
 
 ### Log Files
 
@@ -248,7 +248,7 @@ python tools/fallback_viewer.py --export report.csv
 
 ---
 
-## 📋 ISO/IEC 42001:2023 Compliance
+## ISO/IEC 42001:2023 Compliance
 
 This system implements governance controls aligned with ISO/IEC 42001:2023:
 
@@ -268,7 +268,7 @@ This system implements governance controls aligned with ISO/IEC 42001:2023:
 
 ---
 
-## 🎓 Training and Documentation
+## Training and Documentation
 
 ### For Operators
 - **Quick Start:** `docs/operator_quick_guide.md`
@@ -291,7 +291,7 @@ This system implements governance controls aligned with ISO/IEC 42001:2023:
 
 ---
 
-## 🔒 Security Considerations
+## Security Considerations
 
 ### API Key Management
 - Store API key in `.env` file only
@@ -316,7 +316,7 @@ chmod 640 governance/llm_error_log.jsonl
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -339,7 +339,7 @@ chmod 640 governance/llm_error_log.jsonl
 
 ---
 
-## 📈 Development Roadmap
+## Development Roadmap
 
 ### Completed
 - ✅ Core classification engine with Gemini 3.8 Flash
@@ -378,7 +378,7 @@ If you notice issues or have suggestions:
 
 ---
 
-## 📄 License
+## License
 
 **Custom Portfolio & Evaluation License**
 
@@ -403,7 +403,7 @@ See [LICENSE](LICENSE) file for complete terms.
 
 ---
 
-## 📞 Contact
+## Contact
 
 **System Owner:** William Ryan Micou  
 **Repository:** https://github.com/Micouwr/Vigil  
@@ -411,7 +411,7 @@ See [LICENSE](LICENSE) file for complete terms.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Google Gemini API** - LLM classification engine (Gemini 3.8 Flash)
 - **ISO/IEC 42001:2023** - AI Management Systems standard framework
@@ -420,6 +420,7 @@ See [LICENSE](LICENSE) file for complete terms.
 ---
 
 **Document Version:** 2.1 | Last Updated: 2026-10-31
+
 
 
 
