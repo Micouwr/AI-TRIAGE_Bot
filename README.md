@@ -25,7 +25,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 ## Current Features
 
-- **Escalation rules enforced in code** (`governance/config/scope.yaml`): compliance flags, unknown ticket types, confidence below 0.7 (routing threshold), and PII all route to a human
+- **Escalation rules enforced in code** (`governance/config/scope.yaml`): compliance flags, unknown ticket types, confidence below 0.7 (human-routing threshold), and PII all route to a human
 - **Governance Framework** with JSONL logging, audit procedures, and ISO/IEC 42001 documentation
 - **PII Detection** (`risk_controls/pii_filters.py`) with regex patterns and Luhn algorithm validation
 - **LLM Classification Engine** (`bot_engine/router.py`) using Gemini 3.8 Flash with configurable confidence scoring and error handling
@@ -418,5 +418,6 @@ See [LICENSE](LICENSE) file for complete terms.
 - **Google Gemini API** - LLM classification engine (Gemini 3.8 Flash)
 - **ISO/IEC 42001:2023** - AI Management Systems standard framework
 - **NIST AI RMF** - Risk management guidance
+
 
 
