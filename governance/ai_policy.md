@@ -14,7 +14,7 @@
 This AI Policy establishes the governance framework for the Vigil, an LLM-powered support ticket classification system. This policy defines accountability, risk management, and operational controls in alignment with ISO/IEC 42001:2023.
 
 ### 1.1 System Scope
-- **System Name:** AI-Triage-Bot
+- **System Name:** Vigil
 - **Primary Function:** Automated classification of Tier 1 support tickets
 - **AI Model:** Gemini 3.8 Flash (Google Generative AI)
 - **Deployment Target:** Desktop application (Windows/Mac/Linux)
@@ -150,3 +150,4 @@ This policy will be reviewed annually or when:
 |---------|------|--------|---------|
 | 1.0 | 2025-11-25 | W.R. Micou | Initial policy creation |
 | 1.1 | 2025-11-25 | W.R. Micou | Updated model to Gemini 2.5 Flash, added rate limiting risk |
+

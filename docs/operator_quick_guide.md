@@ -27,7 +27,7 @@ A tool designed to classify support tickets into categories using AI-powered ana
 
 **Windows:**
 ```
-Double-click: AI-Triage-Bot.exe
+Double-click: Vigil.exe
 ```
 
 **Mac/Linux:**
@@ -329,4 +329,5 @@ Whether the ticket contains Personally Identifiable Information:
 ```
 
 ---
+
 

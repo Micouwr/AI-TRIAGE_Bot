@@ -120,22 +120,22 @@ python main_gui.py
 pyinstaller --onefile --windowed ^
   --add-data "governance;governance" ^
   --add-data "prompts;prompts" ^
-  --name "AI-Triage-Bot" ^
+  --name "Vigil" ^
   main_gui.py
 ```
 
-**Output:** `dist/AI-Triage-Bot.exe`
+**Output:** `dist/Vigil.exe`
 
 #### Mac/Linux Executable
 ```bash
 pyinstaller --onefile --windowed \
   --add-data "governance:governance" \
   --add-data "prompts:prompts" \
-  --name "AI-Triage-Bot" \
+  --name "Vigil" \
   main_gui.py
 ```
 
-**Output:** `dist/AI-Triage-Bot` (or `.app` on Mac with `--windowed`)
+**Output:** `dist/Vigil` (or `.app` on Mac with `--windowed`)
 
 ---
 
@@ -163,7 +163,7 @@ pyinstaller --onefile --windowed \
 
 **Location:** `governance/config/scope.yaml`
 ```yaml
-system_name: AI-Triage-Bot
+system_name: Vigil
 owner: William Ryan Micou
 description: >
   AI-powered support triage system designed to classify incoming tickets,
@@ -911,3 +911,4 @@ grep "$(date +%Y-%m-%d)" fallback_log.jsonl | wc -l
 
 **Document Version:** 1.1 | Last Updated: 2025-11-25
 ```
+

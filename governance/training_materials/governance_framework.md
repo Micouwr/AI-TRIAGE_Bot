@@ -15,7 +15,7 @@ The Vigil implements ISO/IEC 42001:2023 governance controls in an LLM-powered ti
 
 ### System Overview
 
-**System Name:** AI-Triage-Bot  
+**System Name:** Vigil  
 **Function:** Automated classification of support tickets using Gemini 3.8 Flash  
 **Status:** Work in progress - framework implementation  
 **Owner:** William Ryan Micou  
@@ -523,3 +523,4 @@ This governance framework implements ISO/IEC 42001:2023 controls in a functional
 ---
 
 **Document Version:** 1.1 | Last Updated: 2025-11-25
+
