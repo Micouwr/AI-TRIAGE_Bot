@@ -2,7 +2,7 @@
 
 **Document Status:** DRAFT - SIGNATURES PENDING
 **Operational Status:** FRAMEWORK
-**Document Version:** 1.2
+**Document Version:** 1.3
 **Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
 **Review Cycle:** Annual  
@@ -107,6 +107,12 @@ Automatic escalation to human agents when:
 4. Deploy with rollback capability
 5. Verify improvement through metrics
 
+### 5.4 AI Objectives
+The following measurable objectives apply to the Vigil system in ongoing operation. They were set from the 26-ticket evaluation baseline measured 2026-11-01 (88.5% classification accuracy, 100% PII recall) and are reviewed at each new evaluation and at the annual policy review.
+- Classification accuracy at or above 85%
+- PII recall at or above 95% (fewer than 5% PII false negatives)
+- Every classification miss routed to human review
+
 ---
 
 ## 6. Compliance References
@@ -153,4 +159,5 @@ Signatures are pending; the policy content is in use as a working draft until si
 | 1.0 | 2025-11-25 | W.R. Micou | Initial policy creation |
 | 1.1 | 2025-11-25 | W.R. Micou | Updated model to Gemini 2.5 Flash, added rate limiting risk |
 | 1.2 | 2026-11-06 | W.R. Micou | Corrected human-review threshold to 70%, corrected free-tier limit wording, fixed compliance mapping path, marked approval signatures pending |
+| 1.3 | 2026-11-06 | W.R. Micou | Added AI objectives in Section 5.4 (accuracy, PII recall, miss routing targets set from the evaluation baseline) |
 

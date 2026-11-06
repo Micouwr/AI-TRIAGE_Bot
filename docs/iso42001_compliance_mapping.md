@@ -119,7 +119,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Establish measurable AI objectives | Measurable performance is tracked: the 26-ticket evaluation (2026-11-01) measured 88.5% classification accuracy and 100% PII recall; these figures are the recorded baseline. No numeric objectives are set in the AI policy. | `docs/evaluation_results.md` | IMPLEMENTED |
+| Establish measurable AI objectives | Objectives are defined in ai_policy.md Section 5.4: classification accuracy at or above 85%, PII recall at or above 95% (fewer than 5% PII false negatives), and every classification miss routed to human review. Targets were set from the 26-ticket evaluation baseline (88.5% accuracy, 100% PII recall) and are reviewed at each evaluation. | `governance/ai_policy.md` Section 5.4, `docs/evaluation_results.md` | IMPLEMENTED |
 | Plan to achieve objectives | Fallback review process, audit procedures | `governance/audit_procedures.md` | IMPLEMENTED |
 
 ---
@@ -362,7 +362,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 ## Document Control
 
-**Version:** 1.2
+**Version:** 1.3
 **Created:** 2025-11-29
 **Next Review:** 2026-12-05 (or upon significant system changes)
 **Approved By:** William Ryan Micou (System Owner)
