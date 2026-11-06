@@ -1,8 +1,9 @@
 # tests/test_router.py
-import pytest
 import json
+import shutil
+from pathlib import Path
 from unittest.mock import patch, MagicMock
-from bot_engine.router import classify_ticket, evaluate_routing
+from bot_engine.router import classify_ticket, evaluate_routing, _load_escalation_rules, load_config
 
 # Define a consistent set of ticket types for testing purposes
 MOCK_TICKET_TYPES = [
@@ -15,7 +16,7 @@ MOCK_TICKET_TYPES = [
 @patch('bot_engine.router.TICKET_TYPES', MOCK_TICKET_TYPES)
 @patch('bot_engine.router.client')
 def test_classify_password_reset(mock_client):
-    """Test classification for a standard access request."""
+    """Test classification for a password reset request."""
     # Arrange: Configure the mock LLM response
     mock_response = MagicMock()
     mock_response.text = json.dumps({
@@ -254,3 +255,78 @@ def test_routing_escalates_confident_unknown():
     })
     assert decision["route"] == "human_agent"
     assert "ticket_type == unknown" in decision["reason"]
+
+# --- Error-log redaction (A1) and config validation (A2) ---
+
+@patch('bot_engine.router.TICKET_TYPES', MOCK_TICKET_TYPES)
+@patch('bot_engine.router.client')
+def test_llm_failure_redacts_pii_in_error_log(mock_client, tmp_path):
+    """When the LLM fails on a PII ticket, the error log must not hold raw PII."""
+    mock_client.models.generate_content.side_effect = Exception("API Error")
+
+    # Route logs and the prompt template at a scratch root so the test
+    # never writes into the real repo.
+    (tmp_path / "prompts").mkdir()
+    shutil.copy(
+        Path(__file__).parent.parent / "prompts" / "classification_prompt.txt",
+        tmp_path / "prompts" / "classification_prompt.txt",
+    )
+    ticket_text = "My SSN is 123-45-6789, please verify my account."
+    with patch('bot_engine.router.get_project_root', return_value=tmp_path):
+        result = classify_ticket(ticket_text)
+
+    assert result["ticket_type"] == "unknown"
+
+    error_log = tmp_path / "governance" / "llm_error_log.jsonl"
+    error_entry = json.loads(error_log.read_text().splitlines()[-1])
+    assert "123-45-6789" not in error_entry["ticket_preview"]
+    assert "[REDACTED_SSN]" in error_entry["ticket_preview"]
+    assert error_entry["pii_types"] == ["ssn"]
+
+    # The fallback log written for the same ticket is redacted too.
+    fallback_log = tmp_path / "fallback_log.jsonl"
+    fallback_entry = json.loads(fallback_log.read_text().splitlines()[-1])
+    assert "123-45-6789" not in fallback_entry["ticket"]
+    assert "[REDACTED_SSN]" in fallback_entry["ticket"]
+
+
+def test_load_escalation_rules_warns_on_bad_rule():
+    """A malformed escalation rule is skipped with a loud warning, not silence."""
+    import warnings
+    bad_config = {
+        "escalation_rules": [
+            "if confidence_score < 0.7: escalate_to: human_agent",
+            "this is not a rule",
+        ]
+    }
+    with patch('bot_engine.router.config', bad_config):
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            parsed = _load_escalation_rules()
+    assert len(parsed) == 1
+    assert len(caught) == 1
+    assert "unparseable" in str(caught[0].message).lower()
+
+
+def test_load_config_accepts_current_scope():
+    """The shipped scope.yaml passes validation unchanged."""
+    config = load_config()
+    assert config["bot_config"]["confidence_threshold"] == 0.5
+    assert config["bot_config"]["model_name"] == "gemini-3.8-flash"
+
+
+def test_load_config_rejects_missing_threshold(tmp_path):
+    """A scope.yaml without a usable confidence threshold fails loudly."""
+    bad_yaml = tmp_path / "scope.yaml"
+    bad_yaml.write_text(
+        "bot_config:\n"
+        "  model_name: gemini-3.8-flash\n"
+        "ticket_types: [access_request]\n"
+        "escalation_rules: ['else: route_to: automated_response']\n"
+    )
+    try:
+        load_config(bad_yaml)
+    except ValueError as e:
+        assert "confidence_threshold" in str(e)
+    else:
+        raise AssertionError("load_config accepted a config with no confidence threshold")

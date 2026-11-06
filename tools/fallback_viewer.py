@@ -37,9 +37,14 @@ class FallbackLogViewer:
                     entry = json.loads(line.strip())
                     # Parse timestamp if present
                     if 'timestamp' in entry:
-                        entry['timestamp_parsed'] = datetime.fromisoformat(
+                        parsed = datetime.fromisoformat(
                             entry['timestamp'].replace('Z', '+00:00')
                         )
+                        # Old log entries may carry a naive timestamp; treat
+                        # it as UTC so date-range comparisons stay valid.
+                        if parsed.tzinfo is None:
+                            parsed = parsed.replace(tzinfo=timezone.utc)
+                        entry['timestamp_parsed'] = parsed
                     self.entries.append(entry)
                 except json.JSONDecodeError:
                     print("  Warning: Skipping malformed log entry")
@@ -158,7 +163,7 @@ class FallbackLogViewer:
             
             print(f"Entry #{i}")
             print(f"{'─'*70}")
-            print(f"⏰ Timestamp:   {timestamp}")
+            print(f"Timestamp:   {timestamp}")
             print(f"Category:    {result.get('ticket_type', 'N/A')}")
             print(f"Confidence:  {result.get('confidence_score', 'N/A')}")
             print(f"Contains PII: {'Yes' if result.get('contains_pii') else 'No'}")

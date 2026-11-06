@@ -6,7 +6,7 @@ This document tracks the lifecycle of the Vigil, including major changes, govern
 
 | Version | Date | Key Changes / Features Added | Governance / Audit Notes |
 |---------|------|------------------------------|--------------------------|
-| v0.1 | 2025-11-17 | Initial prototype with core `router.py` classification | Established fallback logging (`fallback_log.json`) |
+| v0.1 | 2025-11-17 | Initial prototype with core `router.py` classification | Established fallback logging (`fallback_log.jsonl`) |
 | v0.2 | 2025-11-17 | Added assertion-based test suite (`tests/test_router.py`) | Introduced confidence scoring for transparency |
 | v0.3 | 2025-11-17 | Drafted `risk_controls/fallback_protocols.md` and `governance/config/scope.yaml` | Scoped project boundaries, documented fallback protocols |
 | v0.4 | 2025-11-25 | Replaced manual tests with pytest, enhanced PII detection with Luhn algorithm, refactored logging to JSONL format, created `tools/` directory with `fallback_viewer.py` | Improved auditability with automated testing and stronger PII controls. Supports ISO/IEC 42001:2023 Clause 9.1 (Monitoring) |
@@ -14,14 +14,16 @@ This document tracks the lifecycle of the Vigil, including major changes, govern
 | v0.6 | 2025-11-29 | Updated model references from Gemini 1.5 Flash to Gemini 2.5 Flash across all documentation and code | Reflects current system configuration. Updated `governance/config/scope.yaml` |
 | v0.7 | 2025-11-29 | Created 4 folder README files: `governance/README.md`, `docs/README.md`, `tests/README.md`, `tools/README.md` | Enhanced documentation navigation. Supports ISO/IEC 42001:2023 Clause 7.5 (Documented Information) |
 | v0.8 | 2025-12-02 | Consolidated ISO compliance mapping: created comprehensive `docs/iso42001_compliance_mapping.md`, deleted duplicate files (`iso42001_mapping.md`, `iso42001mapping.md`) | Single source of truth for ISO/IEC 42001:2023 compliance. Documents 95% compliance, 8 risks with mitigations, 22 supporting files. Resolves Clause 7.5 violation |
-| v0.9 | 2026-10-31 | Updated model from Gemini 2.5 Flash to Gemini 3 Flash Preview across `scope.yaml`, code, and documentation | Gemini 2.5 Flash is retired for new API projects, so the pinned model no longer works with new keys |
 | v0.9 | 2025-12-07 | **SDK Migration:** Migrated from deprecated `google-generativeai` to modern `google-genai` SDK. Updated `requirements.txt`, `bot_engine/router.py`, `tests/test_router.py`. Fixed `tests/__init__.py` syntax error. All 24 tests passing (100%) | Ensures long-term SDK support (old SDK sunsets 2025-08-31). Supports ISO/IEC 42001:2023 Clause 8.3 (Change Management) |
 | v1.0 | 2025-12-07 | **PII Detection Enhancement:** Fixed formatted credit card detection (hyphens/spaces), maintained Luhn validation, updated test data with valid industry-standard test credit card numbers. All 17 PII tests passing | Enhanced data protection. Supports ISO/IEC 42001:2023 Clause 6.1 (Risk Management - PII protection) |
 | v1.1 | 2025-12-07 | **Repository Audit:** Standardized all ISO/IEC 42001:2023 references (9 files), removed em dashes, fixed model references (1.5→2.5 Flash), corrected tool filename references, updated documentation status (ISO mapping now APPROVED) | Ensures documentation accuracy and consistency. Supports ISO/IEC 42001:2023 Clause 7.5 (Documented Information) |
-| v1.2 | Planned | Introduce real-world data examples (sanitized) | Validate working conditions with production-like data, strengthen transparency and auditability |
-| v1.3 | Planned | Advanced monitoring dashboard (GUI-based fallback viewer) | Enhanced user experience for Human Review Agents. Supports ISO/IEC 42001:2023 Clause 9.1 (Monitoring) |
-| v1.4 | Planned | Multi-model support architecture (Gemini + OpenAI) | Vendor risk mitigation. Supports ISO/IEC 42001:2023 Clauses 6.1 (Risk Management) and 8.4 (Outsourced Processes) |
-| v1.5 | Planned | Integrate with Slack/Freshdesk APIs | Extend communication channels after core system stability confirmed |
+| v1.2 | 2026-10-31 | Updated model from Gemini 2.5 Flash to Gemini 3.8 Flash across `scope.yaml`, code, and documentation | Gemini 2.5 Flash is retired for new API projects, so the pinned model no longer works with new keys |
+| v1.3 | 2026-11-05 | First live-model evaluation published (26 tickets, 88.5% accuracy, 100% PII recall); ISO/IEC 42001 compliance derived from row-level tally at 93.4%; README reworked with Evaluation section and architecture diagram; CI pinned to Python 3.11; dashboard and demo video moved from In Progress to Planned | Evaluation and compliance figures now measured, not asserted. Supports ISO/IEC 42001:2023 Clauses 9.1 and 10.3 |
+| v1.4 | 2026-11-06 | Deep-dive audit fixes: PII redaction in the LLM error log, corrected free-tier rate limits and human-review threshold (70%), LICENSE made consistent, compliance mapping citations fixed, dead prompt removed, admin guide moved to google-genai SDK, config validation added | Closes the audit findings from 2026-11-06. Supports ISO/IEC 42001:2023 Clauses 6.1, 7.5, and 8.3 |
+| v1.5 | Planned | Introduce real-world data examples (sanitized) | Validate working conditions with production-like data, strengthen transparency and auditability |
+| v1.6 | Planned | Advanced monitoring dashboard (GUI-based fallback viewer) | Enhanced user experience for Human Review Agents. Supports ISO/IEC 42001:2023 Clause 9.1 (Monitoring) |
+| v1.7 | Planned | Multi-model support architecture (Gemini + OpenAI) | Vendor risk mitigation. Supports ISO/IEC 42001:2023 Clauses 6.1 (Risk Management) and 8.4 (Outsourced Processes) |
+| v1.8 | Planned | Integrate with Slack/Freshdesk APIs | Extend communication channels after core system stability confirmed |
 
 ---
 
@@ -38,8 +40,15 @@ This document tracks the lifecycle of the Vigil, including major changes, govern
 - **SDK Migration:** Fully migrated to modern google-genai SDK (all tests passing)
 - **PII Enhancement:** Fixed formatted credit card detection, all 17 PII tests passing
 - **Repository Audit:** Standardized all ISO/IEC 42001:2023 references across 9 files
-- **Quality Assurance:** 24/24 tests passing (100%), enhanced Luhn validation
-- **Compliance Status:** 95% ISO/IEC 42001:2023 compliant
+- **Quality Assurance:** 43/43 tests passing (100%), enhanced Luhn validation
+- **Compliance Status:** 93.4% ISO/IEC 42001:2023 compliant
+
+### Session 3 (2026-10-31 to 2026-11-06)
+- **Evaluation:** First live-model evaluation published (26 tickets, 88.5% accuracy, 100% PII recall)
+- **Compliance:** ISO/IEC 42001 compliance derived from row-level tally: 93.4% (53 fully met, 8 partial, 0 not met)
+- **Documentation:** README rework, architecture diagram, CI Python 3.11, dashboard and demo video moved to Planned
+- **Quality Assurance:** 43/43 tests passing (100%), including new tests for error-log PII redaction and config validation
+- **Audit Fixes:** PII redaction in the error log, corrected free-tier rate limits and human-review threshold (70%), LICENSE made consistent, compliance mapping citations fixed, dead prompt removed, admin guide moved to google-genai SDK
 
 ---
 
@@ -48,7 +57,7 @@ This document tracks the lifecycle of the Vigil, including major changes, govern
 - Version numbers now reflect actual milestones achieved, not planned features
 - All dates reflect actual completion dates from git commit history
 - ISO/IEC 42001:2023 compliance is tracked and maintained across all changes
-- Testing coverage is comprehensive: 24 tests (17 PII + 7 router) all passing
+- Testing coverage is comprehensive: 43 tests all passing
 - SDK is modern and supported (google-genai replaces deprecated google-generativeai)
 - This document serves as an evidence trail for audits and compliance reviews
 - Real-world data examples will only be introduced after validation, with proper sanitization
@@ -56,4 +65,4 @@ This document tracks the lifecycle of the Vigil, including major changes, govern
 
 ---
 
-**Document Version:** 2.0 | Last Updated: 2025-12-07
+**Document Version:** 2.1 | Last Updated: 2026-11-06

@@ -149,7 +149,7 @@ ISO/IEC 42001:2023 is the international standard for **Artificial Intelligence M
 #### Risk 5: API Rate Limiting
 - **Severity:** Low
 - **Mitigation:**
-  - Free tier: 15 requests per minute
+  - Free tier: low per-project limits (recent AI Studio figures for gemini-3.8-flash are about 5 requests per minute and 20 per day); check quota in AI Studio
   - Error handling for rate limit responses
   - User notification of temporary unavailability
 - **Monitoring:** Error log tracking of rate limit hits

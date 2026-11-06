@@ -57,10 +57,10 @@ were evaluated this time.
 
 ## Findings
 
-**The classifier is accurate on clear tickets.** All 23 non-PII routine
-tickets (password resets, access requests, software/hardware issues, billing
-questions without PII, and the correctly flagged compliance cases) were
-classified correctly, most at 0.95 confidence or above.
+**The classifier is accurate on clear tickets.** 23 of the 26 tickets were
+classified correctly (password resets, access requests, software/hardware
+issues, billing questions, and the correctly flagged compliance cases,
+including 3 that contained PII), most at 0.95 confidence or above.
 
 **PII handling works end to end.** All 6 PII-containing tickets were flagged,
 all 6 were routed to human review, and redaction keeps raw values out of the

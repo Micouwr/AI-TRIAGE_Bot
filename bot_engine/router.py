@@ -1,5 +1,6 @@
 import json
 import os
+import warnings
 import yaml
 from pathlib import Path
 from dotenv import load_dotenv
@@ -14,11 +15,37 @@ def get_project_root() -> Path:
     """Returns the project root directory."""
     return Path(__file__).parent.parent
 
-def load_config():
+def _validate_config(config: dict):
+    """Basic validation of scope.yaml: required keys present, thresholds sane.
+
+    Raises ValueError on a config that cannot support safe routing. Called by
+    load_config, so a broken config fails loudly at import instead of silently
+    degrading governance at runtime.
+    """
+    if not isinstance(config, dict):
+        raise ValueError("scope.yaml did not load as a mapping")
+    bot_config = config.get("bot_config")
+    if not isinstance(bot_config, dict):
+        raise ValueError("scope.yaml is missing the 'bot_config' section")
+    threshold = bot_config.get("confidence_threshold")
+    if not isinstance(threshold, (int, float)) or not 0.0 <= threshold <= 1.0:
+        raise ValueError("scope.yaml bot_config.confidence_threshold must be a number between 0.0 and 1.0")
+    if not bot_config.get("model_name"):
+        raise ValueError("scope.yaml bot_config.model_name must be a non-empty string")
+    ticket_types = config.get("ticket_types")
+    if not isinstance(ticket_types, list) or not ticket_types:
+        raise ValueError("scope.yaml ticket_types must be a non-empty list")
+    rules = config.get("escalation_rules")
+    if not isinstance(rules, list) or not rules:
+        raise ValueError("scope.yaml escalation_rules must be a non-empty list")
+
+def load_config(config_path: Path | None = None):
     """Loads the main configuration from the YAML file."""
-    config_path = get_project_root() / "governance" / "config" / "scope.yaml"
+    config_path = config_path or get_project_root() / "governance" / "config" / "scope.yaml"
     with config_path.open("r") as f:
-        return yaml.safe_load(f)
+        loaded = yaml.safe_load(f)
+    _validate_config(loaded)
+    return loaded
 
 # Load configuration and environment variables
 config = load_config()
@@ -135,13 +162,23 @@ def _parse_escalation_rule(rule_str: str):
     raise ValueError(f"Unparseable escalation rule: {rule_str!r}")
 
 def _load_escalation_rules():
-    """Parses the escalation_rules list from scope.yaml, skipping malformed entries."""
+    """Parses the escalation_rules list from scope.yaml.
+
+    A malformed rule is skipped, but only with a loud warning naming the rule:
+    a silently dropped rule would degrade governance invisibly, and a dropped
+    confidence rule could let a low-confidence ticket reach automated response.
+    """
     parsed = []
     for rule_str in config.get("escalation_rules", []):
         try:
             parsed.append(_parse_escalation_rule(str(rule_str)))
         except ValueError:
-            continue
+            warnings.warn(
+                f"Skipping unparseable escalation rule from scope.yaml: {rule_str!r}. "
+                "Governance rules are enforced in order; check the file.",
+                UserWarning,
+                stacklevel=2,
+            )
     return parsed
 
 ESCALATION_RULES = _load_escalation_rules()
@@ -213,12 +250,21 @@ def log_entry(log_path: Path, entry: dict):
         f.write(json.dumps(entry) + "\n")
 
 def log_llm_error(ticket_text: str, error_msg: str):
-    """Governance: Log when the AI model fails or returns an invalid response."""
+    """Governance: Log when the AI model fails or returns an invalid response.
+
+    The ticket preview is redacted the same way log_fallback redacts tickets,
+    so raw personal information never lands in the error log. Redaction runs
+    on the full text before truncating, so a PII value cut at the preview
+    boundary cannot leak as a fragment.
+    """
+    pii_flagged = contains_pii(ticket_text)
     entry = {
         "error": error_msg,
-        "ticket_preview": ticket_text[:100], # Log only a preview
+        "ticket_preview": redact_pii(ticket_text)[:100] if pii_flagged else ticket_text[:100],
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
+    if pii_flagged:
+        entry["pii_types"] = detect_pii_types(ticket_text)
     log_path = get_project_root() / "governance" / "llm_error_log.jsonl"
     log_entry(log_path, entry)
 

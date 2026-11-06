@@ -1,7 +1,7 @@
 # ISO/IEC 42001:2023 Compliance Mapping - Vigil Prototype
 
 **Document Status:** APPROVED
-**Last Updated:** 2025-11-29
+**Last Updated:** 2026-11-06
 **Owner:** William Ryan Micou
 **Purpose:** Maps Vigil features to ISO/IEC 42001:2023 requirements
 
@@ -23,7 +23,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 **AI Model:** Gemini 3.8 Flash (gemini-3.8-flash)
 **Deployment:** Desktop application (Windows/Mac/Linux)
-**API Tier:** Free tier (15 RPM, 1,500 RPD)
+**API Tier:** Free tier (low per-project limits; recent AI Studio figures for gemini-3.8-flash are about 5 RPM and 20 RPD; check your quota in AI Studio)
 **Primary Function:** Automated IT help desk ticket classification with human oversight
 
 ---
@@ -54,7 +54,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
 | Define AI system boundaries | Scope document defining use case, exclusions, and limitations | `governance/config/scope.yaml` | IMPLEMENTED |
-| Document what is included/excluded | Explicit scope boundaries: ticket classification only, no automated routing | `governance/ai_policy.md` Section 2 | IMPLEMENTED |
+| Document what is included/excluded | Explicit scope boundaries: ticket classification only, no automated routing | `governance/ai_policy.md` Section 1.1 | IMPLEMENTED |
 
 ---
 
@@ -74,7 +74,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
 | Top management demonstrates commitment | System Owner role with defined accountability | `governance/roles_and_responsibilities.md` | IMPLEMENTED |
-| AI policy established | Comprehensive AI policy document | `governance/ai_policy.md` (v1.1) | IMPLEMENTED |
+| AI policy established | Comprehensive AI policy document | `governance/ai_policy.md` (v1.2) | IMPLEMENTED |
 | Resources allocated | Training materials and tools provided | `governance/training_materials/`, `tools/fallback_viewer.py` | IMPLEMENTED |
 
 ---
@@ -83,7 +83,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Establish AI policy | Policy covering objectives, risks, compliance, and ethical considerations | `governance/ai_policy.md` (v1.1) | IMPLEMENTED |
+| Establish AI policy | Policy covering objectives, risks, compliance, and ethical considerations | `governance/ai_policy.md` (v1.2) | IMPLEMENTED |
 | Communicate policy | Policy accessible to all stakeholders, referenced in training materials | All training guides reference policy | IMPLEMENTED |
 
 ---
@@ -107,11 +107,11 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 | **Risk:** Inaccurate ticket classification | Confidence scoring with 0.50 threshold, fallback logging for human review | `bot_engine/router.py`, `fallback_log.jsonl` | IMPLEMENTED |
 | **Risk:** PII exposure in tickets | Regex-based PII detection with multiple pattern types (SSN, credit cards, emails, phone numbers, Luhn algorithm for card validation) | `risk_controls/pii_filters.py` | IMPLEMENTED |
 | **Risk:** API failures/outages | Comprehensive error handling, graceful degradation to "unknown" classification | `bot_engine/router.py`, error logging | IMPLEMENTED |
-| **Risk:** Rate limiting (15 RPM free tier) | Documented in AI policy as operational constraint | `governance/ai_policy.md` Section 5.1 | IMPLEMENTED |
-| **Risk:** Model bias in classification | Documented limitation, mitigation through human review of low-confidence results | `governance/ai_policy.md` Section 5.3 | IMPLEMENTED |
-| **Risk:** Unauthorized access to sensitive data | Access controls and data handling procedures defined | `governance/ai_policy.md` Section 6 | IMPLEMENTED |
+| **Risk:** Rate limiting (low free-tier limits) | Documented in AI policy as operational constraint | `governance/ai_policy.md` Section 3.1 | IMPLEMENTED |
+| **Risk:** Model bias in classification | Documented limitation, mitigation through human review of low-confidence results | `governance/ai_policy.md` Section 2.3 and Section 3.1 | IMPLEMENTED |
+| **Risk:** Unauthorized access to sensitive data | API keys stored via environment variables; sensitive tickets escalated to humans | `governance/ai_policy.md` Section 2.4 | IMPLEMENTED |
 | **Risk:** Lack of user competence | Role-specific training materials provided | `governance/training_materials/` | IMPLEMENTED |
-| **Risk:** Configuration errors | Centralized configuration with validation | `governance/config/scope.yaml` | PARTIAL |
+| **Risk:** Configuration errors | Centralized configuration with basic validation (required keys, threshold ranges) in `bot_engine/router.py` | `governance/config/scope.yaml` | PARTIAL |
 
 ---
 
@@ -119,7 +119,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Establish measurable AI objectives | Objectives defined: >70% classification accuracy, <5% PII false negatives | `governance/ai_policy.md` Section 3 | IMPLEMENTED |
+| Establish measurable AI objectives | Measurable performance is tracked: the 26-ticket evaluation (2026-11-01) measured 88.5% classification accuracy and 100% PII recall; these figures are the recorded baseline. No numeric objectives are set in the AI policy. | `docs/evaluation_results.md` | IMPLEMENTED |
 | Plan to achieve objectives | Fallback review process, audit procedures | `governance/audit_procedures.md` | IMPLEMENTED |
 
 ---
@@ -156,7 +156,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Establish communication processes | Escalation procedures for PII detection and low-confidence results | `governance/ai_policy.md` Section 7 | IMPLEMENTED |
+| Establish communication processes | Escalation procedures for PII detection and low-confidence results | `governance/ai_policy.md` Section 3.2 | IMPLEMENTED |
 
 ---
 
@@ -164,7 +164,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| **Creating and Updating:** Documentation maintained with version control | All governance documents include version numbers and dates | Git repository, document headers | IMPLEMENTED |
+| **Creating and Updating:** Documentation maintained with version control | Documentation maintained under version control in Git; version and date headers on the AI policy, compliance mapping, competence requirements, and audit procedures | Git repository, document headers | IMPLEMENTED |
 | **Control of Documented Information:** Centralized documentation structure with clear organization | Folder-specific README files for navigation | `README.md`, `governance/README.md`, `docs/README.md`, `tests/README.md`, `tools/README.md` | IMPLEMENTED |
 | **General Documentation:** Policies, procedures, scope defined | 9 governance documents + technical documentation | `governance/`, `docs/` directories | IMPLEMENTED |
 
@@ -206,7 +206,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Control outsourced AI processes | Gemini API is outsourced; risks managed through validation, error handling, and fallback protocols | `bot_engine/router.py`, `governance/ai_policy.md` Section 5.4 | IMPLEMENTED |
+| Control outsourced AI processes | Gemini API is outsourced; risks managed through validation, error handling, and fallback protocols | `bot_engine/router.py`, `governance/ai_policy.md` Section 3.1 | IMPLEMENTED |
 | Third-party risk management | API limitations documented, error handling implemented | `governance/ai_policy.md` Section 5.1 | IMPLEMENTED |
 
 ---
@@ -237,7 +237,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Regular management review | Audit procedures include management review requirements | `governance/audit_procedures.md` Section 4 | PARTIAL |
+| Regular management review | Audit procedures document exists; no formal management review process is defined yet | `governance/audit_procedures.md` | PARTIAL |
 | Review inputs documented | Audit reports, performance metrics, improvement opportunities | `governance/audit_procedures.md` | PARTIAL |
 
 ---
@@ -248,7 +248,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| Continual improvement commitment | Documented in AI policy and governance framework | `governance/ai_policy.md` Section 9, `governance/training_materials/governance_framework.md` | IMPLEMENTED |
+| Continual improvement commitment | Documented in AI policy and governance framework | `governance/ai_policy.md` Section 5 and Section 7, `governance/training_materials/governance_framework.md` | IMPLEMENTED |
 
 ---
 
@@ -256,7 +256,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 
 | Requirement | Implementation | Evidence | Status |
 |-------------|----------------|----------|--------|
-| React to nonconformities | Escalation procedures for PII detection and classification failures | `governance/ai_policy.md` Section 7 | IMPLEMENTED |
+| React to nonconformities | Escalation procedures for PII detection and classification failures | `governance/ai_policy.md` Section 3.2 | IMPLEMENTED |
 | Evaluate corrective actions | Audit procedures include corrective action tracking | `governance/audit_procedures.md` | PARTIAL |
 
 ---
@@ -280,7 +280,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 | 4 | Context of the Organization | 100% | `governance/config/scope.yaml`, `governance/ai_policy.md` |
 | 5 | Leadership | 100% | `governance/ai_policy.md`, `governance/roles_and_responsibilities.md` |
 | 6 | Planning | 95% | 8 risks documented, `risk_controls/pii_filters.py`, `bot_engine/router.py` |
-| 7 | Support | 100% | `governance/competence_requirements.md`, 4 training guides, 5 README files |
+| 7 | Support | 100% | `governance/competence_requirements.md`, 4 training guides, 9 README files |
 | 8 | Operation | 95.5% | `bot_engine/router.py`, `governance/config/scope.yaml`, `tests/` |
 | 9 | Performance Evaluation | 81.2% | `tools/fallback_viewer.py`, `governance/audit_procedures.md` |
 | 10 | Improvement | 75% | `governance/audit_procedures.md`, `governance/training_materials/reviewer_handbook.md` |
@@ -290,7 +290,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 ## Key Files Supporting Compliance
 
 ### Governance Documents (9 files)
-1. `governance/ai_policy.md` (v1.1) - Core policy document
+1. `governance/ai_policy.md` (v1.2) - Core policy document
 2. `governance/roles_and_responsibilities.md` - RACI matrix
 3. `governance/competence_requirements.md` - Role requirements
 4. `governance/audit_procedures.md` - Audit framework
@@ -318,7 +318,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 ---
 
 ### Documentation (6 files)
-1. `README.md` (v1.2) - Main project documentation
+1. `README.md` - Main project documentation
 2. `docs/PORTFOLIO.md` - Portfolio presentation
 3. `governance/README.md` - Governance documentation index
 4. `docs/README.md` - Documentation index
@@ -333,7 +333,7 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 |------|-----------|-------------|----------|
 | Conduct first internal audit | 9.2 (Internal Audit) | TBD | HIGH |
 | Hold first management review | 9.3 (Management Review) | TBD | HIGH |
-| Add config validation for scope.yaml | 6.1 (Risk) | TBD | MEDIUM |
+| Extend config validation for scope.yaml (full schema validation) | 6.1 (Risk) | TBD | MEDIUM |
 | Record reviewer decisions and feedback (dashboard Phase 2) | 10.3 (Continual Improvement) | TBD | HIGH |
 | Track corrective-action evaluations | 10.2 (Nonconformity and Corrective Action) | TBD | MEDIUM |
 
@@ -355,14 +355,14 @@ This document provides a comprehensive mapping between the Vigil prototype's fea
 **Areas for Improvement:**
 - Close the feedback loop: record reviewer decisions and feed corrections back into the system (Clause 10.3; dashboard work)
 - Conduct the first internal audit and management review (Clauses 9.2, 9.3)
-- Add configuration validation for scope.yaml (Clause 6.1)
+- Extend configuration validation for scope.yaml to full schema validation (Clause 6.1)
 - Corrective-action evaluations have no tracked record yet (Clause 10.2)
 
 ---
 
 ## Document Control
 
-**Version:** 1.1
+**Version:** 1.2
 **Created:** 2025-11-29
 **Next Review:** 2026-12-05 (or upon significant system changes)
 **Approved By:** William Ryan Micou (System Owner)

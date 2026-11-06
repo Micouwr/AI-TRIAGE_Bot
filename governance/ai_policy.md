@@ -1,8 +1,8 @@
 # AI Policy Statement - Vigil
 
-**Document Status:** APPROVED  
-**Operational Status:** FRAMEWORK  
-**Document Version:** 1.1  
+**Document Status:** DRAFT - SIGNATURES PENDING
+**Operational Status:** FRAMEWORK
+**Document Version:** 1.2
 **Effective Date:** 2025-11-25  
 **Owner:** William Ryan Micou  
 **Review Cycle:** Annual  
@@ -25,7 +25,7 @@ This AI Policy establishes the governance framework for the Vigil, an LLM-powere
 ## 2. Governance Principles
 
 ### 2.1 Human Oversight
-- All classifications below 50% confidence are flagged for human review
+- All classifications below 70% confidence are flagged for human review
 - Human agents retain final decision authority on all escalations
 - System operates as an assistive tool, not autonomous decision-maker
 
@@ -57,11 +57,11 @@ This AI Policy establishes the governance framework for the Vigil, an LLM-powere
 | PII exposure | High | Automated PII detection, escalation protocols |
 | Model unavailability | Medium | Graceful degradation, error logging |
 | Bias in classification | Low | Regular audit of fallback logs |
-| API rate limiting | Low | Free tier awareness (15 RPM), error handling |
+| API rate limiting | Low | Free tier awareness (low per-project limits; check quota in AI Studio), error handling |
 
 ### 3.2 Escalation Protocols
 Automatic escalation to human agents when:
-- Confidence score < 0.5
+- Confidence score < 0.7
 - PII detected in ticket text
 - Category = "compliance_flag"
 - LLM returns malformed response
@@ -117,7 +117,7 @@ Automatic escalation to human agents when:
 - GDPR Article 22 (Automated Decision-Making)
 
 ### 6.2 Documentation
-- `governance/iso42001_mapping.md` - Detailed clause mapping
+- `docs/iso42001_compliance_mapping.md` - Detailed clause mapping
 - `governance/config/scope.yaml` - System configuration
 - `risk_controls/fallback_protocols.md` - Escalation procedures
 
@@ -137,6 +137,8 @@ This policy will be reviewed annually or when:
 
 **Approval:**
 
+Signatures are pending; the policy content is in use as a working draft until signed.
+
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
 | System Owner | William Ryan Micou | [To Be Signed] | 2025-11-25 |
@@ -150,4 +152,5 @@ This policy will be reviewed annually or when:
 |---------|------|--------|---------|
 | 1.0 | 2025-11-25 | W.R. Micou | Initial policy creation |
 | 1.1 | 2025-11-25 | W.R. Micou | Updated model to Gemini 2.5 Flash, added rate limiting risk |
+| 1.2 | 2026-11-06 | W.R. Micou | Corrected human-review threshold to 70%, corrected free-tier limit wording, fixed compliance mapping path, marked approval signatures pending |
 

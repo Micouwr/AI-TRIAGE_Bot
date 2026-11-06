@@ -16,7 +16,7 @@ The `Vigil Prototype` directory contains the core logic of the Vigil, specifical
 
 To use `router.py`, ensure you have the necessary environment variables set, such as `GEMINI_API_KEY`. Then, you can call the `classify_ticket` function with a ticket text as input.
 ```python
-from AI_TRIAGE_BOT_Prototype.router import classify_ticket
+from bot_engine.router import classify_ticket
 
 ticket_text = "Example ticket text here."
 result = classify_ticket(ticket_text)

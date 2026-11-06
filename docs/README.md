@@ -1,6 +1,6 @@
 # Documentation Index - Vigil Prototype
 
-**Last Updated:** 2025-12-07  
+**Last Updated:** 2026-11-06  
 **Owner:** William Ryan Micou  
 **Purpose:** Index of all user-facing and training documentation  
 
@@ -86,15 +86,15 @@ docs/
 
 **Audience:** Auditors, compliance officers, governance leads  
 **Status:** APPROVED  
-**Version:** 1.0  
-**Last Updated:** 2025-12-07  
+**Version:** 1.2  
+**Last Updated:** 2026-11-06  
 **Purpose:** Complete mapping of system features to ISO/IEC 42001:2023 clauses
 
 **Contents:**
 - All 10 ISO/IEC 42001:2023 clauses with detailed mappings
 - Evidence files for each requirement (22 supporting files documented)
 - 8 identified risks with mitigations
-- Compliance status tracking (95% compliant)
+- Compliance status tracking (93.4% compliant)
 - Prototype feature alignment
 - Comprehensive compliance checklist
 
@@ -232,4 +232,4 @@ docs/
 
 ---
 
-**Document Version:** 1.1 | Created: 2025-11-29 | Updated: 2025-12-07
+**Document Version:** 1.1 | Created: 2025-11-29 | Updated: 2026-11-06

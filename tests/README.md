@@ -1,6 +1,6 @@
 # Testing Documentation - Vigil Prototype
 
-**Last Updated:** 2025-11-29  
+**Last Updated:** 2026-11-06  
 **Owner:** William Ryan Micou  
 **Purpose:** Testing procedures, coverage information, and quality assurance guidelines  
 
@@ -29,7 +29,7 @@ tests/
 
 **Purpose:** Validate core classification logic and error handling  
 **Coverage:** Classification engine, API integration, fallback logging  
-**Test Count:** 8 tests  
+**Test Count:** 18 tests  
 
 **Test Scenarios:**
 - ✅ Standard ticket classification (access_request, billing_question, etc.)
@@ -42,7 +42,7 @@ tests/
 - ✅ Mixed PII and low confidence scenarios
 
 **Mocking Strategy:**
-- Mock `bot_engine.router.model` to avoid actual API calls
+- Mock `bot_engine.router.client` to avoid actual API calls
 - Return controlled JSON responses for predictable testing
 - No API costs during test execution
 - Fast test execution (< 5 seconds for full suite)
@@ -53,7 +53,7 @@ tests/
 
 **Purpose:** Validate PII detection accuracy and prevent false positives/negatives  
 **Coverage:** SSN, credit cards, emails, phone numbers  
-**Test Count:** 14+ parameterized tests  
+**Test Count:** 25 tests (parameterized)  
 
 **Positive Test Cases (Should Detect PII):**
 - ✅ SSN format: 123-45-6789
@@ -125,13 +125,14 @@ python -m pytest --lf
 
 ## 📊 Test Coverage
 
-### Current Coverage (as of 2025-11-29)
+### Current Coverage (as of 2026-11-06)
 
 | Module | Coverage | Status |
 |--------|----------|--------|
-| `bot_engine/router.py` | ~85% | Good |
-| `risk_controls/pii_filters.py` | ~95% | Excellent |
+| `bot_engine/router.py` | 85% | Good |
+| `risk_controls/pii_filters.py` | 92% | Excellent |
 | `main_gui.py` | Not tested | GUI - manual testing required |
+| **Total (bot_engine + risk_controls)** | **87%** | Good |
 
 **Target:** 90% coverage for core business logic
 
@@ -165,11 +166,11 @@ import json
 from unittest.mock import patch
 from bot_engine.router import classify_ticket
 
-@patch('bot_engine.router.model')
-def test_your_new_test(mock_model):
+@patch('bot_engine.router.client')
+def test_your_new_test(mock_client):
     """Test description here."""
     # Arrange: Set up mock response
-    mock_model.generate_content.return_value.text = json.dumps({
+    mock_client.models.generate_content.return_value.text = json.dumps({
         "category": "your_category",
         "confidence": 0.85
     })
@@ -215,7 +216,7 @@ def test_your_non_pii_pattern():
 
 **Issue: "FAILED test_router.py - Mock not working"**
 - **Solution:** Verify mock path matches import structure
-- **Check:** Mock `bot_engine.router.model`, not `router.model`
+- **Check:** Mock `bot_engine.router.client`, not `router.client`
 
 **Issue: "Tests pass locally but fail in CI"**
 - **Solution:** Check Python version consistency
@@ -223,7 +224,7 @@ def test_your_non_pii_pattern():
 
 **Issue: "AttributeError: Mock object has no attribute 'text'"**
 - **Solution:** Ensure mock return value structure matches actual API response
-- **Fix:** `mock_model.generate_content.return_value.text = "..."`
+- **Fix:** `mock_client.models.generate_content.return_value.text = "..."`
 
 ---
 
@@ -317,5 +318,5 @@ def test_your_non_pii_pattern():
 
 ---
 
-**Document Version:** 1.0 | Created: 2025-11-29
+**Document Version:** 1.0 | Created: 2025-11-29 | Updated: 2026-11-06
 ```

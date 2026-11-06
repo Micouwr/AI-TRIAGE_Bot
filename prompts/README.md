@@ -4,7 +4,7 @@ This directory contains prompt templates used by the Vigil to classify and proce
 
 ## Contents
 
-- **classify_ticket.txt**: A prompt template for the AI model to classify support tickets into predefined categories.
+- **classification_prompt.txt**: The live prompt template used by `bot_engine/router.py` to classify support tickets into predefined categories. The router formats it with the ticket categories from `scope.yaml` and expects a JSON object with `category` and `confidence`.
 
 ## Purpose
 
@@ -22,7 +22,7 @@ To use the prompts:
 If you need to add or modify prompts:
 - Ensure the changes align with the bot's classification categories and governance requirements.
 - Update the prompt templates as needed to improve classification accuracy or to accommodate new features.
-- Document any changes in the `version_history.md` file to maintain an audit trail.
+- Document any changes in the `lifecycle/versionhistory.md` file to maintain an audit trail.
 
 ## Contact
 

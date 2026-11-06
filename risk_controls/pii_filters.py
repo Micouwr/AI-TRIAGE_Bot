@@ -15,7 +15,7 @@ PII_PATTERNS = [
     ("card", re.compile(r"\b(?:\d{4}[- ]){3}\d{4}(?=\s|[.,;!?]|$)")),
 
     # Email Address
-    ("email", re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")),
+    ("email", re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")),
 
     # Phone Number (matches various US formats)
     ("phone", re.compile(r"\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b")),

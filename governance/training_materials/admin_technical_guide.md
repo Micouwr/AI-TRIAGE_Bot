@@ -40,7 +40,7 @@ As a **System Administrator**, you are responsible for:
 
 **API Requirements:**
 - Google Gemini API key (free tier supported)
-- Free tier limits: 15 requests per minute, 1,500 requests per day
+- Free tier limits: low and per-project (recent AI Studio figures for gemini-3.8-flash are about 5 requests per minute and 20 per day); check your quota in Google AI Studio
 
 ---
 
@@ -78,7 +78,7 @@ pip list
 ```
 
 Expected packages:
-- google-generativeai>=0.8.0
+- google-genai>=0.1.0
 - python-dotenv>=1.0.0
 - pyyaml>=6.0
 - pytest>=7.4.0
@@ -221,9 +221,9 @@ escalation_rules:
 
 | Model | Speed | Intelligence | Rate Limit | Best For |
 |-------|-------|--------------|------------|----------|
-| `gemini-3.8-flash` | Fast | High | 15 RPM | Balanced (current) |
-| `gemini-flash-lite-latest` | Fastest | Medium | 15 RPM | High-volume, cost-sensitive |
-| `gemini-2.5-pro` | Slower | Highest | 5 RPM | Complex reasoning (limited use) |
+| `gemini-3.8-flash` | Fast | High | Varies by project; check AI Studio | Balanced (current) |
+| `gemini-flash-lite-latest` | Fastest | Medium | Varies by project; check AI Studio | High-volume, cost-sensitive |
+| `gemini-2.5-pro` | Slower | Highest | Varies by project; check AI Studio | Complex reasoning (limited use) |
 
 **To Change Model:**
 1. Edit `governance/config/scope.yaml`
@@ -320,7 +320,7 @@ tail -n 20 governance/llm_error_log.jsonl | jq .
 ```json
    {"error": "Resource has been exhausted", ...}
 ```
-   **Solution:** Free tier: 15 RPM limit. Wait or upgrade API plan.
+   **Solution:** Free tier: low per-project limits. Wait for the quota to reset or upgrade API plan.
 
 2. **Authentication Failures**
 ```json
@@ -564,14 +564,16 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print('API 
 2. Check API key format (no quotes, no spaces)
 3. Test API key:
 ```python
-   import google.generativeai as genai
+   from google import genai
    import os
    from dotenv import load_dotenv
-   
+
    load_dotenv()
-   genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-   model = genai.GenerativeModel("gemini-3.8-flash")
-   response = model.generate_content("Test")
+   client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+   response = client.models.generate_content(
+       model="gemini-3.8-flash",
+       contents="Test",
+   )
    print(response.text)
 ```
 
@@ -581,7 +583,7 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print('API 
 
 **Symptoms:**
 - Error: "Resource has been exhausted"
-- Classifications fail after 15 requests in 1 minute
+- Classifications fail once the free-tier quota is reached
 
 **Diagnosis:**
 ```bash
@@ -591,11 +593,10 @@ grep "exhausted" governance/llm_error_log.jsonl
 
 **Solution:**
 1. **Free Tier Limits:**
-   - 15 requests per minute (RPM)
-   - 1,500 requests per day (RPD)
+   - Low and per-project (recent AI Studio figures for gemini-3.8-flash are about 5 requests per minute and 20 per day); check your quota in Google AI Studio
 
 2. **Immediate Fix:**
-   - Wait 60 seconds before retrying
+   - Wait for the quota to reset (midnight Pacific) before retrying
    - System will automatically log error and return "unknown"
 
 3. **Long-term Solutions:**
@@ -771,7 +772,7 @@ pip list --outdated
 
 **Update specific package:**
 ```bash
-pip install --upgrade google-generativeai
+pip install --upgrade google-genai
 ```
 
 **Update all packages:**

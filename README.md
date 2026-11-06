@@ -58,7 +58,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 
 - Python 3.11+
 - A Gemini API key (set as environment variable `GEMINI_API_KEY`)
-  - Free tier supported (15 requests per minute)
+  - Free tier supported (limits are low and per-project; check your quota in Google AI Studio)
   - Get your key at: https://aistudio.google.com/apikey
 
 ### Installation
@@ -96,6 +96,7 @@ Limitations: labels were assigned by the author, not independent labelers, and 2
 ```bash
    python -c "from bot_engine.router import classify_ticket; print('Backend OK')"
 ```
+   If no API key is configured yet, the import also prints an `Error: Gemini API key not configured` line. That is expected at this step; the `Backend OK` line is the check that matters. Set `GEMINI_API_KEY` in `.env` before classifying tickets.
 
 ---
 
@@ -195,13 +196,11 @@ Vigil/
 │   ├── test_router.py               # Router tests
 │   └── test_pii_filters.py          # PII detection tests
 ├── tools/
-│   ├── __init__.py
 │   ├── README.md                    # Tools documentation
 │   └── fallback_viewer.py           # Log analysis tool
 ├── prompts/
 │   ├── README.md                    # Prompt documentation
-│   ├── classification_prompt.txt    # LLM prompt template
-│   └── classify_ticket.txt          # Alternate prompt template
+│   └── classification_prompt.txt    # LLM prompt template
 ├── lifecycle/
 │   ├── README.md                    # Lifecycle documentation
 │   └── versionhistory.md            # Version tracking
@@ -321,7 +320,7 @@ This system implements governance controls aligned with ISO/IEC 42001:2023:
 - Never commit `.env` to version control
 - Verify `.env` is listed in `.gitignore`
 - Use different keys for dev/staging/prod environments
-- Free tier rate limits: 15 requests per minute, 1,500 per day
+- Free tier rate limits: low and per-project (recent AI Studio figures for gemini-3.8-flash are about 5 requests per minute and 20 per day); check your quota in Google AI Studio
 
 ### PII Protection
 - Fallback logs may contain PII
@@ -347,7 +346,7 @@ chmod 640 governance/llm_error_log.jsonl
 - **Solution:** Verify `.env` file exists with valid `GEMINI_API_KEY`
 
 **Issue: Rate limit exceeded**
-- **Solution:** Free tier allows 15 requests per minute. Wait 60 seconds or upgrade API plan.
+- **Solution:** Free tier allows only a small number of requests per day. If you hit the limit, wait until the quota resets (midnight Pacific) or upgrade the API plan.
 
 **Issue: High fallback rate (>40%)**
 - **Solution:** Review `governance/config/scope.yaml` and consider adjusting `confidence_threshold`
@@ -369,7 +368,7 @@ chmod 640 governance/llm_error_log.jsonl
 - ✅ Escalation rules enforced in code, including unknown-to-human routing
 - ✅ PII detection with Luhn validation and redaction in fallback logs
 - ✅ Basic GUI prototype for interactive ticket classification
-- ✅ Comprehensive test suite (39/39 passing - 100%)
+- ✅ Comprehensive test suite (43/43 passing - 100%)
 - ✅ ISO/IEC 42001:2023 governance framework (93.4% compliant)
 - ✅ Training materials and documentation
 - ✅ Fallback log viewer tool
