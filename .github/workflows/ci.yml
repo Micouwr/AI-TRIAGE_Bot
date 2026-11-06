@@ -22,7 +22,7 @@ jobs:
     - name: Run tests
       run: |
         python -m pytest
-      - name: Lint with pyflakes
-        run: |
-          pip install pyflakes
-          python -m pyflakes bot_engine risk_controls tools tests main_gui.py
+    - name: Lint with pyflakes
+      run: |
+        pip install pyflakes
+        python -m pyflakes bot_engine risk_controls tools tests main_gui.py
