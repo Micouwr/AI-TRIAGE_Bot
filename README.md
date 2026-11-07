@@ -2,7 +2,11 @@
 
 *AI that knows when not to trust itself.*
 
-A working prototype implementing ISO/IEC 42001:2023 governance controls in an LLM-powered support ticket classification application. Vigil keeps watch over the AI, calling for a human the moment something looks wrong. Built with Google Gemini 3.8 Flash to demonstrate practical application of AI management system requirements.
+Vigil is a governed support system that will not automate a ticket it does not trust. It reads incoming tickets, and when confidence is low, when personal data is present, or when the type is unknown or a compliance flag is raised, it sends the ticket to a human by rule in the code, not by the model's choice. Classification is the job underneath. Refusal is the point.
+
+Tested on 26 real tickets: 88.5% right, every piece of personal data caught, every mistake sent to a human.
+
+Built with Google Gemini 3.8 Flash to demonstrate practical application of AI management system requirements.
 
 ## Why "Vigil"?
 
