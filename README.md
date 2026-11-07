@@ -10,6 +10,16 @@ A vigil is keeping watch through the night: alert, patient, ready to act, but ne
 
 ---
 
+## Why This Matters
+
+Many AI systems focus on maximizing automation.
+
+Vigil demonstrates a different approach: automate when confidence is justified, escalate when risk increases, and keep a redacted record of the cases it was unsure about.
+
+The goal is not to eliminate human oversight. The goal is to make human oversight systematic.
+
+---
+
 ## How It Works
 
 ```mermaid
